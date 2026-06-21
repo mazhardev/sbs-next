@@ -19,7 +19,59 @@ export default function Home() {
         },
         slogan: "Think Smart, Solve Better",
         description:
-          "Smart Brain Solutions builds intelligent, human-centered digital experiences.",
+          "Smart Brain Solutions provides professional Odoo ERP implementation, customization, and support that helps businesses streamline operations, improve productivity, and accelerate growth.",
+        knowsAbout: [
+          "Odoo ERP implementation",
+          "Odoo customization",
+          "Odoo support",
+          "ERP integration",
+          "Business process automation",
+        ],
+        hasOfferCatalog: {
+          "@type": "OfferCatalog",
+          name: "Odoo ERP Services",
+          itemListElement: [
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                "@id": "https://smartbrainsolution.com/#odoo-implementation",
+                name: "Odoo ERP Implementation",
+                description:
+                  "Professional implementation of Odoo ERP systems aligned with business processes and operational goals.",
+                provider: {
+                  "@id": "https://smartbrainsolution.com/#organization",
+                },
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                "@id": "https://smartbrainsolution.com/#odoo-customization",
+                name: "Odoo ERP Customization",
+                description:
+                  "Odoo module and workflow customization tailored to specific business requirements.",
+                provider: {
+                  "@id": "https://smartbrainsolution.com/#organization",
+                },
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                "@id": "https://smartbrainsolution.com/#odoo-support",
+                name: "Odoo ERP Support",
+                description:
+                  "Ongoing Odoo ERP support focused on system reliability, user productivity, and continuous improvement.",
+                provider: {
+                  "@id": "https://smartbrainsolution.com/#organization",
+                },
+              },
+            },
+          ],
+        },
       },
       {
         "@type": "WebSite",
@@ -27,7 +79,7 @@ export default function Home() {
         url: "https://smartbrainsolution.com/",
         name: "Smart Brain Solutions",
         description:
-          "Intelligent digital experiences and better solutions, coming soon.",
+          "Professional Odoo ERP implementation, customization, and support for stronger businesses.",
         publisher: {
           "@id": "https://smartbrainsolution.com/#organization",
         },
@@ -37,7 +89,7 @@ export default function Home() {
         "@type": "WebPage",
         "@id": "https://smartbrainsolution.com/#webpage",
         url: "https://smartbrainsolution.com/",
-        name: "Smart Brain Solutions | Intelligent Digital Solutions",
+        name: "Odoo ERP Implementation & Support | Smart Brain Solutions",
         isPartOf: {
           "@id": "https://smartbrainsolution.com/#website",
         },
@@ -45,7 +97,13 @@ export default function Home() {
           "@id": "https://smartbrainsolution.com/#organization",
         },
         description:
-          "Smart Brain Solutions is building intelligent digital experiences that turn complex challenges into clear, human-centered solutions.",
+          "Professional Odoo ERP implementation, customization, and support that helps businesses streamline operations, improve productivity, and accelerate growth.",
+        primaryImageOfPage: {
+          "@type": "ImageObject",
+          url: "https://smartbrainsolution.com/images/logo.jpeg",
+          width: 1254,
+          height: 1254,
+        },
         inLanguage: "en-US",
       },
     ],
@@ -71,14 +129,15 @@ export default function Home() {
 
       <section className="hero">
         <div className="copy">
-          <p className="eyebrow"><span>01</span> A smarter future is loading</p>
-          <h1>Bright ideas.<br /><em>Better solutions.</em></h1>
+          <p className="eyebrow"><span>01</span> Odoo ERP expertise, coming soon</p>
+          <h1>Smart Systems.<br /><em>Stronger Businesses.</em></h1>
           <p className="intro" itemProp="description">
-            We’re shaping intelligent digital experiences that turn complex
-            challenges into clear, human solutions.
+            Smart Brain Solutions specializes in implementing, customizing, and
+            supporting Odoo ERP systems that help businesses streamline operations,
+            improve productivity, and accelerate growth.
           </p>
           <div className="launchLine">
-            <span>Launching soon</span>
+            <span>We&apos;re Launching Soon</span>
             <div className="line"><i /></div>
           </div>
         </div>
@@ -97,9 +156,9 @@ export default function Home() {
               priority
             />
           </div>
-          <div className="floatTag tagOne">Ideas</div>
-          <div className="floatTag tagTwo">Technology</div>
-          <div className="floatTag tagThree">Impact</div>
+          <div className="floatTag tagOne">Implementation</div>
+          <div className="floatTag tagTwo">Customization</div>
+          <div className="floatTag tagThree">Support</div>
         </div>
       </section>
 

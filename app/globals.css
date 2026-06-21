@@ -19,7 +19,7 @@ nav p { font:700 15px "Manrope"; letter-spacing:-.01em; }
 .eyebrow { display:flex; align-items:center; gap:12px; text-transform:uppercase; letter-spacing:.18em; color:var(--blue); font-size:11px; font-weight:600; margin:0 0 28px; }
 .eyebrow span { color:#9ba8bb; }
 h1 { font:800 clamp(50px,6vw,92px)/.98 "Manrope",sans-serif; letter-spacing:-.062em; margin:0; color:var(--navy); }
-h1 em { font-style:normal; color:transparent; background:linear-gradient(100deg,var(--blue),#00aeda); background-clip:text; -webkit-background-clip:text; }
+h1 em { display:inline-block; font-size:.82em; font-style:normal; color:transparent; background:linear-gradient(100deg,var(--blue),#00aeda); background-clip:text; -webkit-background-clip:text; }
 .intro { max-width:540px; color:var(--muted); font-size:clamp(16px,1.4vw,19px); line-height:1.72; margin:32px 0 38px; }
 .launchLine { display:flex; align-items:center; gap:18px; text-transform:uppercase; letter-spacing:.16em; font:600 10px "Manrope"; color:var(--navy); }
 .line { height:1px; width:150px; background:#d4deec; overflow:hidden; }

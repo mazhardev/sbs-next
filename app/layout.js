@@ -5,11 +5,11 @@ const siteUrl = "https://smartbrainsolution.com/";
 export const metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Smart Brain Solutions | Intelligent Digital Solutions",
+    default: "Odoo ERP Implementation & Support | Smart Brain Solutions",
     template: "%s | Smart Brain Solutions",
   },
   description:
-    "Smart Brain Solutions is building intelligent digital experiences that turn complex challenges into clear, human-centered solutions. Our new website is coming soon.",
+    "Professional Odoo ERP implementation, customization, and support that helps businesses streamline operations, improve productivity, and accelerate growth.",
   applicationName: "Smart Brain Solutions",
   authors: [{ name: "Smart Brain Solutions", url: siteUrl }],
   creator: "Smart Brain Solutions",
@@ -18,11 +18,14 @@ export const metadata = {
   category: "technology",
   keywords: [
     "Smart Brain Solutions",
-    "intelligent digital solutions",
-    "digital experiences",
-    "technology solutions",
-    "business technology",
-    "human-centered technology",
+    "Odoo ERP",
+    "Odoo implementation",
+    "Odoo customization",
+    "Odoo support",
+    "Odoo ERP consulting",
+    "Odoo integration",
+    "ERP systems",
+    "business process automation",
   ],
   alternates: {
     canonical: siteUrl,
@@ -32,24 +35,24 @@ export const metadata = {
     locale: "en_US",
     url: siteUrl,
     siteName: "Smart Brain Solutions",
-    title: "Smart Brain Solutions | Think Smart, Solve Better",
+    title: "Odoo ERP Implementation & Support | Smart Brain Solutions",
     description:
-      "We’re shaping intelligent digital experiences that turn complex challenges into clear, human solutions. Launching soon.",
+      "Professional Odoo ERP implementation, customization, and support for streamlined operations, greater productivity, and sustainable business growth.",
     images: [
       {
         url: `${siteUrl}images/logo.jpeg`,
         width: 1254,
         height: 1254,
-        alt: "Smart Brain Solutions logo — Think Smart, Solve Better",
+        alt: "Smart Brain Solutions - Odoo ERP implementation, customization, and support",
         type: "image/jpeg",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Smart Brain Solutions | Think Smart, Solve Better",
+    title: "Odoo ERP Implementation & Support | Smart Brain Solutions",
     description:
-      "Intelligent digital experiences and better solutions are on the way.",
+      "Professional Odoo ERP services that streamline operations, improve productivity, and support business growth.",
     images: [`${siteUrl}images/logo.jpeg`],
   },
   robots: {
