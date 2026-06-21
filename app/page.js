@@ -139,7 +139,7 @@ export default function Home() {
 
       <section className="hero">
         <div className="copy">
-          <p className="eyebrow"><span>01</span> Odoo ERP expertise, coming soon</p>
+          <p className="eyebrow"><span>01</span> Coming Soon</p>
           <h1>Smart Systems.<br /><em>Stronger Businesses.</em></h1>
           <p className="intro" itemProp="description">
             Smart Brain Solutions specializes in implementing, customizing, and

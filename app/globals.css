@@ -19,7 +19,7 @@ nav p { font:700 15px "Manrope"; letter-spacing:-.01em; }
 .eyebrow { display:flex; align-items:center; gap:12px; text-transform:uppercase; letter-spacing:.18em; color:var(--blue); font-size:11px; font-weight:600; margin:0 0 28px; }
 .eyebrow span { color:#9ba8bb; }
 h1 { font:800 clamp(50px,6vw,92px)/.98 "Manrope",sans-serif; letter-spacing:-.062em; margin:0; color:var(--navy); }
-h1 em { display:inline-block; font-size:.82em; font-style:normal; color:transparent; background:linear-gradient(100deg,var(--blue),#00aeda); background-clip:text; -webkit-background-clip:text; }
+h1 em { display:inline-block; padding-bottom:.1em; margin-bottom:-.1em; font-size:.82em; line-height:1.12; font-style:normal; color:transparent; background:linear-gradient(100deg,var(--blue),#00aeda); background-clip:text; -webkit-background-clip:text; }
 .intro { max-width:540px; color:var(--muted); font-size:clamp(16px,1.4vw,19px); line-height:1.72; margin:32px 0 38px; }
 .launchLine { display:flex; align-items:center; gap:18px; text-transform:uppercase; letter-spacing:.16em; font:600 10px "Manrope"; color:var(--navy); }
 .line { height:1px; width:150px; background:#d4deec; overflow:hidden; }
@@ -76,4 +76,29 @@ footer { min-height:78px; border-top:1px solid rgba(8,52,126,.1); display:flex; 
 @keyframes modalIn { from { opacity:0; transform:translateY(16px) scale(.985); } }
 @media (max-width:850px) { nav { height:86px; }.hero { grid-template-columns:1fr; text-align:center; padding:48px 0 34px; gap:52px; }.copy { margin:auto; }.eyebrow,.launchLine { justify-content:center; }.intro { margin-left:auto; margin-right:auto; }.visual { width:min(82vw,460px); grid-row:1; }.status { font-size:0; }.status i { margin-right:5px; }footer { min-height:68px; }.tagTwo { right:-2%; } }
 @media (max-width:520px) { main { padding:0 20px; }nav p { font-size:13px; }.hero { padding-top:36px; gap:36px; }.visual { width:88vw; }h1 { font-size:45px; }.eyebrow { font-size:9px; margin-bottom:20px; }.intro { font-size:15px; margin:24px 0 28px; }.floatTag { padding:7px 10px; font-size:8px; }.tagOne { left:2%; }.tagTwo { right:1%; }footer p:first-child { display:none; }footer { justify-content:center; }.modalBackdrop { padding:10px; }.contactModal { max-height:calc(100vh - 20px); border-radius:20px; }.fieldGrid { grid-template-columns:1fr; gap:14px; }.formFooter { align-items:stretch; flex-direction:column; }.sendOptions { flex-direction:column; }.sendButton { width:100%; }.verification { justify-content:space-between; }.contactTrigger { margin-top:24px; } }
+@media (max-width:600px) {
+  .modalBackdrop { align-items:stretch; padding:0; background:#f8fbff; }
+  .contactModal { width:100%; height:100vh; height:100dvh; max-height:none; margin:0; padding:18px 17px max(24px,env(safe-area-inset-bottom)); border:0; border-radius:0; box-shadow:none; overscroll-behavior:contain; -webkit-overflow-scrolling:touch; }
+  .modalClose { position:sticky; z-index:3; top:0; display:block; margin:0 0 -36px auto; width:40px; height:40px; background:rgba(255,255,255,.96); box-shadow:0 5px 16px rgba(5,27,67,.1); }
+  .modalHeading { padding:5px 48px 0 1px; }
+  .modalHeading p { margin-bottom:7px; font-size:9px; }
+  .modalHeading h2 { margin:0 0 8px; font-size:clamp(25px,7.4vw,32px); }
+  .modalHeading span { display:block; font-size:12px; line-height:1.45; }
+  .contactModal form { margin-top:21px; gap:13px; padding-bottom:4px; }
+  .fieldGrid { grid-template-columns:1fr; gap:13px; }
+  .contactModal label { gap:6px; font-size:10.5px; }
+  .contactModal input,.contactModal select,.contactModal textarea { min-height:46px; padding:11px 12px; border-radius:10px; font-size:16px; }
+  .contactModal textarea { min-height:105px; }
+  .formFooter { align-items:stretch; flex-direction:column; gap:13px; padding-top:2px; }
+  .verification { grid-template-columns:1fr 72px!important; justify-content:stretch; }
+  .verification input { min-height:42px; }
+  .sendOptions { display:grid; grid-template-columns:1fr 1fr; gap:9px; }
+  .sendButton { width:100%; min-height:48px; padding:11px 8px; font-size:10.5px; line-height:1.3; white-space:normal; }
+  .sendButton span { margin-left:4px; }
+  .privacyNote { text-align:center; line-height:1.45; }
+}
+@media (max-width:350px) {
+  .sendOptions { grid-template-columns:1fr; }
+  .modalHeading { padding-right:42px; }
+}
 @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation:none!important; scroll-behavior:auto!important; } }
