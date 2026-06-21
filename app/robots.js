@@ -6,7 +6,7 @@ export default function robots() {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://mazhardev.github.io/sbs-next/sitemap.xml",
-    host: "https://mazhardev.github.io/sbs-next/",
+    sitemap: "https://smartbrainsolution.com/sitemap.xml",
+    host: "https://smartbrainsolution.com/",
   };
 }

@@ -1,21 +1,19 @@
 import Image from "next/image";
 
 export default function Home() {
-  const logoPath = process.env.NODE_ENV === "production"
-    ? "/sbs-next/images/logo.jpeg"
-    : "/images/logo.jpeg";
+  const logoPath = "/images/logo.jpeg";
 
   const structuredData = {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "Organization",
-        "@id": "https://mazhardev.github.io/sbs-next/#organization",
+        "@id": "https://smartbrainsolution.com/#organization",
         name: "Smart Brain Solutions",
-        url: "https://mazhardev.github.io/sbs-next/",
+        url: "https://smartbrainsolution.com/",
         logo: {
           "@type": "ImageObject",
-          url: "https://mazhardev.github.io/sbs-next/images/logo.jpeg",
+          url: "https://smartbrainsolution.com/images/logo.jpeg",
           width: 1254,
           height: 1254,
         },
@@ -25,26 +23,26 @@ export default function Home() {
       },
       {
         "@type": "WebSite",
-        "@id": "https://mazhardev.github.io/sbs-next/#website",
-        url: "https://mazhardev.github.io/sbs-next/",
+        "@id": "https://smartbrainsolution.com/#website",
+        url: "https://smartbrainsolution.com/",
         name: "Smart Brain Solutions",
         description:
           "Intelligent digital experiences and better solutions, coming soon.",
         publisher: {
-          "@id": "https://mazhardev.github.io/sbs-next/#organization",
+          "@id": "https://smartbrainsolution.com/#organization",
         },
         inLanguage: "en-US",
       },
       {
         "@type": "WebPage",
-        "@id": "https://mazhardev.github.io/sbs-next/#webpage",
-        url: "https://mazhardev.github.io/sbs-next/",
+        "@id": "https://smartbrainsolution.com/#webpage",
+        url: "https://smartbrainsolution.com/",
         name: "Smart Brain Solutions | Intelligent Digital Solutions",
         isPartOf: {
-          "@id": "https://mazhardev.github.io/sbs-next/#website",
+          "@id": "https://smartbrainsolution.com/#website",
         },
         about: {
-          "@id": "https://mazhardev.github.io/sbs-next/#organization",
+          "@id": "https://smartbrainsolution.com/#organization",
         },
         description:
           "Smart Brain Solutions is building intelligent digital experiences that turn complex challenges into clear, human-centered solutions.",

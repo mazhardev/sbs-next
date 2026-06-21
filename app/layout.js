@@ -1,6 +1,6 @@
 import "./globals.css";
 
-const siteUrl = "https://mazhardev.github.io/sbs-next/";
+const siteUrl = "https://smartbrainsolution.com/";
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
@@ -64,11 +64,11 @@ export const metadata = {
     },
   },
   icons: {
-    icon: [{ url: "/sbs-next/images/logo.jpeg", type: "image/jpeg" }],
-    shortcut: "/sbs-next/images/logo.jpeg",
-    apple: "/sbs-next/images/logo.jpeg",
+    icon: [{ url: "/images/logo.jpeg", type: "image/jpeg" }],
+    shortcut: "/images/logo.jpeg",
+    apple: "/images/logo.jpeg",
   },
-  manifest: "/sbs-next/manifest.webmanifest",
+  manifest: "/manifest.webmanifest",
   other: {
     "theme-color": "#041640",
     "color-scheme": "light",
