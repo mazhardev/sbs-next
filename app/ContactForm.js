@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 
 const services = [
   "Odoo ERP Implementation",
@@ -97,7 +98,7 @@ export default function ContactForm() {
         <i aria-hidden="true">↗</i>
       </button>
 
-      {isOpen && (
+      {isOpen && createPortal(
         <div className="modalBackdrop" role="presentation" onMouseDown={() => setIsOpen(false)}>
           <section
             className="contactModal"
@@ -160,7 +161,8 @@ export default function ContactForm() {
               <p className="privacyNote">Your information stays on your device until you send the email.</p>
             </form>
           </section>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );
