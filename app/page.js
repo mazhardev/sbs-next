@@ -1,4 +1,5 @@
 import Image from "next/image";
+import ContactForm from "./ContactForm";
 
 export default function Home() {
   const logoPath = "/images/logo.jpeg";
@@ -20,6 +21,15 @@ export default function Home() {
         slogan: "Think Smart, Solve Better",
         description:
           "Smart Brain Solutions provides professional Odoo ERP implementation, customization, and support that helps businesses streamline operations, improve productivity, and accelerate growth.",
+        email: "info@smartbrainsolution.com",
+        telephone: "+92 304 7542018",
+        contactPoint: {
+          "@type": "ContactPoint",
+          email: "info@smartbrainsolution.com",
+          telephone: "+92 304 7542018",
+          contactType: "sales and customer support",
+          availableLanguage: "English",
+        },
         knowsAbout: [
           "Odoo ERP implementation",
           "Odoo customization",
@@ -140,6 +150,7 @@ export default function Home() {
             <span>We&apos;re Launching Soon</span>
             <div className="line"><i /></div>
           </div>
+          <ContactForm />
         </div>
 
         <div className="visual" aria-label="Smart Brain Solutions logo">
