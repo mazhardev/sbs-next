@@ -5,8 +5,60 @@ export default function Home() {
     ? "/sbs-next/images/logo.jpeg"
     : "/images/logo.jpeg";
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://mazhardev.github.io/sbs-next/#organization",
+        name: "Smart Brain Solutions",
+        url: "https://mazhardev.github.io/sbs-next/",
+        logo: {
+          "@type": "ImageObject",
+          url: "https://mazhardev.github.io/sbs-next/images/logo.jpeg",
+          width: 1254,
+          height: 1254,
+        },
+        slogan: "Think Smart, Solve Better",
+        description:
+          "Smart Brain Solutions builds intelligent, human-centered digital experiences.",
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://mazhardev.github.io/sbs-next/#website",
+        url: "https://mazhardev.github.io/sbs-next/",
+        name: "Smart Brain Solutions",
+        description:
+          "Intelligent digital experiences and better solutions, coming soon.",
+        publisher: {
+          "@id": "https://mazhardev.github.io/sbs-next/#organization",
+        },
+        inLanguage: "en-US",
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://mazhardev.github.io/sbs-next/#webpage",
+        url: "https://mazhardev.github.io/sbs-next/",
+        name: "Smart Brain Solutions | Intelligent Digital Solutions",
+        isPartOf: {
+          "@id": "https://mazhardev.github.io/sbs-next/#website",
+        },
+        about: {
+          "@id": "https://mazhardev.github.io/sbs-next/#organization",
+        },
+        description:
+          "Smart Brain Solutions is building intelligent digital experiences that turn complex challenges into clear, human-centered solutions.",
+        inLanguage: "en-US",
+      },
+    ],
+  };
+
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       <div className="ambient ambientOne" />
       <div className="ambient ambientTwo" />
       <div className="grid" />
@@ -23,7 +75,7 @@ export default function Home() {
         <div className="copy">
           <p className="eyebrow"><span>01</span> A smarter future is loading</p>
           <h1>Bright ideas.<br /><em>Better solutions.</em></h1>
-          <p className="intro">
+          <p className="intro" itemProp="description">
             We’re shaping intelligent digital experiences that turn complex
             challenges into clear, human solutions.
           </p>
