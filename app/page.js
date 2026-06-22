@@ -20,7 +20,7 @@ export default function Home() {
         },
         slogan: "Think Smart, Solve Better",
         description:
-          "Smart Brain Solutions provides professional Odoo ERP implementation, customization, and support that helps businesses streamline operations, improve productivity, and accelerate growth.",
+          "Smart Brain Solutions specializes in implementing, customizing, and supporting Odoo ERP systems that help businesses streamline operations, improve productivity, and accelerate growth.",
         email: "info@smartbrainsolution.com",
         telephone: "+92 304 7542018",
         contactPoint: {
@@ -89,7 +89,7 @@ export default function Home() {
         url: "https://smartbrainsolution.com/",
         name: "Smart Brain Solutions",
         description:
-          "Professional Odoo ERP implementation, customization, and support for stronger businesses.",
+          "Smart Brain Solutions specializes in implementing, customizing, and supporting Odoo ERP systems that help businesses streamline operations, improve productivity, and accelerate growth.",
         publisher: {
           "@id": "https://smartbrainsolution.com/#organization",
         },
@@ -107,7 +107,7 @@ export default function Home() {
           "@id": "https://smartbrainsolution.com/#organization",
         },
         description:
-          "Professional Odoo ERP implementation, customization, and support that helps businesses streamline operations, improve productivity, and accelerate growth.",
+          "Smart Brain Solutions specializes in implementing, customizing, and supporting Odoo ERP systems that help businesses streamline operations, improve productivity, and accelerate growth.",
         primaryImageOfPage: {
           "@type": "ImageObject",
           url: "https://smartbrainsolution.com/images/logo.jpeg",

@@ -1,6 +1,8 @@
 import "./globals.css";
 
 const siteUrl = "https://smartbrainsolution.com/";
+const siteDescription =
+  "Smart Brain Solutions specializes in implementing, customizing, and supporting Odoo ERP systems that help businesses streamline operations, improve productivity, and accelerate growth.";
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
@@ -8,8 +10,7 @@ export const metadata = {
     default: "Odoo ERP Implementation & Support | Smart Brain Solutions",
     template: "%s | Smart Brain Solutions",
   },
-  description:
-    "Professional Odoo ERP implementation, customization, and support that helps businesses streamline operations, improve productivity, and accelerate growth.",
+  description: siteDescription,
   applicationName: "Smart Brain Solutions",
   authors: [{ name: "Smart Brain Solutions", url: siteUrl }],
   creator: "Smart Brain Solutions",
@@ -36,8 +37,7 @@ export const metadata = {
     url: siteUrl,
     siteName: "Smart Brain Solutions",
     title: "Odoo ERP Implementation & Support | Smart Brain Solutions",
-    description:
-      "Professional Odoo ERP implementation, customization, and support for streamlined operations, greater productivity, and sustainable business growth.",
+    description: siteDescription,
     images: [
       {
         url: `${siteUrl}images/logo.jpeg`,
@@ -51,8 +51,7 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Odoo ERP Implementation & Support | Smart Brain Solutions",
-    description:
-      "Professional Odoo ERP services that streamline operations, improve productivity, and support business growth.",
+    description: siteDescription,
     images: [`${siteUrl}images/logo.jpeg`],
   },
   robots: {
@@ -67,9 +66,19 @@ export const metadata = {
     },
   },
   icons: {
-    icon: [{ url: "/images/logo.jpeg", type: "image/jpeg" }],
-    shortcut: "/images/logo.jpeg",
-    apple: "/images/logo.jpeg",
+    icon: [
+      {
+        url: "/favicon-96x96.png",
+        type: "image/png",
+        sizes: "96x96",
+      },
+    ],
+    shortcut: "/favicon-96x96.png",
+    apple: {
+      url: "/apple-touch-icon.png",
+      type: "image/png",
+      sizes: "180x180",
+    },
   },
   manifest: "/manifest.webmanifest",
   other: {
