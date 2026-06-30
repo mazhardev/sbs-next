@@ -1,13 +1,16 @@
 import { FinalCta, PageHero, SectionHeading } from "../components/Sections";
+import JsonLd from "../components/JsonLd";
 import { services } from "../data";
+import { buildMetadata, serviceSchema } from "../seo";
 
 export const metadata = {
-  title: "Services",
+  ...buildMetadata("services"),
 };
 
 export default function ServicesPage() {
   return (
     <>
+      <JsonLd data={services.map(serviceSchema)} />
       <PageHero
         eyebrow="Services"
         title="Services Built for Smarter Business Transformation"
@@ -26,6 +29,7 @@ export default function ServicesPage() {
                 <h2>{service.title}</h2>
                 <p>{service.details}</p>
                 <strong>{service.outcome}</strong>
+                <a className="textLink" href={`/services/${service.slug}/`}>View {service.title}</a>
               </div>
               <ul>
                 {service.includes.map((item) => (

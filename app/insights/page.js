@@ -1,7 +1,8 @@
 import { FinalCta, InsightsGrid, PageHero } from "../components/Sections";
+import { buildMetadata } from "../seo";
 
 export const metadata = {
-  title: "Insights",
+  ...buildMetadata("insights"),
 };
 
 export default function InsightsPage() {

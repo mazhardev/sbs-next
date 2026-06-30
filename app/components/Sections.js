@@ -30,7 +30,7 @@ export function ServiceCard({ service }) {
       <h3>{service.title}</h3>
       <p>{service.description}</p>
       <strong>{service.outcome}</strong>
-      <Link href="/services/">Learn More</Link>
+      <Link href={`/services/${service.slug}/`}>Learn More</Link>
     </article>
   );
 }

@@ -23,7 +23,10 @@ export const navItems = [
 export const services = [
   {
     title: "ERP Implementation & Integration",
+    slug: "erp-implementation",
     icon: "ERP",
+    primaryKeyword: "ERP implementation services",
+    secondaryKeywords: ["ERP integration company", "ERP consulting services", "SAP implementation services", "Odoo implementation services", "Microsoft Dynamics implementation"],
     description: "End-to-end ERP solutions tailored to finance, tax, operations, and reporting.",
     outcome: "Seamless operations and real-time visibility.",
     details:
@@ -37,7 +40,10 @@ export const services = [
   },
   {
     title: "Digital Transformation & Automation",
+    slug: "digital-transformation-automation",
     icon: "AUTO",
+    primaryKeyword: "digital transformation consulting",
+    secondaryKeywords: ["digital transformation company", "business automation services", "workflow automation solutions", "process automation company"],
     description: "Convert manual workflows into intelligent automated systems.",
     outcome: "Faster processes with reduced manual effort.",
     details: "Transform manual processes into intelligent, automated workflows.",
@@ -50,7 +56,10 @@ export const services = [
   },
   {
     title: "Tax & Compliance Advisory",
+    slug: "tax-compliance-advisory",
     icon: "TAX",
+    primaryKeyword: "tax compliance advisory",
+    secondaryKeywords: ["VAT compliance services", "GST compliance services", "corporate tax advisory", "GCC tax compliance", "ASPAC tax compliance"],
     description: "Multi-jurisdiction tax and compliance support for growing businesses.",
     outcome: "Reduced risk and stronger compliance.",
     details: "Navigate complex regulations with confidence across multiple jurisdictions.",
@@ -63,7 +72,10 @@ export const services = [
   },
   {
     title: "Tax Technology & Digital Compliance",
+    slug: "tax-technology",
     icon: "TECH",
+    primaryKeyword: "tax technology solutions",
+    secondaryKeywords: ["digital tax compliance", "e-invoicing implementation", "automated tax reporting", "ERP tax integration", "tax engine implementation"],
     description: "Tax engines, e-invoicing, ERP-tax integration, and automated reporting.",
     outcome: "Real-time compliance with fewer errors.",
     details: "Adopt advanced tools for modern, automated tax management.",
@@ -76,7 +88,10 @@ export const services = [
   },
   {
     title: "Accounting & Financial Solutions",
+    slug: "accounting-financial-solutions",
     icon: "FIN",
+    primaryKeyword: "accounting automation",
+    secondaryKeywords: ["accounting system setup", "financial reporting solutions", "MIS reporting services", "finance process optimization"],
     description: "Structured accounting systems, MIS reporting, and audit-ready documentation.",
     outcome: "Accurate financials and better decisions.",
     details: "Strengthen your financial operations with structured and reliable systems.",
@@ -88,8 +103,11 @@ export const services = [
     ],
   },
   {
-    title: "Business Process Optimization",
+    title: "Business Process Optimization & Advisory",
+    slug: "business-process-optimization",
     icon: "OPS",
+    primaryKeyword: "business process optimization",
+    secondaryKeywords: ["process redesign consulting", "SOP development services", "operational efficiency consulting", "business process improvement"],
     description: "Improve operational performance through redesigned processes and SOPs.",
     outcome: "Lean operations and stronger control.",
     details: "Enhance performance by redesigning how your business operates.",
@@ -102,7 +120,10 @@ export const services = [
   },
   {
     title: "Managed Services & Outsourcing",
+    slug: "managed-services-outsourcing",
     icon: "BPO",
+    primaryKeyword: "finance outsourcing services",
+    secondaryKeywords: ["accounting outsourcing", "tax compliance outsourcing", "back office outsourcing", "managed accounting services"],
     description: "Finance, tax, back-office, and system support services.",
     outcome: "Cost efficiency and scalable operations.",
     details: "Focus on growth while SBS handles non-core operations.",

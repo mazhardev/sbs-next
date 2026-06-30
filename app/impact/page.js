@@ -1,4 +1,5 @@
 import { FinalCta, OutcomeGrid, PageHero, SectionHeading } from "../components/Sections";
+import { buildMetadata } from "../seo";
 
 const impactSections = [
   {
@@ -38,7 +39,7 @@ const impactSections = [
 ];
 
 export const metadata = {
-  title: "Impact",
+  ...buildMetadata("impact"),
 };
 
 export default function ImpactPage() {

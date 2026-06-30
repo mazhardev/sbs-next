@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { FinalCta, InsightsGrid, LeadershipGrid, MetricGrid, OutcomeGrid, SectionHeading, ServicesGrid } from "./components/Sections";
+import JsonLd from "./components/JsonLd";
+import { organizationSchema, professionalServiceSchema, websiteSchema } from "./seo";
 
 const approach = [
   "Technology + Business Integration",
@@ -11,6 +13,7 @@ const approach = [
 export default function Home() {
   return (
     <>
+      <JsonLd data={[organizationSchema(), professionalServiceSchema(), websiteSchema()]} />
       <section className="homeHero">
         <div className="heroCopy reveal">
           <p className="eyebrow">Smart Brain Solutions</p>

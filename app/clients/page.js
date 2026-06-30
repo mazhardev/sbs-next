@@ -1,5 +1,6 @@
 import { FinalCta, PageHero, SectionHeading } from "../components/Sections";
 import { industries } from "../data";
+import { buildMetadata } from "../seo";
 
 const values = [
   "Strong blend of technology + tax + business expertise",
@@ -9,7 +10,7 @@ const values = [
 ];
 
 export const metadata = {
-  title: "Clients",
+  ...buildMetadata("clients"),
 };
 
 export default function ClientsPage() {

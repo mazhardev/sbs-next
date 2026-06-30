@@ -1,15 +1,16 @@
 import "./globals.css";
 import SiteFooter from "./components/SiteFooter";
 import SiteHeader from "./components/SiteHeader";
+import { baseUrl } from "./seo";
 
-const siteUrl = "https://www.smartbrainsolutions.com/";
+const siteUrl = `${baseUrl}/`;
 const siteDescription =
   "Smart Brain Solutions helps businesses transform operations through ERP implementation, digital automation, tax technology, accounting systems, and compliance advisory.";
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Odoo ERP Implementation & Support | Smart Brain Solutions",
+    default: "ERP, Tax Technology & Automation | Smart Brain Solutions",
     template: "%s | Smart Brain Solutions",
   },
   description: siteDescription,
@@ -21,16 +22,15 @@ export const metadata = {
   category: "technology",
   keywords: [
     "Smart Brain Solutions",
-    "Odoo ERP",
-    "Odoo implementation",
-    "Odoo customization",
-    "Odoo support",
+    "ERP implementation services",
+    "ERP integration company",
+    "SAP implementation services",
+    "Odoo implementation services",
+    "Microsoft Dynamics implementation",
     "tax technology",
     "digital transformation",
     "accounting automation",
     "business consulting",
-    "Odoo ERP consulting",
-    "Odoo integration",
     "ERP systems",
     "business process automation",
   ],
@@ -42,7 +42,7 @@ export const metadata = {
     locale: "en_US",
     url: siteUrl,
     siteName: "Smart Brain Solutions",
-    title: "Odoo ERP Implementation & Support | Smart Brain Solutions",
+    title: "ERP, Tax Technology & Automation | Smart Brain Solutions",
     description: siteDescription,
     images: [
       {
@@ -56,7 +56,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Odoo ERP Implementation & Support | Smart Brain Solutions",
+    title: "ERP, Tax Technology & Automation | Smart Brain Solutions",
     description: siteDescription,
     images: [`${siteUrl}images/logo.jpeg`],
   },

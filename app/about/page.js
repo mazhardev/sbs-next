@@ -1,4 +1,5 @@
 import { FinalCta, LeadershipGrid, PageHero, SectionHeading } from "../components/Sections";
+import { buildMetadata } from "../seo";
 
 const beliefs = [
   "Simplifying processes through smart technology",
@@ -7,7 +8,7 @@ const beliefs = [
 ];
 
 export const metadata = {
-  title: "About Us",
+  ...buildMetadata("about"),
 };
 
 export default function AboutPage() {

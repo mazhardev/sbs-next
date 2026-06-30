@@ -1,6 +1,8 @@
 import ContactPanel from "../components/ContactPanel";
 import { FinalCta, PageHero, SectionHeading } from "../components/Sections";
+import JsonLd from "../components/JsonLd";
 import { site } from "../data";
+import { buildMetadata, contactPageSchema } from "../seo";
 
 const contactCards = [
   ["Email", site.email],
@@ -11,12 +13,13 @@ const contactCards = [
 ];
 
 export const metadata = {
-  title: "Contact",
+  ...buildMetadata("contact"),
 };
 
 export default function ContactPage() {
   return (
     <>
+      <JsonLd data={contactPageSchema()} />
       <PageHero
         eyebrow="Contact"
         title="Ready to Transform Your Business?"
