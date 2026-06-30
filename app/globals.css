@@ -408,28 +408,94 @@ main { overflow: hidden; }
 .whatsappCard { background: linear-gradient(135deg, #eefbf5, white); border-color: rgba(22,166,106,.24); }
 .mapBand { display: grid; grid-template-columns: 1fr minmax(320px, .8fr); gap: 30px; align-items: center; padding: 42px; }
 .mapVisual {
+  position: relative;
   min-height: 230px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(8, 104, 237, .12);
+  border-radius: var(--radius);
   background:
-    linear-gradient(rgba(8,104,237,.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(8,104,237,.08) 1px, transparent 1px),
-    #f7fbff;
-  background-size: 28px 28px;
+    radial-gradient(circle at 58% 42%, rgba(33, 199, 237, .16), transparent 28%),
+    linear-gradient(rgba(8,104,237,.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(8,104,237,.07) 1px, transparent 1px),
+    linear-gradient(145deg, #f9fcff, #edf6ff);
+  background-size: auto, 28px 28px, 28px 28px, auto;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.8);
 }
-.mapVisual span {
-  min-width: 64px;
-  padding: 13px 16px;
-  border-radius: 999px;
+.mapVisual::before {
+  content: "";
+  position: absolute;
+  inset: 18px;
+  border-radius: 50%;
+  border: 1px solid rgba(8, 104, 237, .1);
+  opacity: .7;
+}
+.worldMap, .deliveryRoutes {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.worldMap {
+  padding: 25px 24px;
+  fill: rgba(8, 104, 237, .12);
+  filter: drop-shadow(0 14px 24px rgba(4, 22, 64, .08));
+}
+.deliveryRoutes {
+  padding: 25px 24px;
+  fill: none;
+}
+.deliveryRoutes path {
+  stroke: var(--cyan);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 8 9;
+}
+.mapPin {
+  position: absolute;
+  z-index: 2;
+  display: grid;
+  gap: 2px;
+  min-width: 128px;
+  padding: 10px 12px;
+  border: 1px solid rgba(255,255,255,.58);
+  border-radius: var(--radius);
   color: white;
   background: linear-gradient(135deg, var(--navy), var(--blue));
-  text-align: center;
-  font-weight: 900;
+  box-shadow: 0 16px 34px rgba(4, 22, 64, .18);
 }
-.mapVisual i { width: 48px; height: 2px; background: linear-gradient(90deg, var(--blue), var(--cyan)); }
+.mapPin::after {
+  content: "";
+  position: absolute;
+  left: 18px;
+  bottom: -8px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--cyan);
+  border: 3px solid white;
+  box-shadow: 0 0 0 6px rgba(33, 199, 237, .18);
+}
+.mapPin strong {
+  font: 800 14px/1.15 Manrope, Inter, sans-serif;
+}
+.mapPin span {
+  color: rgba(255,255,255,.74);
+  font-size: 11px;
+  font-weight: 700;
+}
+.pakistanPin {
+  left: 43%;
+  top: 39%;
+}
+.malaysiaPin {
+  left: 61%;
+  top: 50%;
+}
+.globalPin {
+  right: 6%;
+  top: 31%;
+  background: linear-gradient(135deg, #063665, var(--emerald));
+}
 
 .finalCta {
   display: flex;
@@ -575,8 +641,13 @@ main { overflow: hidden; }
   .serviceDetail, .contactForm, .mapBand, .finalCta, .testimonialCard { padding: 24px; }
   .serviceDetail h2 { font-size: 28px; }
   .contactForm .full { grid-column: auto; }
-  .mapVisual { min-height: 180px; flex-wrap: wrap; }
-  .mapVisual i { width: 30px; }
+  .mapVisual { min-height: 280px; }
+  .mapVisual::before { inset: 30px 10px; }
+  .worldMap, .deliveryRoutes { padding: 42px 6px 20px; }
+  .mapPin { min-width: 112px; padding: 9px 10px; }
+  .pakistanPin { left: 8%; top: 36%; }
+  .malaysiaPin { left: 46%; top: 51%; }
+  .globalPin { right: 5%; top: 18%; }
   .finalCta { display: grid; margin-bottom: 64px; border-radius: 18px; }
   .footerCta, .footerBottom { display: grid; }
   .footerCta { transform: translateY(-28px); }
