@@ -29,7 +29,7 @@ export default function SiteFooter() {
         <div>
           <h3>Services</h3>
           {services.slice(0, 6).map((service) => (
-            <Link key={service.title} href="/services/">
+            <Link key={service.title} href={`/services/${service.slug}/`}>
               {service.title}
             </Link>
           ))}

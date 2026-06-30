@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import JsonLd from "../../components/JsonLd";
 import { FinalCta, PageHero, SectionHeading } from "../../components/Sections";
 import { industries, services } from "../../data";
@@ -56,20 +57,53 @@ const deliveryProcess = [
   "Training, go-live support, and continuous optimization",
 ];
 
+const serviceFit = {
+  "erp-implementation": {
+    title: "Built for finance, tax, and operations teams",
+    text: "SBS helps businesses move from disconnected tools and manual reporting to integrated ERP systems with clearer controls, better visibility, and stronger adoption.",
+  },
+  "digital-transformation-automation": {
+    title: "Built for teams ready to reduce manual work",
+    text: "SBS helps identify high-friction workflows and convert them into practical automated processes that improve speed, accountability, and reporting.",
+  },
+  "tax-compliance-advisory": {
+    title: "Built for regional and multi-country compliance",
+    text: "SBS helps tax and finance teams strengthen documentation, reporting controls, and compliance processes across Pakistan, Malaysia, GCC, ASPAC, and global markets.",
+  },
+  "tax-technology": {
+    title: "Built for digital compliance readiness",
+    text: "SBS helps connect ERP, e-invoicing, tax engines, and automated reporting so compliance teams can reduce errors and respond faster to regulatory change.",
+  },
+  "accounting-financial-solutions": {
+    title: "Built for cleaner finance operations",
+    text: "SBS helps standardize accounting systems, reporting calendars, MIS dashboards, reconciliations, and audit-ready documentation.",
+  },
+  "business-process-optimization": {
+    title: "Built for scalable operating models",
+    text: "SBS helps redesign processes, document SOPs, improve governance, and remove duplicate manual steps that slow teams down.",
+  },
+  "managed-services-outsourcing": {
+    title: "Built for reliable ongoing support",
+    text: "SBS helps businesses run finance, accounting, tax compliance, and back-office processes through structured managed services and global delivery support.",
+  },
+};
+
 export function generateStaticParams() {
   return services.map((service) => ({ slug: service.slug }));
 }
 
-export function generateMetadata({ params }) {
-  const service = services.find((item) => item.slug === params.slug);
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const service = services.find((item) => item.slug === slug);
   return service ? serviceMetadata(service) : {};
 }
 
-export default function ServiceDetailPage({ params }) {
-  const service = services.find((item) => item.slug === params.slug);
+export default async function ServiceDetailPage({ params }) {
+  const { slug } = await params;
+  const service = services.find((item) => item.slug === slug);
 
   if (!service) {
-    return null;
+    notFound();
   }
 
   const faqs = serviceFaqs[service.slug] || [];
@@ -94,14 +128,14 @@ export default function ServiceDetailPage({ params }) {
       <section className="sectionShell splitSection">
         <SectionHeading
           eyebrow="Service Overview"
-          title={`Implementation-ready ${service.title.toLowerCase()}`}
+          title={`Implementation-ready ${service.title}`}
           text={`${service.details} Our work combines business process understanding, technology delivery, finance discipline, and compliance awareness so the solution works beyond launch.`}
         />
         <div className="glassPanel reveal">
-          <h2>Primary SEO Focus</h2>
-          <p>{service.primaryKeyword}</p>
-          <h3>Supporting Keywords</h3>
-          <p>{service.secondaryKeywords.join(", ")}</p>
+          <h2>{serviceFit[service.slug].title}</h2>
+          <p>{serviceFit[service.slug].text}</p>
+          <h3>Outcome focus</h3>
+          <p>{service.outcome}</p>
         </div>
       </section>
       <section className="sectionShell serviceDetailStack">
