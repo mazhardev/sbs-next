@@ -5,7 +5,7 @@ export default function manifest() {
     name: "Smart Brain Solutions",
     short_name: "Smart Brain",
     description:
-      "Smart Brain Solutions specializes in implementing, customizing, and supporting Odoo ERP systems that help businesses streamline operations, improve productivity, and accelerate growth.",
+      "Smart Brain Solutions helps businesses transform operations through ERP, automation, tax technology, accounting systems, and compliance advisory.",
     start_url: "/",
     scope: "/",
     display: "standalone",

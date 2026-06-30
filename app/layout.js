@@ -1,8 +1,10 @@
 import "./globals.css";
+import SiteFooter from "./components/SiteFooter";
+import SiteHeader from "./components/SiteHeader";
 
-const siteUrl = "https://smartbrainsolution.com/";
+const siteUrl = "https://www.smartbrainsolutions.com/";
 const siteDescription =
-  "Smart Brain Solutions specializes in implementing, customizing, and supporting Odoo ERP systems that help businesses streamline operations, improve productivity, and accelerate growth.";
+  "Smart Brain Solutions helps businesses transform operations through ERP implementation, digital automation, tax technology, accounting systems, and compliance advisory.";
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
@@ -23,6 +25,10 @@ export const metadata = {
     "Odoo implementation",
     "Odoo customization",
     "Odoo support",
+    "tax technology",
+    "digital transformation",
+    "accounting automation",
+    "business consulting",
     "Odoo ERP consulting",
     "Odoo integration",
     "ERP systems",
@@ -43,7 +49,7 @@ export const metadata = {
         url: `${siteUrl}images/logo.jpeg`,
         width: 1254,
         height: 1254,
-        alt: "Smart Brain Solutions - Odoo ERP implementation, customization, and support",
+        alt: "Smart Brain Solutions - ERP, tax technology, and business transformation consulting",
         type: "image/jpeg",
       },
     ],
@@ -90,7 +96,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en-US">
-      <body>{children}</body>
+      <body>
+        <SiteHeader />
+        <main>{children}</main>
+        <SiteFooter />
+      </body>
     </html>
   );
 }

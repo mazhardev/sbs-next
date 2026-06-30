@@ -1,182 +1,109 @@
-import Image from "next/image";
-import ContactForm from "./ContactForm";
+import Link from "next/link";
+import { FinalCta, InsightsGrid, LeadershipGrid, MetricGrid, OutcomeGrid, SectionHeading, ServicesGrid } from "./components/Sections";
+
+const approach = [
+  "Technology + Business Integration",
+  "Global Experience with Practical Execution",
+  "Automation-Driven Solutions",
+  "Scalable, Future-Ready Systems",
+];
 
 export default function Home() {
-  const logoPath = "/images/logo.jpeg";
-
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Organization",
-        "@id": "https://smartbrainsolution.com/#organization",
-        name: "Smart Brain Solutions",
-        url: "https://smartbrainsolution.com/",
-        logo: {
-          "@type": "ImageObject",
-          url: "https://smartbrainsolution.com/images/logo.jpeg",
-          width: 1254,
-          height: 1254,
-        },
-        slogan: "Think Smart, Solve Better",
-        description:
-          "Smart Brain Solutions specializes in implementing, customizing, and supporting Odoo ERP systems that help businesses streamline operations, improve productivity, and accelerate growth.",
-        email: "info@smartbrainsolution.com",
-        telephone: "+92 304 7542018",
-        contactPoint: {
-          "@type": "ContactPoint",
-          email: "info@smartbrainsolution.com",
-          telephone: "+92 304 7542018",
-          contactType: "sales and customer support",
-          availableLanguage: "English",
-        },
-        knowsAbout: [
-          "Odoo ERP implementation",
-          "Odoo customization",
-          "Odoo support",
-          "ERP integration",
-          "Business process automation",
-        ],
-        hasOfferCatalog: {
-          "@type": "OfferCatalog",
-          name: "Odoo ERP Services",
-          itemListElement: [
-            {
-              "@type": "Offer",
-              itemOffered: {
-                "@type": "Service",
-                "@id": "https://smartbrainsolution.com/#odoo-implementation",
-                name: "Odoo ERP Implementation",
-                description:
-                  "Professional implementation of Odoo ERP systems aligned with business processes and operational goals.",
-                provider: {
-                  "@id": "https://smartbrainsolution.com/#organization",
-                },
-              },
-            },
-            {
-              "@type": "Offer",
-              itemOffered: {
-                "@type": "Service",
-                "@id": "https://smartbrainsolution.com/#odoo-customization",
-                name: "Odoo ERP Customization",
-                description:
-                  "Odoo module and workflow customization tailored to specific business requirements.",
-                provider: {
-                  "@id": "https://smartbrainsolution.com/#organization",
-                },
-              },
-            },
-            {
-              "@type": "Offer",
-              itemOffered: {
-                "@type": "Service",
-                "@id": "https://smartbrainsolution.com/#odoo-support",
-                name: "Odoo ERP Support",
-                description:
-                  "Ongoing Odoo ERP support focused on system reliability, user productivity, and continuous improvement.",
-                provider: {
-                  "@id": "https://smartbrainsolution.com/#organization",
-                },
-              },
-            },
-          ],
-        },
-      },
-      {
-        "@type": "WebSite",
-        "@id": "https://smartbrainsolution.com/#website",
-        url: "https://smartbrainsolution.com/",
-        name: "Smart Brain Solutions",
-        description:
-          "Smart Brain Solutions specializes in implementing, customizing, and supporting Odoo ERP systems that help businesses streamline operations, improve productivity, and accelerate growth.",
-        publisher: {
-          "@id": "https://smartbrainsolution.com/#organization",
-        },
-        inLanguage: "en-US",
-      },
-      {
-        "@type": "WebPage",
-        "@id": "https://smartbrainsolution.com/#webpage",
-        url: "https://smartbrainsolution.com/",
-        name: "Odoo ERP Implementation & Support | Smart Brain Solutions",
-        isPartOf: {
-          "@id": "https://smartbrainsolution.com/#website",
-        },
-        about: {
-          "@id": "https://smartbrainsolution.com/#organization",
-        },
-        description:
-          "Smart Brain Solutions specializes in implementing, customizing, and supporting Odoo ERP systems that help businesses streamline operations, improve productivity, and accelerate growth.",
-        primaryImageOfPage: {
-          "@type": "ImageObject",
-          url: "https://smartbrainsolution.com/images/logo.jpeg",
-          width: 1254,
-          height: 1254,
-        },
-        inLanguage: "en-US",
-      },
-    ],
-  };
-
   return (
-    <main>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
-      <div className="ambient ambientOne" />
-      <div className="ambient ambientTwo" />
-      <div className="grid" />
-
-      <nav aria-label="Brand navigation">
-        <div className="brandMark">
-          <span>S</span>
-        </div>
-        <p>Smart Brain Solutions</p>
-        <div className="status"><i /> Building something better</div>
-      </nav>
-
-      <section className="hero">
-        <div className="copy">
-          <p className="eyebrow"><span>01</span> Coming Soon</p>
-          <h1>Smart Systems.<br /><em>Stronger Businesses.</em></h1>
-          <p className="intro" itemProp="description">
-            Smart Brain Solutions specializes in implementing, customizing, and
-            supporting Odoo ERP systems that help businesses streamline operations,
-            improve productivity, and accelerate growth.
+    <>
+      <section className="homeHero">
+        <div className="heroCopy reveal">
+          <p className="eyebrow">Smart Brain Solutions</p>
+          <h1>Build Smarter, Scalable & Future-Ready Business Systems</h1>
+          <p>
+            Smart Brain Solutions helps businesses transform operations through
+            ERP implementation, digital automation, tax technology, accounting
+            systems, and compliance advisory.
           </p>
-          <div className="launchLine">
-            <span>We&apos;re Launching Soon</span>
-            <div className="line"><i /></div>
+          <div className="heroActions">
+            <Link className="primaryButton" href="/contact/">Get Consultation</Link>
+            <Link className="secondaryButton light" href="/services/">Explore Services</Link>
           </div>
-          <ContactForm />
         </div>
-
-        <div className="visual" aria-label="Smart Brain Solutions logo">
-          <div className="orbit orbitOne"><i /></div>
-          <div className="orbit orbitTwo"><i /></div>
-          <div className="logoCard">
-            <span className="corner topLeft" />
-            <span className="corner bottomRight" />
-            <Image
-              src={logoPath}
-              alt="Smart Brain Solutions — Think Smart, Solve Better"
-              width={1254}
-              height={1254}
-              priority
-            />
+        <div className="heroVisual reveal" aria-label="ERP dashboard and automation preview">
+          <div className="dashboardMock">
+            <div className="dashTop"><span /><span /><span /></div>
+            <div className="dashGrid">
+              <div className="dashPanel wide"><b>ERP Control Center</b><i /></div>
+              <div className="dashPanel"><strong>98%</strong><span>Data accuracy</span></div>
+              <div className="dashPanel"><strong>10+</strong><span>Jurisdictions</span></div>
+              <div className="dashPanel chart"><i /><i /><i /></div>
+              <div className="dashPanel finance">VAT Ready</div>
+            </div>
           </div>
-          <div className="floatTag tagOne">Implementation</div>
-          <div className="floatTag tagTwo">Customization</div>
-          <div className="floatTag tagThree">Support</div>
+          <div className="node nodeOne">Tax Engine</div>
+          <div className="node nodeTwo">Automation</div>
+          <div className="node nodeThree">Global Delivery</div>
         </div>
       </section>
 
-      <footer>
-        <p>Think smart. Solve better.</p>
-        <p>© {new Date().getFullYear()} Smart Brain Solutions</p>
-      </footer>
-    </main>
+      <section className="sectionShell statsLift">
+        <MetricGrid />
+      </section>
+
+      <section className="splitSection sectionShell">
+        <div>
+          <SectionHeading
+            eyebrow="About SBS"
+            title="Redefining Business Operations for a Digital-First World"
+            text="At Smart Brain Solutions, we redefine how businesses operate in a digital-first world. We combine technology and transformation expertise to create intelligent, scalable, and future-ready solutions that drive real business impact."
+          />
+        </div>
+        <div className="glassPanel reveal">
+          <h3>Consulting built around execution</h3>
+          <p>
+            SBS connects ERP platforms, tax compliance, finance operations, and
+            automation into one practical transformation roadmap.
+          </p>
+        </div>
+      </section>
+
+      <section className="sectionShell">
+        <SectionHeading
+          eyebrow="Services"
+          title="Integrated Services for Modern Business Transformation"
+          text="A complete consulting and implementation model for ERP, finance, compliance, automation, and managed operations."
+        />
+        <ServicesGrid />
+      </section>
+
+      <section className="sectionShell">
+        <SectionHeading eyebrow="Approach" title="Why Our Approach Works" />
+        <div className="approachGrid">
+          {approach.map((item, index) => (
+            <article className="approachCard reveal" key={item}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <h3>{item}</h3>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="sectionShell impactBand">
+        <SectionHeading
+          eyebrow="Impact"
+          title="Measurable Transformation Outcomes"
+          text="SBS focuses on practical improvements that leaders can see in reporting, speed, compliance, and operational control."
+        />
+        <OutcomeGrid />
+      </section>
+
+      <section className="sectionShell">
+        <SectionHeading eyebrow="Leadership" title="Experienced Transformation Leadership" />
+        <LeadershipGrid />
+      </section>
+
+      <section className="sectionShell">
+        <SectionHeading eyebrow="Insights" title="Featured Insights" />
+        <InsightsGrid />
+      </section>
+
+      <FinalCta />
+    </>
   );
 }

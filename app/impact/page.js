@@ -1,0 +1,71 @@
+import { FinalCta, OutcomeGrid, PageHero, SectionHeading } from "../components/Sections";
+
+const impactSections = [
+  {
+    title: "Global & Multi-Industry Experience",
+    items: [
+      "Delivered solutions across GCC, ASPAC, and international markets",
+      "Supported 50+ clients across manufacturing, retail, pharmaceuticals, and services",
+      "Managed multi-country compliance across 10+ jurisdictions",
+    ],
+  },
+  {
+    title: "ERP & Digital Transformation Excellence",
+    items: [
+      "SAP, Odoo, Microsoft Dynamics, QuickBooks, POS, and HRMS experience",
+      "40+ ERP and accounting system implementations",
+      "AS-IS / TO-BE process design",
+      "System integrations and automation frameworks",
+    ],
+  },
+  {
+    title: "Leadership & Delivery Strength",
+    items: [
+      "Managed teams of 20+ professionals",
+      "Delivered multiple concurrent projects",
+      "Strong project management and stakeholder collaboration",
+    ],
+  },
+  {
+    title: "Client-Centric Transformation Approach",
+    items: [
+      "Understanding real business challenges",
+      "Delivering practical, scalable solutions",
+      "Training and change management",
+      "Building long-term partnerships",
+    ],
+  },
+];
+
+export const metadata = {
+  title: "Impact",
+};
+
+export default function ImpactPage() {
+  return (
+    <>
+      <PageHero
+        eyebrow="Impact"
+        title="Our Impact"
+        subtitle="At Smart Brain Solutions, our impact is built on a powerful combination of technology expertise, business understanding, and execution-driven delivery."
+      />
+      <section className="sectionShell impactBand">
+        <SectionHeading eyebrow="Outcomes" title="High-Impact Transformation Outcomes" />
+        <OutcomeGrid />
+      </section>
+      <section className="sectionShell impactListGrid">
+        {impactSections.map((section) => (
+          <article className="listCard reveal" key={section.title}>
+            <h2>{section.title}</h2>
+            <ul>
+              {section.items.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </section>
+      <FinalCta />
+    </>
+  );
+}

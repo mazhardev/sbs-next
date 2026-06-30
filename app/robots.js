@@ -6,7 +6,7 @@ export default function robots() {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://smartbrainsolution.com/sitemap.xml",
-    host: "https://smartbrainsolution.com/",
+    sitemap: "https://www.smartbrainsolutions.com/sitemap.xml",
+    host: "https://www.smartbrainsolutions.com/",
   };
 }
