@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ClientsShowcase, FinalCta, InsightsGrid, LeadershipGrid, MetricGrid, OutcomeGrid, SectionHeading, ServicesGrid } from "./components/Sections";
 import JsonLd from "./components/JsonLd";
@@ -11,11 +12,11 @@ const approach = [
 ];
 
 const locations = [
-  { country: "USA", city: "Dallas", accent: "usa", skyline: "dense" },
-  { country: "USA", city: "Miami", accent: "usa", skyline: "coast" },
-  { country: "Canada", city: "Toronto", accent: "canada", skyline: "tower" },
-  { country: "UAE", city: "Dubai", accent: "uae", skyline: "spike" },
-  { country: "KSA", city: "Riyadh", accent: "ksa", skyline: "arch" },
+  { country: "USA", city: "Dallas", image: "/images/locations/dallas.png" },
+  { country: "USA", city: "Miami", image: "/images/locations/miami.png" },
+  { country: "Canada", city: "Toronto", image: "/images/locations/toronto.png" },
+  { country: "UAE", city: "Dubai", image: "/images/locations/dubai.png" },
+  { country: "KSA", city: "Riyadh", image: "/images/locations/riyadh.png" },
 ];
 
 export default function Home() {
@@ -145,22 +146,18 @@ export default function Home() {
         <div className="locationGrid">
           {locations.map((location, index) => (
             <article
-              className={`locationCard ${location.skyline} reveal`}
+              className="locationCard reveal"
               style={{ "--card-delay": `${index * 70}ms` }}
               key={`${location.country}-${location.city}`}
+              aria-label={`${location.city}, ${location.country}`}
             >
-              <div className="skyline" aria-hidden="true">
-                <span />
-                <span />
-                <span />
-                <span />
-                <span />
-              </div>
-              <div className="locationLabel">
-                <span className={`flagMark ${location.accent}`} />
-                <small>{location.country}</small>
-                <strong>{location.city}</strong>
-              </div>
+              <Image
+                src={location.image}
+                alt={`${location.city}, ${location.country}`}
+                fill
+                sizes="(max-width: 680px) calc(100vw - 68px), (max-width: 1020px) 45vw, 216px"
+                className="locationPhoto"
+              />
             </article>
           ))}
         </div>

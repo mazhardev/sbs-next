@@ -1146,88 +1146,26 @@ main { overflow: hidden; }
 .locationCard {
   position: relative;
   min-height: 255px;
+  aspect-ratio: 216 / 253;
   overflow: hidden;
   border-radius: 14px;
-  background:
-    linear-gradient(180deg, rgba(4,22,64,.02), rgba(4,22,64,.78)),
-    linear-gradient(135deg, #cbd3dc, #7f8da0);
+  background: #111827;
   box-shadow: 0 18px 34px rgba(4,22,64,.14);
   animation-delay: var(--card-delay, 0ms);
 }
 .locationCard::before {
   content: "";
   position: absolute;
+  z-index: 1;
   inset: 0;
   background:
-    linear-gradient(120deg, transparent, rgba(255,255,255,.22), transparent),
-    radial-gradient(circle at 74% 12%, rgba(255,255,255,.32), transparent 26%);
+    linear-gradient(120deg, transparent, rgba(255,255,255,.18), transparent),
+    radial-gradient(circle at 74% 12%, rgba(255,255,255,.18), transparent 26%);
   transform: translateX(-65%);
   animation: citySheen 6s ease-in-out infinite;
+  pointer-events: none;
 }
-.skyline {
-  position: absolute;
-  inset: 32px 18px 58px;
-  display: flex;
-  align-items: end;
-  gap: 8px;
-  opacity: .7;
-  filter: grayscale(1);
-}
-.skyline span {
-  flex: 1;
-  min-width: 15px;
-  border-radius: 4px 4px 0 0;
-  background:
-    linear-gradient(rgba(255,255,255,.22) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.2) 1px, transparent 1px),
-    #39495f;
-  background-size: 12px 12px;
-}
-.skyline span:nth-child(1) { height: 52%; }
-.skyline span:nth-child(2) { height: 78%; }
-.skyline span:nth-child(3) { height: 66%; }
-.skyline span:nth-child(4) { height: 92%; }
-.skyline span:nth-child(5) { height: 48%; }
-.locationCard.tower .skyline span:nth-child(4),
-.locationCard.spike .skyline span:nth-child(4) {
-  height: 100%;
-  clip-path: polygon(42% 0, 58% 0, 68% 100%, 32% 100%);
-}
-.locationCard.coast .skyline { top: 56px; }
-.locationCard.arch .skyline span:nth-child(4) { border-radius: 40px 40px 0 0; }
-.locationLabel {
-  position: absolute;
-  left: 20px;
-  right: 20px;
-  bottom: 20px;
-  display: grid;
-  grid-template-columns: auto 1fr;
-  align-items: center;
-  gap: 4px 8px;
-  color: white;
-}
-.flagMark {
-  width: 27px;
-  height: 16px;
-  border-radius: 2px;
-  box-shadow: 0 0 0 1px rgba(255,255,255,.28);
-}
-.flagMark.usa { background: linear-gradient(#b22234 0 14%, white 14% 28%, #b22234 28% 42%, white 42% 56%, #b22234 56% 70%, white 70% 84%, #b22234 84%); }
-.flagMark.canada { background: linear-gradient(90deg, #d80621 0 28%, white 28% 72%, #d80621 72%); }
-.flagMark.uae { background: linear-gradient(90deg, #e11d2e 0 24%, transparent 24%), linear-gradient(#159947 0 33%, white 33% 66%, #111827 66%); }
-.flagMark.ksa { background: #16834f; }
-.locationLabel small {
-  font-size: 11px;
-  font-weight: 900;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-}
-.locationLabel strong {
-  grid-column: 1 / -1;
-  font: 900 25px/1 Manrope, Inter, sans-serif;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-}
+.locationPhoto { object-fit: cover; }
 
 .pageHero {
   padding: 148px 0 86px;
