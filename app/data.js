@@ -6,8 +6,11 @@ export const site = {
   email: "info@smartbrainsolutions.com",
   phone: "+92 331 7482664",
   whatsapp: "923317482664",
-  location: "Pakistan / Malaysia - Global Delivery Model",
-  linkedin: "Smart Brain Solutions",
+  location: "Serving clients across ASPAC and international markets",
+  facebook: "https://www.facebook.com/profile.php?id=61590767773103",
+  instagram: "https://www.instagram.com/smartbrainsolutions/",
+  linkedin: "https://www.linkedin.com/company/134643924/",
+  linkedinLabel: "Smart Brain Solutions",
 };
 
 export const navItems = [
@@ -24,6 +27,7 @@ export const services = [
   {
     title: "ERP Implementation & Integration",
     slug: "erp-implementation",
+    category: "ERP Implementation",
     icon: "ERP",
     primaryKeyword: "ERP implementation services",
     secondaryKeywords: ["ERP integration company", "ERP consulting services", "SAP implementation services", "Odoo implementation services", "Microsoft Dynamics implementation"],
@@ -41,6 +45,7 @@ export const services = [
   {
     title: "Digital Transformation & Automation",
     slug: "digital-transformation-automation",
+    category: "Digital Transformation",
     icon: "AUTO",
     primaryKeyword: "digital transformation consulting",
     secondaryKeywords: ["digital transformation company", "business automation services", "workflow automation solutions", "process automation company"],
@@ -57,6 +62,7 @@ export const services = [
   {
     title: "Tax & Compliance Advisory",
     slug: "tax-compliance-advisory",
+    category: "Tax & Compliance Advisory",
     icon: "TAX",
     primaryKeyword: "tax compliance advisory",
     secondaryKeywords: ["VAT compliance services", "GST compliance services", "corporate tax advisory", "GCC tax compliance", "ASPAC tax compliance"],
@@ -73,6 +79,7 @@ export const services = [
   {
     title: "Tax Technology & Digital Compliance",
     slug: "tax-technology",
+    category: "Tax Technology",
     icon: "TECH",
     primaryKeyword: "tax technology solutions",
     secondaryKeywords: ["digital tax compliance", "e-invoicing implementation", "automated tax reporting", "ERP tax integration", "tax engine implementation"],
@@ -87,8 +94,9 @@ export const services = [
     ],
   },
   {
-    title: "Accounting & Financial Solutions",
+    title: "Accounting & Financial Services",
     slug: "accounting-financial-solutions",
+    category: "Accounting & Financial services",
     icon: "FIN",
     primaryKeyword: "accounting automation",
     secondaryKeywords: ["accounting system setup", "financial reporting solutions", "MIS reporting services", "finance process optimization"],
@@ -105,6 +113,7 @@ export const services = [
   {
     title: "Business Process Optimization & Advisory",
     slug: "business-process-optimization",
+    category: "Digital Transformation",
     icon: "OPS",
     primaryKeyword: "business process optimization",
     secondaryKeywords: ["process redesign consulting", "SOP development services", "operational efficiency consulting", "business process improvement"],
@@ -121,6 +130,7 @@ export const services = [
   {
     title: "Managed Services & Outsourcing",
     slug: "managed-services-outsourcing",
+    category: "Managed Services / BPO",
     icon: "BPO",
     primaryKeyword: "finance outsourcing services",
     secondaryKeywords: ["accounting outsourcing", "tax compliance outsourcing", "back office outsourcing", "managed accounting services"],
@@ -150,50 +160,115 @@ export const outcomes = [
   { value: "Real-time", label: "Decision-making visibility" },
 ];
 
+export const impactCounters = [
+  { value: 50, suffix: "+", label: "Clients / Industries", icon: "CI", tone: "blue", progress: 88 },
+  { value: 40, suffix: "+", label: "ERP & Accounting Implementations", icon: "ERP", tone: "cyan", progress: 82 },
+  { value: 20, suffix: "+", label: "Professionals Led", icon: "TL", tone: "steel", progress: 74 },
+  { value: 10, suffix: "+", label: "Jurisdictions Covered", icon: "GJ", tone: "blue", progress: 68 },
+  { value: 50, suffix: "%", label: "Manual Process Reduction", icon: "MR", tone: "cyan", progress: 78 },
+  { value: 40, suffix: "%", label: "Accuracy Improvement", icon: "AI", tone: "steel", progress: 72 },
+];
+
 export const leaders = [
-  {
-    name: "Muhammad Irfan",
-    role: "Co-Founder & Director",
-    description:
-      "Tax and technology professional specializing in digital transformation, ERP-enabled compliance, and automation.",
-  },
   {
     name: "Muhammad Awais Arshad",
     role: "Founder & CEO",
     description:
-      "ERP and business transformation specialist with expertise in end-to-end system implementations and financial process optimization across SAP, Odoo, and Microsoft Dynamics.",
+      "ERP and business transformation specialist leading end-to-end implementations, financial process optimization, and scalable operating models across SAP, Odoo, and Microsoft Dynamics.",
+  },
+  {
+    name: "Muhammad Irfan",
+    role: "Co-Founder & Director",
+    description:
+      "Tax and technology professional focused on digital compliance, ERP-enabled tax automation, and advisory-led transformation for growing organizations.",
   },
 ];
 
 export const insights = [
   {
     title: "Reimagining Tax Compliance Through Automation",
+    slug: "tax-compliance-automation",
     category: "Tax Technology",
+    tags: ["Tax Technology", "Automation"],
+    visual: "analytics",
     date: "Coming Soon",
     description:
       "How businesses are moving from manual processes to fully automated tax systems and what it means for future compliance.",
   },
   {
     title: "ERP Implementation: From Strategy to Success",
-    category: "ERP Strategy",
+    slug: "erp-implementation-strategy",
+    category: "ERP",
+    tags: ["ERP", "Finance Transformation"],
+    visual: "erp",
     date: "Coming Soon",
     description:
       "Key steps to ensure your ERP project delivers real value from planning to execution.",
   },
   {
     title: "Digital Transformation for Modern Enterprises",
-    category: "Transformation",
+    slug: "digital-transformation-modern-enterprises",
+    category: "Automation",
+    tags: ["Automation", "Finance Transformation"],
+    visual: "featured",
     date: "Coming Soon",
     description:
       "How automation and integrated systems help businesses operate faster, smarter, and with greater control.",
   },
 ];
 
+export const clients = [
+  {
+    name: "RIDA Middle East",
+    href: "https://ridame.ae/",
+    industry: "Construction / Real Estate",
+    initials: "RM",
+  },
+  {
+    name: "Basatne International LLC",
+    href: "https://www.basatne.com/",
+    industry: "Food & Beverage",
+    initials: "BI",
+  },
+  {
+    name: "Cartlow Group",
+    href: "https://cartlow.com/intl/en",
+    industry: "Retail",
+    initials: "CG",
+  },
+  {
+    name: "Orbt",
+    href: "https://orbt.com/en",
+    industry: "Engineering and Technology",
+    initials: "OR",
+  },
+  {
+    name: "Allah Tawaqal Metals",
+    href: "https://www.atmetalsltd.com/",
+    industry: "Manufacturing",
+    initials: "AT",
+  },
+  {
+    name: "Flux Metal (Pvt) Limited",
+    href: "https://www.fluxmetal.pk/",
+    industry: "Manufacturing",
+    initials: "FM",
+  },
+  {
+    name: "Agro Alliances",
+    href: "/clients/",
+    industry: "Food & Beverage",
+    initials: "AA",
+  },
+];
+
 export const industries = [
+  "Financial Services",
   "Manufacturing",
   "Retail",
+  "Food & Beverage",
   "Pharmaceuticals",
-  "Services",
-  "Finance & Accounting",
-  "Global Compliance",
+  "Engineering and Technology",
+  "Construction / Real Estate",
+  "Logistics",
 ];

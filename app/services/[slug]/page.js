@@ -18,7 +18,7 @@ const serviceFaqs = {
   ],
   "tax-compliance-advisory": [
     { question: "Which tax compliance areas does SBS support?", answer: "SBS supports VAT, GST, corporate tax, multi-country compliance, compliance reviews, audit support, and documentation readiness." },
-    { question: "Can SBS support GCC and ASPAC compliance requirements?", answer: "Yes. SBS supports regional compliance programs across GCC, ASPAC, Pakistan, Malaysia, and global delivery environments." },
+    { question: "Can SBS support GCC and ASPAC compliance requirements?", answer: "Yes. SBS supports regional compliance programs across GCC, ASPAC, and international delivery environments." },
     { question: "How does SBS reduce tax compliance risk?", answer: "SBS strengthens process controls, improves documentation, automates reporting, and aligns ERP data with regulatory obligations." },
   ],
   "tax-technology": [
@@ -39,7 +39,7 @@ const serviceFaqs = {
   "managed-services-outsourcing": [
     { question: "What managed services does SBS provide?", answer: "SBS provides finance, accounting, tax compliance, back-office, process support, and continuous system monitoring services." },
     { question: "Who should use managed finance services?", answer: "Growing businesses, lean finance teams, international companies, and organizations needing reliable compliance and reporting support can benefit." },
-    { question: "Can SBS support clients remotely?", answer: "Yes. SBS operates through a Pakistan and Malaysia presence with a global delivery model for international support." },
+    { question: "Can SBS support clients remotely?", answer: "Yes. SBS serves clients across ASPAC and international markets with a flexible delivery model for remote support." },
   ],
 };
 
@@ -68,7 +68,7 @@ const serviceFit = {
   },
   "tax-compliance-advisory": {
     title: "Built for regional and multi-country compliance",
-    text: "SBS helps tax and finance teams strengthen documentation, reporting controls, and compliance processes across Pakistan, Malaysia, GCC, ASPAC, and global markets.",
+    text: "SBS helps tax and finance teams strengthen documentation, reporting controls, and compliance processes across ASPAC and international markets.",
   },
   "tax-technology": {
     title: "Built for digital compliance readiness",
@@ -123,7 +123,7 @@ export default async function ServiceDetailPage({ params }) {
       <PageHero
         eyebrow={service.primaryKeyword}
         title={service.title}
-        subtitle={`${service.description} SBS helps organizations in Pakistan, Malaysia, GCC, ASPAC, and global markets build smarter, scalable business systems.`}
+        subtitle={`${service.description} SBS helps organizations across ASPAC and international markets build smarter, scalable business systems.`}
       />
       <section className="sectionShell splitSection">
         <SectionHeading
@@ -199,7 +199,7 @@ export default async function ServiceDetailPage({ params }) {
         <div className="glassPanel reveal">
           <h2>Recommended next step</h2>
           <p>Discuss your current systems, compliance requirements, automation gaps, and reporting needs with SBS.</p>
-          <Link className="primaryButton" href="/contact/">Request a Consultation</Link>
+          <Link className="primaryButton" href="/contact/">Get Consultation</Link>
         </div>
       </section>
       <FinalCta />

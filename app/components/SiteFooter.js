@@ -7,7 +7,7 @@ export default function SiteFooter() {
     <footer className="siteFooter">
       <div className="footerCta">
         <p>Let&apos;s build smarter business systems together.</p>
-        <Link href="/contact/">Start a Consultation</Link>
+        <Link href="/contact/">Get Consultation</Link>
       </div>
       <div className="footerGrid">
         <div className="footerBrand">
@@ -39,7 +39,12 @@ export default function SiteFooter() {
           <p>{site.email}</p>
           <p>{site.phone}</p>
           <p>{site.location}</p>
-          <p>LinkedIn: {site.linkedin}</p>
+          <div className="footerSocial">
+            <a href={site.facebook} target="_blank" rel="noreferrer" aria-label="Facebook">FB</a>
+            <a href={site.instagram} target="_blank" rel="noreferrer" aria-label="Instagram">IG</a>
+            <a href={site.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn">in</a>
+            <a href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noreferrer" aria-label="WhatsApp">WA</a>
+          </div>
         </div>
       </div>
       <div className="footerBottom">

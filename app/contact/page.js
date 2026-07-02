@@ -8,8 +8,32 @@ const contactCards = [
   ["Email", site.email],
   ["Phone / WhatsApp", site.phone],
   ["Location", site.location],
-  ["LinkedIn", site.linkedin],
   ["Website", "www.smartbrainsolutions.com"],
+];
+
+const whatsappIconPath = "M12.1 2A9.8 9.8 0 0 0 3.7 17l-1.2 4.5 4.6-1.2A9.9 9.9 0 1 0 12.1 2Zm0 2a7.9 7.9 0 1 1-4 14.7l-.3-.2-2.5.7.7-2.4-.2-.4A7.9 7.9 0 0 1 12.1 4Zm-3.3 4.2c-.2 0-.5.1-.7.4-.2.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.8 2.9 4.4 3.9 2.2.9 2.6.7 3.1.7.5 0 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.2-.2-.5-.4l-1.8-.9c-.3-.1-.5-.2-.7.2-.2.3-.8 1.1-1 1.3-.2.2-.4.2-.7.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.3.3-.5.1-.2.1-.4 0-.6l-.8-1.9c-.2-.5-.4-.5-.6-.5h-.6Z";
+
+const socialLinks = [
+  {
+    label: "Facebook",
+    href: site.facebook,
+    path: "M14 8.5h2.3V5.1c-.4-.1-1.8-.2-3.3-.2-3.3 0-5.5 2-5.5 5.7v3.2H4v3.8h3.5V24h4.2v-6.4h3.4l.6-3.8h-4v-2.8c0-1.1.3-2.5 2.3-2.5Z",
+  },
+  {
+    label: "Instagram",
+    href: site.instagram,
+    path: "M7.2 2h9.6A5.2 5.2 0 0 1 22 7.2v9.6a5.2 5.2 0 0 1-5.2 5.2H7.2A5.2 5.2 0 0 1 2 16.8V7.2A5.2 5.2 0 0 1 7.2 2Zm0 2A3.2 3.2 0 0 0 4 7.2v9.6A3.2 3.2 0 0 0 7.2 20h9.6a3.2 3.2 0 0 0 3.2-3.2V7.2A3.2 3.2 0 0 0 16.8 4H7.2Zm4.8 3.5a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9Zm0 2a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Zm5-2.3a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2Z",
+  },
+  {
+    label: "LinkedIn",
+    href: site.linkedin,
+    path: "M5.3 8.8H1.5V22h3.8V8.8ZM3.4 2A2.2 2.2 0 1 0 3.3 6.4 2.2 2.2 0 0 0 3.4 2Zm18.7 12.4c0-4-2.1-5.9-5-5.9a4.3 4.3 0 0 0-3.9 2.1h-.1V8.8H9.5V22h3.8v-6.5c0-1.7.3-3.4 2.5-3.4s2.2 2 2.2 3.5V22h3.8v-7.6Z",
+  },
+  {
+    label: "WhatsApp",
+    href: `https://wa.me/${site.whatsapp}`,
+    path: whatsappIconPath,
+  },
 ];
 
 export const metadata = {
@@ -41,6 +65,18 @@ export default function ContactPage() {
             <span>WhatsApp CTA</span>
             <strong>Start a direct conversation with SBS</strong>
           </a>
+          <div className="socialCard reveal">
+            <span>Social Channels</span>
+            <div className="socialButtons">
+              {socialLinks.map((item) => (
+                <a key={item.label} href={item.href} aria-label={item.label} target="_blank" rel="noreferrer">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d={item.path} />
+                  </svg>
+                </a>
+              ))}
+            </div>
+          </div>
         </aside>
       </section>
       <section className="sectionShell mapBand reveal">
@@ -78,6 +114,11 @@ export default function ContactPage() {
         </div>
       </section>
       <FinalCta />
+      <a className="floatingWhatsApp" href={`https://wa.me/${site.whatsapp}`} aria-label="Open WhatsApp chat" target="_blank" rel="noreferrer">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d={whatsappIconPath} />
+        </svg>
+      </a>
     </>
   );
 }

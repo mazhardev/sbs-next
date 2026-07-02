@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FinalCta, InsightsGrid, LeadershipGrid, MetricGrid, OutcomeGrid, SectionHeading, ServicesGrid } from "./components/Sections";
+import { ClientsShowcase, FinalCta, InsightsGrid, LeadershipGrid, MetricGrid, OutcomeGrid, SectionHeading, ServicesGrid } from "./components/Sections";
 import JsonLd from "./components/JsonLd";
 import { organizationSchema, professionalServiceSchema, websiteSchema } from "./seo";
 
@@ -8,6 +8,14 @@ const approach = [
   "Global Experience with Practical Execution",
   "Automation-Driven Solutions",
   "Scalable, Future-Ready Systems",
+];
+
+const locations = [
+  { country: "USA", city: "Dallas", accent: "usa", skyline: "dense" },
+  { country: "USA", city: "Miami", accent: "usa", skyline: "coast" },
+  { country: "Canada", city: "Toronto", accent: "canada", skyline: "tower" },
+  { country: "UAE", city: "Dubai", accent: "uae", skyline: "spike" },
+  { country: "KSA", city: "Riyadh", accent: "ksa", skyline: "arch" },
 ];
 
 export default function Home() {
@@ -29,15 +37,40 @@ export default function Home() {
           </div>
         </div>
         <div className="heroVisual reveal" aria-label="ERP dashboard and automation preview">
+          <div className="networkField" aria-hidden="true">
+            <span />
+            <span />
+            <span />
+            <span />
+          </div>
           <div className="dashboardMock">
             <div className="dashTop"><span /><span /><span /></div>
             <div className="dashGrid">
-              <div className="dashPanel wide"><b>ERP Control Center</b><i /></div>
+              <div className="dashPanel wide">
+                <b>ERP Control Center</b>
+                <div className="workflowTrack">
+                  <span>Lead</span>
+                  <span>Approve</span>
+                  <span>Invoice</span>
+                  <span>Report</span>
+                </div>
+                <i />
+              </div>
               <div className="dashPanel"><strong>98%</strong><span>Data accuracy</span></div>
               <div className="dashPanel"><strong>10+</strong><span>Jurisdictions</span></div>
               <div className="dashPanel chart"><i /><i /><i /></div>
-              <div className="dashPanel finance">VAT Ready</div>
+              <div className="dashPanel finance">
+                <span>AI Review</span>
+                <strong>Live</strong>
+              </div>
             </div>
+          </div>
+          <div className="automationFlow" aria-hidden="true">
+            <span>ERP</span>
+            <i />
+            <span>AI</span>
+            <i />
+            <span>Tax</span>
           </div>
           <div className="node nodeOne">Tax Engine</div>
           <div className="node nodeTwo">Automation</div>
@@ -48,6 +81,8 @@ export default function Home() {
       <section className="sectionShell statsLift">
         <MetricGrid />
       </section>
+
+      <ClientsShowcase compact />
 
       <section className="splitSection sectionShell">
         <div>
@@ -99,6 +134,36 @@ export default function Home() {
       <section className="sectionShell">
         <SectionHeading eyebrow="Leadership" title="Experienced Transformation Leadership" />
         <LeadershipGrid />
+      </section>
+
+      <section className="sectionShell locationsSection">
+        <SectionHeading
+          eyebrow="Locations"
+          title="Global Reach, Local Expertise"
+          text="With strategically located hubs worldwide, SBS provides seamless consulting, faster fulfillment, and localized support for businesses and consumers."
+        />
+        <div className="locationGrid">
+          {locations.map((location, index) => (
+            <article
+              className={`locationCard ${location.skyline} reveal`}
+              style={{ "--card-delay": `${index * 70}ms` }}
+              key={`${location.country}-${location.city}`}
+            >
+              <div className="skyline" aria-hidden="true">
+                <span />
+                <span />
+                <span />
+                <span />
+                <span />
+              </div>
+              <div className="locationLabel">
+                <span className={`flagMark ${location.accent}`} />
+                <small>{location.country}</small>
+                <strong>{location.city}</strong>
+              </div>
+            </article>
+          ))}
+        </div>
       </section>
 
       <section className="sectionShell">

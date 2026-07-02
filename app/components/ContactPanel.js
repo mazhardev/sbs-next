@@ -1,8 +1,11 @@
 "use client";
 
+import { useState } from "react";
 import { site, services } from "../data";
 
 export default function ContactPanel() {
+  const [submitted, setSubmitted] = useState(false);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = new FormData(event.currentTarget);
@@ -16,9 +19,20 @@ export default function ContactPanel() {
       `Name: ${form.get("name")}`,
       `Company: ${form.get("company")}`,
       `Email: ${form.get("email")}`,
+      `Phone / Cell: ${form.get("phone")}`,
       `Service: ${form.get("service")}`,
     ].join("\n");
+    const whatsappText = [
+      `New SBS contact form inquiry: ${form.get("service")}`,
+      `Name: ${form.get("name")}`,
+      `Company: ${form.get("company")}`,
+      `Email: ${form.get("email")}`,
+      `Phone / Cell: ${form.get("phone")}`,
+      `Message: ${form.get("message")}`,
+    ].join("\n");
 
+    setSubmitted(true);
+    window.open(`https://wa.me/${site.whatsapp}?text=${encodeURIComponent(whatsappText)}`, "_blank", "noopener,noreferrer");
     window.location.href = `mailto:${site.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   };
 
@@ -37,6 +51,10 @@ export default function ContactPanel() {
         <input name="email" type="email" autoComplete="email" required placeholder="you@company.com" />
       </label>
       <label>
+        Phone / Cell Number
+        <input name="phone" type="tel" autoComplete="tel" required placeholder="+92 300 0000000" />
+      </label>
+      <label>
         Service Required
         <select name="service" required defaultValue="">
           <option value="" disabled>Select a service</option>
@@ -50,7 +68,12 @@ export default function ContactPanel() {
         Message
         <textarea name="message" rows="6" required placeholder="Tell us about your business goals, current systems, and timeline." />
       </label>
-      <button className="primaryButton full" type="submit">Send Message</button>
+      {submitted ? (
+        <p className="formSuccess full" role="status">
+          Thank you. Our team will contact you shortly.
+        </p>
+      ) : null}
+      <button className="primaryButton full" type="submit">Get Consultation</button>
     </form>
   );
 }
