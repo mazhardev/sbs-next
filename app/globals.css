@@ -142,7 +142,8 @@ main { overflow: hidden; }
     radial-gradient(circle at 62% 64%, rgba(255,255,255,.16) 0 2px, transparent 3px);
   background-size: 280px 180px, 160px 160px, 220px 220px;
   opacity: .5;
-  animation: networkDrift 18s linear infinite;
+  animation: networkDrift 26s linear infinite;
+  will-change: background-position;
 }
 .homeHero::after, .pageHero::after {
   content: "";
@@ -202,7 +203,11 @@ main { overflow: hidden; }
 
 .heroVisual {
   min-height: 500px;
-  animation: visualFloat 6.8s ease-in-out infinite;
+  animation: visualFloat 10s linear infinite;
+  backface-visibility: hidden;
+  contain: paint;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
 }
 .networkField {
   position: absolute;
@@ -232,7 +237,8 @@ main { overflow: hidden; }
   border-radius: 50%;
   background: var(--cyan);
   box-shadow: 0 0 0 8px rgba(33,199,237,.12), 0 0 28px rgba(33,199,237,.72);
-  animation: pulseNode 2.8s ease-in-out infinite;
+  animation: pulseNode 3.4s linear infinite;
+  will-change: opacity, transform;
 }
 .networkField span:nth-child(1) { left: 9%; top: 23%; }
 .networkField span:nth-child(2) { right: 18%; top: 12%; animation-delay: -.8s; }
@@ -247,7 +253,7 @@ main { overflow: hidden; }
   background: rgba(255,255,255,.1);
   box-shadow: 0 32px 90px rgba(0, 0, 0, .34);
   backdrop-filter: blur(18px);
-  animation: dashboardGlow 5s ease-in-out infinite;
+  transform: translate3d(0, 0, 0);
 }
 .dashTop { display: flex; gap: 8px; margin-bottom: 18px; }
 .dashTop span { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,.5); }
@@ -287,7 +293,8 @@ main { overflow: hidden; }
   border-radius: 99px;
   background: linear-gradient(90deg, var(--cyan), var(--blue), var(--emerald));
   background-size: 200% 100%;
-  animation: progressSweep 3s ease-in-out infinite;
+  animation: progressSweep 3.8s linear infinite;
+  will-change: background-position;
 }
 .chart { display: flex; align-items: end; gap: 8px; }
 .chart i { flex: 1; border-radius: 8px 8px 0 0; background: linear-gradient(var(--cyan), var(--blue)); }
@@ -326,7 +333,8 @@ main { overflow: hidden; }
   height: 2px;
   border-radius: 99px;
   background: linear-gradient(90deg, transparent, var(--cyan), transparent);
-  animation: routePulse 1.8s ease-in-out infinite;
+  animation: routePulse 2.4s linear infinite;
+  will-change: opacity, transform;
 }
 .node {
   position: absolute;
@@ -339,7 +347,10 @@ main { overflow: hidden; }
   backdrop-filter: blur(14px);
   font-size: 12px;
   font-weight: 750;
-  animation: float 4.8s ease-in-out infinite;
+  animation: float 7.2s linear infinite;
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
 }
 .nodeOne { top: 16px; right: 8%; }
 .nodeTwo { left: 0; top: 47%; animation-delay: -1.4s; }
@@ -401,6 +412,8 @@ main { overflow: hidden; }
   background: radial-gradient(circle, rgba(255,255,255,.92) 0 30%, rgba(238,247,255,.72) 31% 100%);
   box-shadow: inset 0 0 0 18px rgba(8,104,237,.03), 0 22px 60px rgba(4,22,64,.08);
   animation: clientOrbitSpin 24s linear infinite;
+  backface-visibility: hidden;
+  will-change: transform;
 }
 .clientOrbit strong {
   position: absolute;
@@ -440,6 +453,7 @@ main { overflow: hidden; }
   position: relative;
   grid-column: 1 / -1;
   overflow: hidden;
+  contain: paint;
   margin: 0 calc((100vw - min(1180px, calc(100vw - 40px))) / -2);
   padding: 8px 0 18px;
 }
@@ -466,10 +480,10 @@ main { overflow: hidden; }
   width: max-content;
   gap: 16px;
   padding-inline: max(20px, calc((100vw - 1180px) / 2));
-  animation: clientMarquee 28s linear infinite;
-}
-.clientSlider:hover .clientTrack {
-  animation-play-state: paused;
+  animation: clientMarquee 34s linear infinite;
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
 }
 .clientLogo {
   width: 236px;
@@ -1729,14 +1743,32 @@ main { overflow: hidden; }
 @keyframes fadeLeft { from { opacity: 0; transform: translateX(-24px); } to { opacity: 1; transform: none; } }
 @keyframes slideFromLeft { from { opacity: 0; transform: translateX(-34px); } to { opacity: 1; transform: none; } }
 @keyframes slideFromRight { from { opacity: 0; transform: translateX(34px); } to { opacity: 1; transform: none; } }
-@keyframes float { 50% { transform: translateY(-10px); } }
-@keyframes visualFloat { 50% { transform: translateY(-12px); } }
+@keyframes float {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  25% { transform: translate3d(3px, -5px, 0); }
+  50% { transform: translate3d(0, -10px, 0); }
+  75% { transform: translate3d(-3px, -5px, 0); }
+}
+@keyframes visualFloat {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  25% { transform: translate3d(4px, -6px, 0); }
+  50% { transform: translate3d(0, -12px, 0); }
+  75% { transform: translate3d(-4px, -6px, 0); }
+}
 @keyframes networkDrift { to { background-position: 280px 180px, 160px 160px, -220px 220px; } }
-@keyframes pulseNode { 50% { transform: scale(1.35); opacity: .68; } }
+@keyframes pulseNode {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.28); opacity: .72; }
+}
 @keyframes bluePulse { 50% { transform: scale(1.08); box-shadow: 0 0 0 10px rgba(33, 199, 237, .16), 0 0 28px rgba(33, 199, 237, .36); } }
 @keyframes dashboardGlow { 50% { box-shadow: 0 38px 100px rgba(8,104,237,.24), 0 32px 90px rgba(0,0,0,.34); } }
-@keyframes progressSweep { 50% { background-position: 100% 0; } }
-@keyframes routePulse { 50% { opacity: .36; transform: scaleX(.8); } }
+@keyframes progressSweep {
+  to { background-position: 200% 0; }
+}
+@keyframes routePulse {
+  0%, 100% { opacity: 1; transform: scaleX(1); }
+  50% { opacity: .42; transform: scaleX(.84); }
+}
 @keyframes insightSpin { to { transform: rotate(360deg); } }
 @keyframes citySheen { 45%, 100% { transform: translateX(72%); } }
 @keyframes barLift { 50% { transform: scaleY(.76); opacity: .72; } }
