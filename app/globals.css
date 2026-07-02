@@ -664,7 +664,7 @@ main { overflow: hidden; }
 .impactBand {
   position: relative;
   overflow: hidden;
-  width: min(1240px, calc(100% - 40px));
+  width: min(1180px, calc(100% - 40px));
   border-radius: 28px;
   padding: 70px clamp(20px, 5vw, 58px);
   color: white;

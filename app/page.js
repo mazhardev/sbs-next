@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ClientsShowcase, FinalCta, InsightsGrid, LeadershipGrid, MetricGrid, OutcomeGrid, SectionHeading, ServicesGrid } from "./components/Sections";
+import ImpactCounters from "./components/ImpactCounters";
+import { ClientsShowcase, FinalCta, InsightsGrid, LeadershipGrid, MetricGrid, SectionHeading, ServicesGrid } from "./components/Sections";
 import JsonLd from "./components/JsonLd";
 import { organizationSchema, professionalServiceSchema, websiteSchema } from "./seo";
 
@@ -126,10 +127,10 @@ export default function Home() {
       <section className="sectionShell impactBand">
         <SectionHeading
           eyebrow="Impact"
-          title="Measurable Transformation Outcomes"
-          text="SBS focuses on practical improvements that leaders can see in reporting, speed, compliance, and operational control."
+          title="High-Impact Transformation Outcomes"
+          text="A clearer view of delivery scale, operational improvements, and measurable transformation results across ERP, finance, tax, and automation programs."
         />
-        <OutcomeGrid />
+        <ImpactCounters />
       </section>
 
       <section className="sectionShell">
