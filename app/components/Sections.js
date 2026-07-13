@@ -24,24 +24,36 @@ export function SectionHeading({ eyebrow, title, text }) {
   );
 }
 
-export function ServiceCard({ service, index = 0 }) {
+export function ServiceCard({ service, index = 0, summaryOnly = false }) {
   return (
-    <article className="serviceCard reveal" style={{ "--card-delay": `${index * 70}ms` }}>
+    <article
+      className={summaryOnly ? "serviceCard serviceSummaryCard reveal" : "serviceCard reveal"}
+      style={{ "--card-delay": `${index * 70}ms` }}
+    >
       <span className="iconBadge">{service.icon}</span>
       <h3>{service.title}</h3>
-      <p>{service.description}</p>
-      <strong>{service.outcome}</strong>
-      <Link href={`/services/${service.slug}/`}>Learn More</Link>
+      {!summaryOnly && (
+        <>
+          <p>{service.description}</p>
+          <strong>{service.outcome}</strong>
+          <Link href={`/services/${service.slug}/`}>Learn More</Link>
+        </>
+      )}
     </article>
   );
 }
 
-export function ServicesGrid({ limit }) {
+export function ServicesGrid({ limit, summaryOnly = false }) {
   const shown = limit ? services.slice(0, limit) : services;
   return (
-    <div className="servicesGrid">
+    <div className={summaryOnly ? "servicesGrid serviceSummaryGrid" : "servicesGrid"}>
       {shown.map((service, index) => (
-        <ServiceCard key={service.title} service={service} index={index} />
+        <ServiceCard
+          key={service.title}
+          service={service}
+          index={index}
+          summaryOnly={summaryOnly}
+        />
       ))}
     </div>
   );

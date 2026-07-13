@@ -684,6 +684,74 @@ main { overflow: hidden; }
 .serviceCard strong { display: block; margin: 18px 0; color: var(--emerald); line-height: 1.45; }
 .serviceCard a, .blogCard a { color: var(--blue); font-weight: 800; font-size: 13px; }
 
+.serviceSummaryGrid { gap: 18px; }
+.serviceSummaryCard {
+  --service-color: #0868ed;
+  --service-color-2: #21c7ed;
+  position: relative;
+  min-height: 190px;
+  overflow: hidden;
+  display: grid;
+  align-content: center;
+  gap: 22px;
+  padding: 28px;
+  border-color: color-mix(in srgb, var(--service-color) 22%, white);
+  background:
+    radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--service-color-2) 22%, transparent), transparent 46%),
+    linear-gradient(145deg, white, color-mix(in srgb, var(--service-color) 8%, white));
+  box-shadow: 0 18px 46px color-mix(in srgb, var(--service-color) 12%, transparent);
+  transition: transform .42s cubic-bezier(.2,.75,.25,1), border-color .32s ease, box-shadow .42s ease, background .42s ease;
+}
+.serviceSummaryCard::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 5px;
+  background: linear-gradient(var(--service-color), var(--service-color-2));
+  transition: width .4s cubic-bezier(.2,.75,.25,1), opacity .3s ease;
+}
+.serviceSummaryCard::after {
+  content: "";
+  position: absolute;
+  right: -54px;
+  bottom: -68px;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--service-color-2) 13%, transparent);
+  transition: transform .55s cubic-bezier(.2,.75,.25,1), background .4s ease;
+}
+.serviceSummaryCard:nth-child(2) { --service-color: #6d4aff; --service-color-2: #b86cff; }
+.serviceSummaryCard:nth-child(3) { --service-color: #0d9f6e; --service-color-2: #48d89b; }
+.serviceSummaryCard:nth-child(4) { --service-color: #e77817; --service-color-2: #ffbd4a; }
+.serviceSummaryCard:nth-child(5) { --service-color: #d83f87; --service-color-2: #ff79b8; }
+.serviceSummaryCard:nth-child(6) { --service-color: #087f9d; --service-color-2: #35d3d0; }
+.serviceSummaryCard:nth-child(7) { --service-color: #2947a8; --service-color-2: #718cf4; }
+.serviceSummaryCard .iconBadge {
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(135deg, var(--service-color), var(--service-color-2));
+  box-shadow: 0 12px 28px color-mix(in srgb, var(--service-color) 28%, transparent);
+  transition: transform .42s cubic-bezier(.2,.75,.25,1), box-shadow .35s ease;
+}
+.serviceSummaryCard h3 {
+  position: relative;
+  z-index: 1;
+  min-height: auto;
+  margin: 0;
+  font-size: 23px;
+  transition: color .3s ease, transform .42s cubic-bezier(.2,.75,.25,1);
+}
+.serviceSummaryCard:hover {
+  transform: translateY(-8px) scale(1.015);
+  border-color: color-mix(in srgb, var(--service-color) 48%, white);
+  box-shadow: 0 26px 64px color-mix(in srgb, var(--service-color) 22%, transparent);
+}
+.serviceSummaryCard:hover::before { width: 100%; opacity: .08; }
+.serviceSummaryCard:hover::after { transform: translate(-18px, -14px) scale(1.22); background: color-mix(in srgb, var(--service-color-2) 22%, transparent); }
+.serviceSummaryCard:hover .iconBadge { transform: translateY(-3px) rotate(-5deg) scale(1.08); }
+.serviceSummaryCard:hover h3 { color: var(--service-color); transform: translateX(4px); }
+
 .expertiseFlow { grid-template-columns: repeat(3, 1fr); }
 .expertiseCard {
   position: relative;
@@ -719,9 +787,123 @@ main { overflow: hidden; }
 .expertiseCard p { margin: 0; color: var(--muted); line-height: 1.7; }
 
 .approachGrid { grid-template-columns: repeat(4, 1fr); }
-.approachCard { min-height: 174px; padding: 24px; background: linear-gradient(180deg, white, #f7fbff); transition: transform .2s ease, box-shadow .2s ease; }
-.approachCard span { color: var(--gold); font: 800 13px Manrope; }
-.approachCard h3 { margin: 26px 0 0; color: var(--navy); font: 800 22px/1.25 Manrope; }
+.approachCard {
+  --approach-color: #0868ed;
+  --approach-color-2: #21c7ed;
+  position: relative;
+  min-height: 250px;
+  overflow: hidden;
+  padding: 24px;
+  border-color: color-mix(in srgb, var(--approach-color) 20%, white);
+  background:
+    radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--approach-color-2) 18%, transparent), transparent 44%),
+    linear-gradient(160deg, white, color-mix(in srgb, var(--approach-color) 7%, white));
+  box-shadow: 0 16px 42px color-mix(in srgb, var(--approach-color) 10%, transparent);
+  transition: transform .42s cubic-bezier(.2,.75,.25,1), box-shadow .42s ease, border-color .32s ease;
+}
+.approachCard:nth-child(2) { --approach-color: #7250d8; --approach-color-2: #b376f2; }
+.approachCard:nth-child(3) { --approach-color: #0c9b70; --approach-color-2: #43d6a0; }
+.approachCard:nth-child(4) { --approach-color: #e16f22; --approach-color-2: #f6b84a; }
+.approachNumber {
+  position: relative;
+  z-index: 2;
+  color: var(--approach-color);
+  font: 900 13px Manrope, sans-serif;
+  letter-spacing: .08em;
+}
+.approachGraphic {
+  position: relative;
+  width: 82px;
+  height: 62px;
+  margin: 16px 0 18px;
+  border: 1px solid color-mix(in srgb, var(--approach-color) 22%, white);
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--approach-color) 8%, white);
+  transition: transform .42s cubic-bezier(.2,.75,.25,1), background .35s ease;
+}
+.approachGraphic span,
+.approachGraphic i,
+.approachGraphic b { position: absolute; display: block; }
+.approachCard:nth-child(1) .approachGraphic span,
+.approachCard:nth-child(1) .approachGraphic i {
+  top: 20px;
+  width: 20px;
+  height: 20px;
+  border: 4px solid var(--approach-color);
+  border-radius: 50%;
+  background: white;
+}
+.approachCard:nth-child(1) .approachGraphic span { left: 10px; }
+.approachCard:nth-child(1) .approachGraphic i { right: 10px; border-color: var(--approach-color-2); }
+.approachCard:nth-child(1) .approachGraphic b {
+  top: 29px;
+  left: 29px;
+  width: 24px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--approach-color), var(--approach-color-2));
+  animation: approachLink 2.2s ease-in-out infinite;
+}
+.approachCard:nth-child(2) .approachGraphic { width: 64px; border-radius: 50%; }
+.approachCard:nth-child(2) .approachGraphic::before,
+.approachCard:nth-child(2) .approachGraphic::after {
+  content: "";
+  position: absolute;
+  inset: 8px 18px;
+  border: 2px solid var(--approach-color);
+  border-radius: 50%;
+}
+.approachCard:nth-child(2) .approachGraphic::after { inset: 20px 7px; }
+.approachCard:nth-child(2) .approachGraphic b {
+  top: 2px;
+  left: 28px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--approach-color-2);
+  transform-origin: 4px 29px;
+  animation: approachOrbit 4s linear infinite;
+}
+.approachCard:nth-child(3) .approachGraphic span,
+.approachCard:nth-child(3) .approachGraphic i {
+  top: 14px;
+  width: 32px;
+  height: 32px;
+  border: 7px dotted var(--approach-color);
+  border-radius: 50%;
+  animation: approachGear 5s linear infinite;
+}
+.approachCard:nth-child(3) .approachGraphic span { left: 10px; }
+.approachCard:nth-child(3) .approachGraphic i { right: 6px; top: 24px; width: 24px; height: 24px; border-width: 5px; border-color: var(--approach-color-2); animation-direction: reverse; }
+.approachCard:nth-child(3) .approachGraphic b { inset: 27px auto auto 25px; width: 6px; height: 6px; border-radius: 50%; background: var(--approach-color-2); }
+.approachCard:nth-child(4) .approachGraphic { display: flex; align-items: end; gap: 6px; padding: 11px; }
+.approachCard:nth-child(4) .approachGraphic span,
+.approachCard:nth-child(4) .approachGraphic i,
+.approachCard:nth-child(4) .approachGraphic b {
+  position: static;
+  flex: 1;
+  border-radius: 4px 4px 1px 1px;
+  background: linear-gradient(var(--approach-color-2), var(--approach-color));
+  transform-origin: bottom;
+  animation: approachScale 2.4s ease-in-out infinite;
+}
+.approachCard:nth-child(4) .approachGraphic span { height: 18px; }
+.approachCard:nth-child(4) .approachGraphic i { height: 29px; animation-delay: -.8s; }
+.approachCard:nth-child(4) .approachGraphic b { height: 40px; animation-delay: -1.6s; }
+.approachCard h3 {
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  color: var(--navy);
+  font: 800 22px/1.25 Manrope, sans-serif;
+  transition: color .3s ease, transform .42s cubic-bezier(.2,.75,.25,1);
+}
+.approachCard:hover {
+  transform: translateY(-8px);
+  border-color: color-mix(in srgb, var(--approach-color) 48%, white);
+  box-shadow: 0 28px 66px color-mix(in srgb, var(--approach-color) 20%, transparent);
+}
+.approachCard:hover .approachGraphic { transform: translateY(-3px) scale(1.08); background: color-mix(in srgb, var(--approach-color) 13%, white); }
+.approachCard:hover h3 { color: var(--approach-color); transform: translateX(3px); }
 .impactBand {
   position: relative;
   overflow: hidden;
@@ -1774,6 +1956,18 @@ main { overflow: hidden; }
 @keyframes clientMarquee { to { transform: translateX(calc(-50% - 8px)); } }
 @keyframes clientOrbitSpin { to { transform: rotate(360deg); } }
 @keyframes clientOrbitCounterSpin { to { transform: rotate(-360deg); } }
+@keyframes approachLink {
+  50% { transform: scaleX(.55); opacity: .55; }
+}
+@keyframes approachOrbit {
+  to { transform: rotate(360deg); }
+}
+@keyframes approachGear {
+  to { transform: rotate(360deg); }
+}
+@keyframes approachScale {
+  50% { transform: scaleY(.62); opacity: .68; }
+}
 @keyframes chartDraw { from { stroke-dashoffset: 350; } to { stroke-dashoffset: 0; } }
 @keyframes filterCardsIn { from { opacity: .82; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 @keyframes filterCardIn { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }

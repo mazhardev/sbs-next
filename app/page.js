@@ -125,7 +125,7 @@ export default function Home() {
           title="Integrated Services for Modern Business Transformation"
           text="A complete consulting and implementation model for ERP, finance, compliance, automation, and managed operations."
         />
-        <ServicesGrid />
+        <ServicesGrid summaryOnly />
       </section>
 
       <section className="sectionShell">
@@ -133,7 +133,12 @@ export default function Home() {
         <div className="approachGrid">
           {approach.map((item, index) => (
             <article className="approachCard reveal" key={item}>
-              <span>{String(index + 1).padStart(2, "0")}</span>
+              <span className="approachNumber">{String(index + 1).padStart(2, "0")}</span>
+              <div className="approachGraphic" aria-hidden="true">
+                <span />
+                <i />
+                <b />
+              </div>
               <h3>{item}</h3>
             </article>
           ))}
