@@ -3,7 +3,6 @@ import Link from "next/link";
 import ImpactCounters from "./components/ImpactCounters";
 import { ClientsShowcase, FinalCta, InsightsGrid, LeadershipGrid, MetricGrid, SectionHeading, ServicesGrid } from "./components/Sections";
 import JsonLd from "./components/JsonLd";
-import { clients, industries } from "./data";
 import { organizationSchema, professionalServiceSchema, websiteSchema } from "./seo";
 
 const approach = [
@@ -46,45 +45,54 @@ export default function Home() {
             <Link className="secondaryButton light" href="/services/">Explore Services</Link>
           </div>
         </div>
-        <div className="heroVisual reveal" aria-label="ERP dashboard and automation preview">
-          <div className="networkField" aria-hidden="true">
-            <span />
-            <span />
-            <span />
-            <span />
-          </div>
-          <div className="dashboardMock">
-            <div className="dashTop"><span /><span /><span /></div>
-            <div className="dashGrid">
-              <div className="dashPanel wide">
-                <b>ERP Control Center</b>
-                <div className="workflowTrack">
-                  <span>Lead</span>
-                  <span>Approve</span>
-                  <span>Invoice</span>
-                  <span>Report</span>
-                </div>
-                <i />
-              </div>
-              <div className="dashPanel"><strong>98%</strong><span>Data accuracy</span></div>
-              <div className="dashPanel"><strong>10+</strong><span>Jurisdictions</span></div>
-              <div className="dashPanel chart"><i /><i /><i /></div>
-              <div className="dashPanel finance">
-                <span>AI Review</span>
-                <strong>Live</strong>
-              </div>
+      </section>
+
+      <section className="platformShowcase">
+        <div className="sectionShell platformLayout">
+          <div className="platformCopy reveal">
+            <p className="eyebrow">Connected Enterprise Systems</p>
+            <h2>One intelligent view across finance, operations, and compliance.</h2>
+            <p>
+              Connect SAP, Odoo, Microsoft Dynamics, automation, and advisory
+              workflows in a scalable operating model built for better decisions.
+            </p>
+            <div className="platformTags" aria-label="Supported enterprise platforms">
+              <span>SAP S/4HANA</span>
+              <span>Odoo</span>
+              <span>Dynamics 365</span>
+              <span>Automation</span>
             </div>
           </div>
-          <div className="automationFlow" aria-hidden="true">
-            <span>ERP</span>
-            <i />
-            <span>AI</span>
-            <i />
-            <span>Tax</span>
+          <div className="heroVisual reveal" aria-label="Connected ERP operations dashboard preview">
+            <div className="networkField" aria-hidden="true">
+              <span /><span /><span /><span />
+            </div>
+            <div className="dashboardMock">
+              <div className="dashTop">
+                <span /><span /><span />
+                <b>SBS Operations Cloud</b>
+              </div>
+              <div className="dashGrid">
+                <div className="dashPanel wide">
+                  <b>Connected ERP Workflow</b>
+                  <div className="workflowTrack">
+                    <span>Lead</span><span>Approve</span><span>Invoice</span><span>Report</span>
+                  </div>
+                  <i />
+                </div>
+                <div className="dashPanel"><strong>98%</strong><span>Data accuracy</span></div>
+                <div className="dashPanel"><strong>10+</strong><span>Jurisdictions</span></div>
+                <div className="dashPanel chart"><i /><i /><i /></div>
+                <div className="dashPanel finance"><span>Advisory status</span><strong>Tax Ready</strong></div>
+              </div>
+            </div>
+            <div className="automationFlow" aria-hidden="true">
+              <span>ERP</span><i /><span>AI</span><i /><span>Tax</span>
+            </div>
+            <div className="node nodeOne">SAP + Odoo</div>
+            <div className="node nodeTwo">Automation</div>
+            <div className="node nodeThree">Global Delivery</div>
           </div>
-          <div className="node nodeOne">Tax Engine</div>
-          <div className="node nodeTwo">Automation</div>
-          <div className="node nodeThree">Global Delivery</div>
         </div>
       </section>
 

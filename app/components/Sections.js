@@ -78,10 +78,10 @@ export function ClientsShowcase({ compact = false }) {
       </div>
 
       <div className="clientOrbitWrap reveal">
-        <div className="clientOrbit" aria-hidden="true">
-          {clients.slice(0, 6).map((client, index) => (
-            <span className={`orbitLogo orbitLogo${index + 1}`} key={client.name}>
-              {client.initials}
+        <div className="clientOrbit" aria-label="Industries supported by SBS">
+          {industries.slice(0, 6).map((industry, index) => (
+            <span className={`orbitLogo orbitLogo${index + 1}`} key={industry}>
+              {industry}
             </span>
           ))}
           <strong>SBS</strong>
@@ -99,9 +99,10 @@ export function ClientsShowcase({ compact = false }) {
               style={{ "--card-delay": `${(index % clients.length) * 70}ms` }}
               key={`${client.name}-${index}`}
             >
-              <span>{client.initials}</span>
+              <span>
+                <img src={client.logo} alt="" width="48" height="48" loading="lazy" />
+              </span>
               <strong>{client.name}</strong>
-              <small>{client.industry}</small>
             </a>
           ))}
         </div>

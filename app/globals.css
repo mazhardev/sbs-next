@@ -78,14 +78,6 @@ main { overflow: hidden; }
   transition: background .2s ease, opacity .2s ease, transform .2s ease;
 }
 .siteNav a:hover, .siteNav a.active { opacity: 1; background: rgba(8, 104, 237, .1); }
-.siteNav .navCta {
-  margin-left: 8px;
-  color: white;
-  opacity: 1;
-  background: linear-gradient(120deg, var(--blue), var(--cyan));
-  box-shadow: 0 14px 30px rgba(8, 104, 237, .22);
-}
-.siteNav .navCta:hover { transform: translateY(-1px); background: linear-gradient(120deg, #0757c7, var(--cyan)); }
 .menuButton { display: none; }
 
 .sectionShell {
@@ -224,6 +216,38 @@ main { overflow: hidden; }
 .primaryButton:hover { background-position: 100% 0; }
 .secondaryButton:hover { color: var(--blue); border-color: rgba(8,104,237,.36); }
 .secondaryButton.light:hover { color: white; background: rgba(8,104,237,.32); border-color: rgba(33,199,237,.62); }
+
+.platformShowcase {
+  position: relative;
+  color: white;
+  background:
+    radial-gradient(circle at 75% 50%, rgba(33,199,237,.18), transparent 34%),
+    linear-gradient(135deg, #020b25, #08245f);
+}
+.platformLayout {
+  display: grid;
+  grid-template-columns: minmax(280px, .78fr) minmax(480px, 1.22fr);
+  align-items: center;
+  gap: clamp(40px, 6vw, 82px);
+  min-height: 680px;
+}
+.platformCopy h2 {
+  margin: 0;
+  color: white;
+  font: 800 clamp(34px, 4vw, 54px)/1.06 Manrope, sans-serif;
+}
+.platformCopy > p:not(.eyebrow) { color: rgba(255,255,255,.72); font-size: 17px; line-height: 1.7; }
+.platformCopy .eyebrow { color: var(--cyan); }
+.platformTags { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 28px; }
+.platformTags span {
+  padding: 9px 12px;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 999px;
+  color: rgba(255,255,255,.88);
+  background: rgba(255,255,255,.08);
+  font-size: 12px;
+  font-weight: 750;
+}
 
 .heroVisual {
   min-height: 500px;
@@ -383,7 +407,7 @@ main { overflow: hidden; }
 .nodeTwo { left: 0; top: 47%; animation-delay: -1.4s; }
 .nodeThree { right: 0; bottom: 18px; animation-delay: -2.5s; }
 
-.statsLift { margin-top: -84px; position: relative; z-index: 3; padding-top: 0; }
+.statsLift { position: relative; z-index: 3; padding-top: 64px; }
 .metricGrid, .outcomeGrid, .approachGrid, .servicesGrid, .leadershipGrid, .insightsGrid, .industryGrid, .impactListGrid, .expertiseFlow {
   display: grid;
   gap: 18px;
@@ -458,24 +482,26 @@ main { overflow: hidden; }
 }
 .orbitLogo {
   position: absolute;
-  width: 48px;
-  height: 48px;
+  width: 98px;
+  min-height: 44px;
   display: grid;
   place-items: center;
+  padding: 7px 10px;
   border: 1px solid rgba(8,104,237,.14);
-  border-radius: 50%;
-  color: #7f8da0;
+  border-radius: 999px;
+  color: var(--navy);
   background: white;
-  filter: grayscale(1);
-  font: 900 12px Manrope, Inter, sans-serif;
+  font: 850 9px/1.15 Manrope, Inter, sans-serif;
+  text-align: center;
   box-shadow: 0 12px 26px rgba(4,22,64,.09);
+  animation: clientOrbitCounterSpin 24s linear infinite;
 }
-.orbitLogo1 { left: 50%; top: -24px; margin-left: -24px; }
-.orbitLogo2 { right: 11%; top: 12%; }
-.orbitLogo3 { right: 2%; bottom: 27%; }
-.orbitLogo4 { left: 50%; bottom: -24px; margin-left: -24px; }
-.orbitLogo5 { left: 2%; bottom: 27%; }
-.orbitLogo6 { left: 11%; top: 12%; }
+.orbitLogo1 { left: 50%; top: -22px; margin-left: -49px; }
+.orbitLogo2 { right: -15px; top: 14%; }
+.orbitLogo3 { right: -24px; bottom: 22%; }
+.orbitLogo4 { left: 50%; bottom: -22px; margin-left: -49px; }
+.orbitLogo5 { left: -24px; bottom: 22%; }
+.orbitLogo6 { left: -15px; top: 14%; }
 .clientSlider {
   position: relative;
   grid-column: 1 / -1;
@@ -551,6 +577,14 @@ main { overflow: hidden; }
 .clientDirectoryCard:hover span {
   background: linear-gradient(135deg, var(--blue), var(--cyan));
   box-shadow: 0 0 0 9px rgba(33,199,237,.13);
+}
+.clientLogo span img,
+.clientDirectoryCard span img {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  object-fit: contain;
+  background: white;
 }
 .clientLogo strong {
   font: 900 17px/1.2 Manrope, Inter, sans-serif;
@@ -1739,6 +1773,7 @@ main { overflow: hidden; }
 @keyframes barLift { 50% { transform: scaleY(.76); opacity: .72; } }
 @keyframes clientMarquee { to { transform: translateX(calc(-50% - 8px)); } }
 @keyframes clientOrbitSpin { to { transform: rotate(360deg); } }
+@keyframes clientOrbitCounterSpin { to { transform: rotate(-360deg); } }
 @keyframes chartDraw { from { stroke-dashoffset: 350; } to { stroke-dashoffset: 0; } }
 @keyframes filterCardsIn { from { opacity: .82; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 @keyframes filterCardIn { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
@@ -1801,8 +1836,7 @@ main { overflow: hidden; }
   }
   .siteNav.isOpen { display: grid; }
   .siteNav a { padding: 13px 12px; }
-  .siteNav .navCta { margin: 8px 0 0; text-align: center; }
-  .homeHero, .splitSection, .contactLayout, .mapBand, .serviceDetail, .servicesExperience {
+  .homeHero, .platformLayout, .splitSection, .contactLayout, .mapBand, .serviceDetail, .servicesExperience {
     grid-template-columns: 1fr;
   }
   .serviceVisualPanel { position: relative; top: auto; min-height: auto; }

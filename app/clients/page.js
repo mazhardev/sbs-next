@@ -38,10 +38,11 @@ export default function ClientsPage() {
               style={{ "--card-delay": `${index * 70}ms` }}
               key={client.name}
             >
-              <span>{client.initials}</span>
+              <span>
+                <img src={client.logo} alt="" width="48" height="48" loading="lazy" />
+              </span>
               <div>
                 <h3>{client.name}</h3>
-                <p>{client.industry}</p>
               </div>
             </a>
           ))}
