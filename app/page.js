@@ -29,12 +29,9 @@ export default function Home() {
       <JsonLd data={[organizationSchema(), professionalServiceSchema(), websiteSchema()]} />
       <section className="homeHero">
         <div className="heroVideo" aria-hidden="true">
-          <iframe
-            src="https://player.vimeo.com/video/1028479256?background=1&autoplay=1&loop=1&muted=1&controls=0&title=0&byline=0&portrait=0&playsinline=1"
-            title="Technology transformation background video"
-            allow="autoplay; fullscreen; picture-in-picture"
-            tabIndex={-1}
-          />
+          <video autoPlay muted loop playsInline preload="auto">
+            <source src="/videos/basatne-1080p.mp4" type="video/mp4" />
+          </video>
         </div>
         <div className="heroCopy reveal">
           <h1>Build Smarter, Scalable & Future-Ready Business Systems</h1>
@@ -164,13 +161,9 @@ export default function Home() {
 
       <section className="sectionShell locationsSection">
         <div className="locationsMotion" aria-hidden="true">
-          <iframe
-            src="https://player.vimeo.com/video/1028479256?background=1&autoplay=1&loop=1&muted=1&controls=0&title=0&byline=0&portrait=0&playsinline=1"
-            title="Global technology network background video"
-            allow="autoplay; fullscreen; picture-in-picture"
-            loading="lazy"
-            tabIndex={-1}
-          />
+          <video autoPlay muted loop playsInline preload="metadata">
+            <source src="/videos/basatne-1080p.mp4" type="video/mp4" />
+          </video>
         </div>
         <div className="locationsContent">
           <SectionHeading
