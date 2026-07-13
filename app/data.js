@@ -143,6 +143,34 @@ export const metrics = [
   { value: "100+", label: "Hours Saved Annually Through Optimization" },
 ];
 
+export const clients = [
+  {
+    name: "Orbt",
+    url: "https://orbt.com/",
+    logo: "https://www.google.com/s2/favicons?domain=orbt.com&sz=128",
+  },
+  {
+    name: "Allah Tawaqal Metals",
+    url: "https://www.atmetalsltd.com/",
+    logo: "https://www.google.com/s2/favicons?domain=atmetalsltd.com&sz=128",
+  },
+  {
+    name: "Flux Metal (Pvt) Limited",
+    url: "https://www.fluxmetal.pk/",
+    logo: "https://www.google.com/s2/favicons?domain=fluxmetal.pk&sz=128",
+  },
+  {
+    name: "Agro Alliances",
+    url: "https://www.agroallianz.com.pk/",
+    logo: "https://www.google.com/s2/favicons?domain=agroallianz.com.pk&sz=128",
+  },
+  {
+    name: "RIDA Middle East",
+    url: "https://ridame.ae/",
+    logo: "https://www.google.com/s2/favicons?domain=ridame.ae&sz=128",
+  },
+];
+
 export const outcomes = [
   { value: "50%", label: "Reduction in manual processes" },
   { value: "40%", label: "Improvement in data accuracy and reporting efficiency" },
@@ -190,10 +218,10 @@ export const insights = [
 ];
 
 export const industries = [
+  "Financial Services",
   "Manufacturing",
-  "Retail",
-  "Pharmaceuticals",
-  "Services",
-  "Finance & Accounting",
-  "Global Compliance",
+  "Retail & E-commerce",
+  "Technology",
+  "Healthcare & Pharmaceuticals",
+  "Logistics & Distribution",
 ];

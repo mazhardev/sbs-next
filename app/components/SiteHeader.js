@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { navItems, site } from "../data";
+import { navItems } from "../data";
 
 export default function SiteHeader() {
   const pathname = usePathname();
@@ -26,11 +26,13 @@ export default function SiteHeader() {
     <header className={`siteHeader ${scrolled || isOpen ? "isScrolled" : ""}`}>
       <Link className="brand" href="/" aria-label="Smart Brain Solutions home">
         <span className="brandLogo">
-          <Image src="/images/logo.jpeg" alt="" width={48} height={48} priority />
-        </span>
-        <span>
-          <strong>{site.shortName}</strong>
-          <small>{site.tagline}</small>
+          <Image
+            src="/images/logo.jpeg"
+            alt="Smart Brain Solutions"
+            width={64}
+            height={64}
+            priority
+          />
         </span>
       </Link>
 
@@ -56,9 +58,6 @@ export default function SiteHeader() {
             {item.label}
           </Link>
         ))}
-        <Link className="navCta" href="/contact/">
-          Get Consultation
-        </Link>
       </nav>
     </header>
   );

@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { insights, leaders, metrics, outcomes, services, site } from "../data";
+import { insights, leaders, outcomes, services, site } from "../data";
+import AnimatedMetricGrid from "./AnimatedMetricGrid";
 
 export function PageHero({ eyebrow, title, subtitle }) {
   return (
@@ -47,16 +48,7 @@ export function ServicesGrid({ limit }) {
 }
 
 export function MetricGrid({ compact = false }) {
-  return (
-    <div className={compact ? "metricGrid compact" : "metricGrid"}>
-      {metrics.map((metric) => (
-        <div className="metricCard reveal" key={metric.label}>
-          <strong>{metric.value}</strong>
-          <span>{metric.label}</span>
-        </div>
-      ))}
-    </div>
-  );
+  return <AnimatedMetricGrid compact={compact} />;
 }
 
 export function OutcomeGrid() {
