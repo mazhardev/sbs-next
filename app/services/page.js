@@ -1,4 +1,5 @@
 import { FinalCta, PageHero, SectionHeading } from "../components/Sections";
+import ServicesExplorer from "../components/ServicesExplorer";
 import JsonLd from "../components/JsonLd";
 import { services } from "../data";
 import { buildMetadata, serviceSchema } from "../seo";
@@ -20,25 +21,9 @@ export default function ServicesPage() {
         <SectionHeading
           eyebrow="Capabilities"
           title="End-to-End Consulting, Implementation, and Managed Support"
+          text="Serving clients across ASPAC and international markets with practical services that connect technology, finance, tax, and operational execution."
         />
-        <div className="serviceDetailStack">
-          {services.map((service, index) => (
-            <article className="serviceDetail reveal" key={service.title}>
-              <div>
-                <span className="eyebrow">{String(index + 1).padStart(2, "0")} / {service.icon}</span>
-                <h2>{service.title}</h2>
-                <p>{service.details}</p>
-                <strong>{service.outcome}</strong>
-                <a className="textLink" href={`/services/${service.slug}/`}>View {service.title}</a>
-              </div>
-              <ul>
-                {service.includes.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </article>
-          ))}
-        </div>
+        <ServicesExplorer services={services} />
       </section>
       <FinalCta />
     </>

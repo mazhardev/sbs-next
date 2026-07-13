@@ -17,9 +17,9 @@ export const pageSeo = {
     path: "/about/",
     title: "About Smart Brain Solutions | ERP & Tax Experts",
     description:
-      "Meet Smart Brain Solutions, a Pakistan and Malaysia based consulting partner for ERP, tax technology, finance, and automation.",
+      "Meet Smart Brain Solutions, a consulting partner serving clients across ASPAC and international markets with ERP, tax technology, finance, and automation.",
     primaryKeyword: "business transformation consulting",
-    keywords: ["ERP consulting Pakistan", "tax technology Malaysia", "digital transformation company"],
+    keywords: ["ERP consulting services", "tax technology solutions", "digital transformation company"],
   },
   services: {
     path: "/services/",
@@ -58,8 +58,8 @@ export const pageSeo = {
     title: "Contact SBS for ERP & Tax Consulting",
     description:
       "Contact Smart Brain Solutions for ERP implementation, tax technology, accounting automation, compliance advisory, and managed services.",
-    primaryKeyword: "ERP consulting Pakistan",
-    keywords: ["tax advisory Malaysia", "digital transformation company Pakistan", "business consulting ASPAC"],
+    primaryKeyword: "ERP consulting services",
+    keywords: ["tax compliance advisory", "digital transformation company", "business consulting ASPAC"],
   },
 };
 
@@ -106,7 +106,7 @@ export function serviceMetadata(service) {
   return buildMetadata({
     path: `/services/${service.slug}/`,
     title: `${service.title} | SBS`,
-    description: `${service.description} Smart Brain Solutions delivers ${service.primaryKeyword.toLowerCase()} for Pakistan, Malaysia, GCC, ASPAC, and global teams.`,
+    description: `${service.description} Smart Brain Solutions delivers ${service.primaryKeyword.toLowerCase()} for clients across ASPAC and international markets.`,
     primaryKeyword: service.primaryKeyword,
     keywords: service.secondaryKeywords,
   });
@@ -122,7 +122,7 @@ export function organizationSchema() {
     email: site.email,
     telephone: site.phone,
     slogan: site.tagline,
-    areaServed: ["Pakistan", "Malaysia", "GCC", "ASPAC", "Global"],
+    areaServed: ["ASPAC", "International"],
     sameAs: ["https://www.linkedin.com/company/smart-brain-solutions"],
     knowsAbout: services.map((service) => service.title),
   };
@@ -137,11 +137,7 @@ export function professionalServiceSchema() {
     email: site.email,
     telephone: site.phone,
     priceRange: "$$",
-    address: {
-      "@type": "PostalAddress",
-      addressCountry: "PK",
-    },
-    areaServed: ["Pakistan", "Malaysia", "GCC", "ASPAC", "Global"],
+    areaServed: ["ASPAC", "International"],
     serviceType: services.map((service) => service.title),
   };
 }
@@ -171,7 +167,7 @@ export function serviceSchema(service) {
       name: site.name,
       url: baseUrl,
     },
-    areaServed: ["Pakistan", "Malaysia", "GCC", "ASPAC", "Global"],
+    areaServed: ["ASPAC", "International"],
     description: service.description,
     url: absoluteUrl(`/services/${service.slug}/`),
     hasOfferCatalog: {

@@ -1,4 +1,5 @@
-import { FinalCta, OutcomeGrid, PageHero, SectionHeading } from "../components/Sections";
+import ImpactCounters from "../components/ImpactCounters";
+import { FinalCta, PageHero, SectionHeading } from "../components/Sections";
 import { buildMetadata } from "../seo";
 
 const impactSections = [
@@ -51,8 +52,12 @@ export default function ImpactPage() {
         subtitle="At Smart Brain Solutions, our impact is built on a powerful combination of technology expertise, business understanding, and execution-driven delivery."
       />
       <section className="sectionShell impactBand">
-        <SectionHeading eyebrow="Outcomes" title="High-Impact Transformation Outcomes" />
-        <OutcomeGrid />
+        <SectionHeading
+          eyebrow="Outcomes"
+          title="High-Impact Transformation Outcomes"
+          text="A clearer view of delivery scale, operational improvements, and measurable transformation results across ERP, finance, tax, and automation programs."
+        />
+        <ImpactCounters />
       </section>
       <section className="sectionShell impactListGrid">
         {impactSections.map((section) => (

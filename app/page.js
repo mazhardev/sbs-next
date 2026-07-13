@@ -1,5 +1,7 @@
+import Image from "next/image";
 import Link from "next/link";
-import { FinalCta, InsightsGrid, LeadershipGrid, MetricGrid, OutcomeGrid, SectionHeading, ServicesGrid } from "./components/Sections";
+import ImpactCounters from "./components/ImpactCounters";
+import { ClientsShowcase, FinalCta, InsightsGrid, LeadershipGrid, MetricGrid, SectionHeading, ServicesGrid } from "./components/Sections";
 import JsonLd from "./components/JsonLd";
 import { clients, industries } from "./data";
 import { organizationSchema, professionalServiceSchema, websiteSchema } from "./seo";
@@ -9,6 +11,14 @@ const approach = [
   "Global Experience with Practical Execution",
   "Automation-Driven Solutions",
   "Scalable, Future-Ready Systems",
+];
+
+const locations = [
+  { country: "USA", city: "Dallas", image: "/images/locations/dallas.png" },
+  { country: "USA", city: "Miami", image: "/images/locations/miami.png" },
+  { country: "Canada", city: "Toronto", image: "/images/locations/toronto.png" },
+  { country: "UAE", city: "Dubai", image: "/images/locations/dubai.png" },
+  { country: "KSA", city: "Riyadh", image: "/images/locations/riyadh.png" },
 ];
 
 export default function Home() {
@@ -36,48 +46,45 @@ export default function Home() {
             <Link className="secondaryButton light" href="/services/">Explore Services</Link>
           </div>
         </div>
-      </section>
-
-      <section className="platformShowcase">
-        <div className="sectionShell platformLayout">
-          <div className="platformCopy reveal">
-            <p className="eyebrow">Connected Enterprise Systems</p>
-            <h2>One intelligent view across finance, operations, and compliance.</h2>
-            <p>
-              Connect SAP, Odoo, Microsoft Dynamics, automation, and advisory
-              workflows in a scalable operating model built for better decisions.
-            </p>
-            <div className="platformTags" aria-label="Supported enterprise platforms">
-              <span>SAP S/4HANA</span>
-              <span>Odoo</span>
-              <span>Dynamics 365</span>
-              <span>Automation</span>
-            </div>
+        <div className="heroVisual reveal" aria-label="ERP dashboard and automation preview">
+          <div className="networkField" aria-hidden="true">
+            <span />
+            <span />
+            <span />
+            <span />
           </div>
-          <div className="heroVisual reveal" aria-label="Connected ERP operations dashboard preview">
-            <div className="dashboardMock">
-              <div className="dashTop">
-                <span /><span /><span />
-                <b>SBS Operations Cloud</b>
-              </div>
-              <div className="dashGrid">
-                <div className="dashPanel wide">
-                  <b>Connected ERP Workflow</b>
-                  <div className="workflowSteps">
-                    <span>Lead</span><span>Approve</span><span>Invoice</span><span>Report</span>
-                  </div>
-                  <i />
+          <div className="dashboardMock">
+            <div className="dashTop"><span /><span /><span /></div>
+            <div className="dashGrid">
+              <div className="dashPanel wide">
+                <b>ERP Control Center</b>
+                <div className="workflowTrack">
+                  <span>Lead</span>
+                  <span>Approve</span>
+                  <span>Invoice</span>
+                  <span>Report</span>
                 </div>
-                <div className="dashPanel"><strong>98%</strong><span>Data accuracy</span></div>
-                <div className="dashPanel"><strong>10+</strong><span>Jurisdictions</span></div>
-                <div className="dashPanel chart"><i /><i /><i /></div>
-                <div className="dashPanel finance"><small>Advisory status</small>Tax Ready</div>
+                <i />
+              </div>
+              <div className="dashPanel"><strong>98%</strong><span>Data accuracy</span></div>
+              <div className="dashPanel"><strong>10+</strong><span>Jurisdictions</span></div>
+              <div className="dashPanel chart"><i /><i /><i /></div>
+              <div className="dashPanel finance">
+                <span>AI Review</span>
+                <strong>Live</strong>
               </div>
             </div>
-            <div className="node nodeOne">SAP + Odoo</div>
-            <div className="node nodeTwo">Automation</div>
-            <div className="node nodeThree">Global Delivery</div>
           </div>
+          <div className="automationFlow" aria-hidden="true">
+            <span>ERP</span>
+            <i />
+            <span>AI</span>
+            <i />
+            <span>Tax</span>
+          </div>
+          <div className="node nodeOne">Tax Engine</div>
+          <div className="node nodeTwo">Automation</div>
+          <div className="node nodeThree">Global Delivery</div>
         </div>
       </section>
 
@@ -85,51 +92,7 @@ export default function Home() {
         <MetricGrid />
       </section>
 
-      <section className="sectionShell clientIndustries">
-        <div className="sectionHeading reveal">
-          <p className="eyebrow">Clients / Industries</p>
-          <h2>Trusted by teams transforming operations</h2>
-          <p>
-            SBS supports ambitious businesses across finance, manufacturing,
-            retail, technology, healthcare, and logistics.
-          </p>
-        </div>
-        <div className="industryOrbit reveal" aria-label="Industries supported by SBS">
-          <div className="industryOrbitCore">SBS</div>
-          {industries.map((industry, index) => (
-            <span
-              className="industryOrbitItem"
-              key={industry}
-              style={{ "--orbit-angle": `${index * 60}deg` }}
-            >
-              <b>{industry}</b>
-            </span>
-          ))}
-        </div>
-      </section>
-
-      <section className="sectionShell selectedClients" aria-labelledby="selected-clients-title">
-        <div className="sectionHeading">
-          <p className="eyebrow">Selected Clients</p>
-          <h2 id="selected-clients-title">Organizations we support</h2>
-        </div>
-        <div className="clientLogoGrid">
-          {clients.map((client) => (
-            <a
-              className="clientLogoCard reveal"
-              href={client.url}
-              key={client.name}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <span className="clientLogoMark">
-                <img src={client.logo} alt="" width="64" height="64" loading="lazy" />
-              </span>
-              <strong>{client.name}</strong>
-            </a>
-          ))}
-        </div>
-      </section>
+      <ClientsShowcase compact />
 
       <section className="splitSection sectionShell">
         <div>
@@ -172,15 +135,41 @@ export default function Home() {
       <section className="sectionShell impactBand">
         <SectionHeading
           eyebrow="Impact"
-          title="Measurable Transformation Outcomes"
-          text="SBS focuses on practical improvements that leaders can see in reporting, speed, compliance, and operational control."
+          title="High-Impact Transformation Outcomes"
+          text="A clearer view of delivery scale, operational improvements, and measurable transformation results across ERP, finance, tax, and automation programs."
         />
-        <OutcomeGrid />
+        <ImpactCounters />
       </section>
 
       <section className="sectionShell">
         <SectionHeading eyebrow="Leadership" title="Experienced Transformation Leadership" />
         <LeadershipGrid />
+      </section>
+
+      <section className="sectionShell locationsSection">
+        <SectionHeading
+          eyebrow="Locations"
+          title="Global Reach, Local Expertise"
+          text="With strategically located hubs worldwide, SBS provides seamless consulting, faster fulfillment, and localized support for businesses and consumers."
+        />
+        <div className="locationGrid">
+          {locations.map((location, index) => (
+            <article
+              className="locationCard reveal"
+              style={{ "--card-delay": `${index * 70}ms` }}
+              key={`${location.country}-${location.city}`}
+              aria-label={`${location.city}, ${location.country}`}
+            >
+              <Image
+                src={location.image}
+                alt={`${location.city}, ${location.country}`}
+                fill
+                sizes="(max-width: 680px) calc(100vw - 68px), (max-width: 1020px) 45vw, 216px"
+                className="locationPhoto"
+              />
+            </article>
+          ))}
+        </div>
       </section>
 
       <section className="sectionShell">

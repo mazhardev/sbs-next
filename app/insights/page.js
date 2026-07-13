@@ -1,4 +1,4 @@
-import { FinalCta, InsightsGrid, PageHero } from "../components/Sections";
+import { FinalCta, InsightsGrid, PageHero, SocialFollowSection } from "../components/Sections";
 import { buildMetadata } from "../seo";
 
 export const metadata = {
@@ -16,6 +16,7 @@ export default function InsightsPage() {
       <section className="sectionShell">
         <InsightsGrid />
       </section>
+      <SocialFollowSection />
       <FinalCta />
     </>
   );
