@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import ImpactCounters from "./components/ImpactCounters";
 import { ClientsShowcase, FinalCta, InsightsGrid, LeadershipGrid, MetricGrid, SectionHeading, ServicesGrid } from "./components/Sections";
@@ -13,11 +12,15 @@ const approach = [
 ];
 
 const locations = [
-  { country: "USA", city: "Dallas", image: "/images/locations/dallas.png" },
-  { country: "USA", city: "Miami", image: "/images/locations/miami.png" },
-  { country: "Canada", city: "Toronto", image: "/images/locations/toronto.png" },
-  { country: "UAE", city: "Dubai", image: "/images/locations/dubai.png" },
-  { country: "KSA", city: "Riyadh", image: "/images/locations/riyadh.png" },
+  { country: "Saudi Arabia", code: "SA", region: "GCC", x: "39%", y: "38%" },
+  { country: "United Arab Emirates", code: "AE", region: "GCC", x: "52%", y: "45%" },
+  { country: "Bahrain", code: "BH", region: "GCC", x: "40%", y: "51%" },
+  { country: "Qatar", code: "QA", region: "GCC", x: "53%", y: "58%" },
+  { country: "Egypt", code: "EG", region: "GCC", x: "28%", y: "47%" },
+  { country: "Pakistan", code: "PK", region: "ASPAC", x: "62%", y: "34%" },
+  { country: "Singapore", code: "SG", region: "ASPAC", x: "69%", y: "56%" },
+  { country: "Australia", code: "AU", region: "ASPAC", x: "62%", y: "74%" },
+  { country: "New Zealand", code: "NZ", region: "ASPAC", x: "81%", y: "68%" },
 ];
 
 export default function Home() {
@@ -160,28 +163,49 @@ export default function Home() {
       </section>
 
       <section className="sectionShell locationsSection">
-        <SectionHeading
-          eyebrow="Locations"
-          title="Global Reach, Local Expertise"
-          text="With strategically located hubs worldwide, SBS provides seamless consulting, faster fulfillment, and localized support for businesses and consumers."
-        />
-        <div className="locationGrid">
-          {locations.map((location, index) => (
-            <article
-              className="locationCard reveal"
-              style={{ "--card-delay": `${index * 70}ms` }}
-              key={`${location.country}-${location.city}`}
-              aria-label={`${location.city}, ${location.country}`}
-            >
-              <Image
-                src={location.image}
-                alt={`${location.city}, ${location.country}`}
-                fill
-                sizes="(max-width: 680px) calc(100vw - 68px), (max-width: 1020px) 45vw, 216px"
-                className="locationPhoto"
-              />
-            </article>
-          ))}
+        <div className="locationsMotion" aria-hidden="true">
+          <iframe
+            src="https://player.vimeo.com/video/1028479256?background=1&autoplay=1&loop=1&muted=1&controls=0&title=0&byline=0&portrait=0"
+            title=""
+            allow="autoplay; fullscreen"
+            tabIndex={-1}
+          />
+        </div>
+        <div className="locationsContent">
+          <SectionHeading
+            eyebrow="GCC / ASPAC Jurisdictions"
+            title="Global Reach, Local Expertise"
+            text="SBS supports transformation programs across key GCC and ASPAC markets with regional understanding, connected delivery, and practical execution."
+          />
+          <div className="jurisdictionLayout">
+            <div className="jurisdictionGlobe reveal" aria-label="GCC and ASPAC jurisdictions supported by SBS">
+              <div className="globeCore" aria-hidden="true">
+                <span /><i /><b />
+              </div>
+              {locations.map((location) => (
+                <span
+                  className={`globePin globePin-${location.region.toLowerCase()}`}
+                  style={{ "--pin-x": location.x, "--pin-y": location.y }}
+                  key={location.country}
+                >
+                  <i>{location.code}</i>
+                  <strong>{location.country}</strong>
+                </span>
+              ))}
+            </div>
+            <div className="jurisdictionList">
+              {locations.map((location, index) => (
+                <article
+                  className={`jurisdictionCard jurisdictionCard-${location.region.toLowerCase()} reveal`}
+                  style={{ "--card-delay": `${index * 55}ms` }}
+                  key={location.country}
+                >
+                  <span>{location.code}</span>
+                  <div><small>{location.region}</small><strong>{location.country}</strong></div>
+                </article>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 

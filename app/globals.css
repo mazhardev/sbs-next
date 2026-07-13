@@ -927,6 +927,22 @@ main { overflow: hidden; }
   background: rgba(198, 208, 220, .13);
   filter: blur(22px);
 }
+.impactBand::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 12% 24%, rgba(33,199,237,.8) 0 3px, transparent 4px),
+    radial-gradient(circle at 88% 18%, rgba(255,255,255,.55) 0 3px, transparent 4px),
+    linear-gradient(115deg, transparent 18%, rgba(33,199,237,.2) 18.4%, transparent 18.8%, transparent 72%, rgba(8,104,237,.2) 72.4%, transparent 72.8%),
+    url("/images/locations/locations-preview.png") center calc(100% + 96px) / 100% auto no-repeat;
+  background-size: 180px 180px, 240px 240px, 420px 260px, 100% auto;
+  opacity: .1;
+  mask-image: linear-gradient(to bottom, transparent 2%, black 34%, black 82%, transparent 100%);
+  animation: impactBackdropDrift 24s linear infinite;
+}
 .impactBand .sectionHeading {
   position: relative;
   z-index: 1;
@@ -934,6 +950,37 @@ main { overflow: hidden; }
 .impactBand .sectionHeading h2 { color: white; }
 .impactBand .sectionHeading p { color: rgba(255,255,255,.72); }
 .impactBand .eyebrow { color: var(--cyan); }
+.impactCounterExperience { position: relative; z-index: 1; }
+.impactCycleTimer {
+  width: min(250px, 100%);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 5px 14px;
+  margin: -8px 0 18px auto;
+  color: rgba(255,255,255,.7);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.impactCycleTimer strong { color: var(--cyan); font: 900 13px Manrope, sans-serif; }
+.impactCycleTimer i {
+  position: relative;
+  grid-column: 1 / -1;
+  height: 3px;
+  overflow: hidden;
+  border-radius: 99px;
+  background: rgba(255,255,255,.12);
+}
+.impactCycleTimer i::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--timer-progress);
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--blue), var(--cyan));
+  transition: width .85s linear;
+}
 .impactDashboard {
   position: relative;
   z-index: 1;
@@ -1006,9 +1053,9 @@ main { overflow: hidden; }
 .miniBars i:nth-child(4) { height: 86%; animation-delay: -1.6s; }
 .miniBars i:nth-child(5) { height: 72%; animation-delay: -2s; }
 .processCard {
-  left: 40px;
+  left: 28px;
   bottom: 38px;
-  width: 180px;
+  width: 145px;
   padding: 18px;
 }
 .flowNodes {
@@ -1026,9 +1073,9 @@ main { overflow: hidden; }
 }
 .flowNodes i + i { background: linear-gradient(135deg, var(--cyan), var(--blue)); }
 .chartCard {
-  right: 26px;
+  right: 28px;
   bottom: 52px;
-  width: min(68%, 290px);
+  width: min(52%, 260px);
   padding: 18px;
 }
 .chartCard svg {
@@ -1376,39 +1423,139 @@ main { overflow: hidden; }
 }
 
 .locationsSection {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   width: min(1240px, calc(100% - 40px));
   padding: 72px clamp(20px, 4vw, 42px);
   border-radius: 28px;
-  background: #eef1f5;
+  color: white;
+  background: linear-gradient(135deg, #020b25, #08245f);
 }
-.locationGrid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 16px;
-}
-.locationCard {
-  position: relative;
-  min-height: 255px;
-  aspect-ratio: 216 / 253;
-  overflow: hidden;
-  border-radius: 14px;
-  background: #111827;
-  box-shadow: 0 18px 34px rgba(4,22,64,.14);
-  animation-delay: var(--card-delay, 0ms);
-}
-.locationCard::before {
+.locationsSection::before {
   content: "";
   position: absolute;
-  z-index: 1;
+  z-index: -1;
   inset: 0;
   background:
-    linear-gradient(120deg, transparent, rgba(255,255,255,.18), transparent),
-    radial-gradient(circle at 74% 12%, rgba(255,255,255,.18), transparent 26%);
-  transform: translateX(-65%);
-  animation: citySheen 6s ease-in-out infinite;
+    linear-gradient(90deg, rgba(2,11,37,.96), rgba(4,22,64,.76) 54%, rgba(4,22,64,.52)),
+    radial-gradient(circle at 76% 42%, rgba(33,199,237,.22), transparent 34%);
+}
+.locationsMotion {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  overflow: hidden;
   pointer-events: none;
 }
-.locationPhoto { object-fit: cover; }
+.locationsMotion iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100vw;
+  height: 56.25vw;
+  min-width: 177.78vh;
+  min-height: 100%;
+  border: 0;
+  transform: translate(-50%, -50%);
+}
+.locationsContent { position: relative; z-index: 1; }
+.locationsSection .sectionHeading h2 { color: white; }
+.locationsSection .sectionHeading p { color: rgba(255,255,255,.72); }
+.locationsSection .eyebrow { color: var(--cyan); }
+.jurisdictionLayout {
+  display: grid;
+  grid-template-columns: minmax(440px, 1.15fr) minmax(300px, .85fr);
+  align-items: center;
+  gap: clamp(30px, 5vw, 64px);
+}
+.jurisdictionGlobe {
+  position: relative;
+  width: min(100%, 570px);
+  aspect-ratio: 1.55;
+  margin: 0 auto;
+  border: 1px solid rgba(33,199,237,.28);
+  border-radius: 50%;
+  background:
+    repeating-radial-gradient(ellipse, transparent 0 42px, rgba(255,255,255,.08) 43px 44px),
+    radial-gradient(circle at 34% 28%, rgba(33,199,237,.26), transparent 32%),
+    rgba(5,31,78,.66);
+  box-shadow: inset 0 0 70px rgba(33,199,237,.12), 0 30px 80px rgba(0,0,0,.28);
+  backdrop-filter: blur(12px);
+}
+.jurisdictionGlobe::before,
+.jurisdictionGlobe::after {
+  content: "";
+  position: absolute;
+  inset: 8% 31%;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 50%;
+}
+.jurisdictionGlobe::after { inset: 8% 15%; }
+.globeCore { position: absolute; inset: 0; overflow: hidden; border-radius: inherit; }
+.globeCore::before,
+.globeCore::after {
+  content: "";
+  position: absolute;
+  width: 44%;
+  height: 31%;
+  border-radius: 48% 52% 42% 58%;
+  background: linear-gradient(135deg, rgba(33,199,237,.18), rgba(8,104,237,.3));
+  filter: blur(1px);
+  animation: globeLandDrift 12s ease-in-out infinite alternate;
+}
+.globeCore::before { left: 17%; top: 25%; transform: rotate(-12deg); }
+.globeCore::after { right: 12%; bottom: 18%; transform: rotate(18deg); animation-delay: -6s; }
+.globeCore span,
+.globeCore i,
+.globeCore b { position: absolute; inset: 49% 5% auto; height: 1px; background: rgba(255,255,255,.12); }
+.globeCore i { inset: 28% 9% auto; }
+.globeCore b { inset: 70% 9% auto; }
+.globePin {
+  position: absolute;
+  z-index: 3;
+  left: var(--pin-x);
+  top: var(--pin-y);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transform: translate(-50%, -50%);
+  animation: globePinPulse 3s ease-in-out infinite;
+}
+.globePin i {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border: 2px solid white;
+  border-radius: 50%;
+  color: white;
+  background: var(--blue);
+  box-shadow: 0 0 0 7px rgba(8,104,237,.16), 0 8px 22px rgba(0,0,0,.24);
+  font: 900 8px Manrope, sans-serif;
+}
+.globePin-aspac i { background: var(--emerald); box-shadow: 0 0 0 7px rgba(22,166,106,.16), 0 8px 22px rgba(0,0,0,.24); }
+.globePin strong { padding: 5px 7px; border-radius: 6px; color: white; background: rgba(2,11,37,.72); font-size: 9px; white-space: nowrap; backdrop-filter: blur(8px); }
+.jurisdictionList { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.jurisdictionCard {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 70px;
+  padding: 12px;
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 12px;
+  background: rgba(255,255,255,.08);
+  backdrop-filter: blur(12px);
+  animation-delay: var(--card-delay, 0ms);
+  transition: transform .25s ease, background .25s ease, border-color .25s ease;
+}
+.jurisdictionCard:hover { transform: translateY(-4px); background: rgba(255,255,255,.14); border-color: rgba(33,199,237,.4); }
+.jurisdictionCard > span { width: 34px; height: 34px; display: grid; place-items: center; flex: 0 0 34px; border-radius: 9px; color: white; background: var(--blue); font: 900 9px Manrope, sans-serif; }
+.jurisdictionCard-aspac > span { background: var(--emerald); }
+.jurisdictionCard div { display: grid; gap: 2px; }
+.jurisdictionCard small { color: var(--cyan); font-size: 8px; font-weight: 900; letter-spacing: .1em; }
+.jurisdictionCard strong { color: white; font: 800 12px/1.2 Manrope, sans-serif; }
 
 .pageHero {
   padding: 148px 0 86px;
@@ -1968,6 +2115,15 @@ main { overflow: hidden; }
 @keyframes approachScale {
   50% { transform: scaleY(.62); opacity: .68; }
 }
+@keyframes impactBackdropDrift {
+  to { background-position: 180px 180px, -240px 240px, 420px 260px, center calc(100% + 96px); }
+}
+@keyframes globeLandDrift {
+  to { transform: translateX(18px) rotate(4deg) scale(1.06); }
+}
+@keyframes globePinPulse {
+  50% { transform: translate(-50%, -50%) translateY(-3px); }
+}
 @keyframes chartDraw { from { stroke-dashoffset: 350; } to { stroke-dashoffset: 0; } }
 @keyframes filterCardsIn { from { opacity: .82; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 @keyframes filterCardIn { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
@@ -2046,8 +2202,8 @@ main { overflow: hidden; }
   .clientsSection { grid-template-columns: 1fr; }
   .clientOrbitWrap { display: none; }
   .clientsHeader { padding-right: 0; }
-  .locationGrid { grid-template-columns: repeat(2, 1fr); }
-  .locationCard { min-height: 240px; }
+  .jurisdictionLayout { grid-template-columns: 1fr; }
+  .jurisdictionGlobe { width: min(100%, 620px); }
   .contactAside { grid-template-columns: repeat(2, 1fr); }
 }
 
@@ -2095,8 +2251,9 @@ main { overflow: hidden; }
   .chartCard { right: 16px; bottom: 28px; width: calc(100% - 188px); min-width: 150px; }
   .chartCard svg { height: 104px; }
   .locationsSection { width: min(100% - 32px, 1180px); padding: 42px 18px; border-radius: 18px; }
-  .locationGrid { grid-template-columns: 1fr; }
-  .locationCard { min-height: 220px; }
+  .jurisdictionGlobe { aspect-ratio: 1.25; }
+  .globePin strong { display: none; }
+  .jurisdictionList { grid-template-columns: 1fr; }
   .serviceFilterBar { display: grid; padding: 18px; }
   .filterDropdown { width: 100%; }
   .serviceDetail, .contactForm, .mapBand, .finalCta, .testimonialCard, .filteredServiceCard, .serviceVisualPanel { padding: 24px; }
