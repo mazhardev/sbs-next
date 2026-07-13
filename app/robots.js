@@ -9,7 +9,7 @@ export default function robots() {
         disallow: ["/api/", "/admin/", "/private/"],
       },
     ],
-    sitemap: "https://www.smartbrainsolutions.com/sitemap.xml",
-    host: "https://www.smartbrainsolutions.com/",
+    sitemap: "https://smartbrainsolution.com/sitemap.xml",
+    host: "https://smartbrainsolution.com/",
   };
 }

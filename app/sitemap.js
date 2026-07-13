@@ -15,7 +15,7 @@ export default function sitemap() {
   ];
 
   return routes.map((route) => ({
-      url: `https://www.smartbrainsolutions.com/${route ? `${route}/` : ""}`,
+      url: `https://smartbrainsolution.com/${route ? `${route}/` : ""}`,
       lastModified: new Date("2026-06-21"),
       changeFrequency: route.startsWith("services") ? "monthly" : "weekly",
       priority: route === "" ? 1 : route.startsWith("services") ? 0.9 : 0.8,

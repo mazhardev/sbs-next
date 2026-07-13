@@ -159,20 +159,28 @@ main { overflow: hidden; }
   z-index: -2;
   inset: 0;
   overflow: hidden;
-  background: var(--navy);
+  background:
+    radial-gradient(circle at 72% 28%, rgba(33,199,237,.28), transparent 26%),
+    radial-gradient(circle at 28% 72%, rgba(8,104,237,.32), transparent 30%),
+    linear-gradient(135deg, #020b25, #08245f);
   pointer-events: none;
+  animation: localMotionShift 16s ease-in-out infinite alternate;
 }
-.heroVideo iframe {
+.heroVideo span,
+.heroVideo i,
+.heroVideo b,
+.locationsMotion span,
+.locationsMotion i,
+.locationsMotion b {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100vw;
-  height: 56.25vw;
-  min-width: 177.78vh;
-  min-height: 100%;
-  border: 0;
-  transform: translate(-50%, -50%);
+  display: block;
+  border: 1px solid rgba(33,199,237,.18);
+  border-radius: 50%;
+  animation: localMotionOrbit 18s linear infinite;
 }
+.heroVideo span, .locationsMotion span { width: 54vw; height: 54vw; right: -8vw; top: -18vw; }
+.heroVideo i, .locationsMotion i { width: 38vw; height: 38vw; left: 8vw; bottom: -22vw; animation-direction: reverse; animation-duration: 24s; }
+.heroVideo b, .locationsMotion b { width: 22vw; height: 22vw; left: 48%; top: 24%; border-color: rgba(255,255,255,.12); animation-duration: 12s; }
 .heroCopy .eyebrow { color: var(--cyan); }
 .homeHero h1 {
   max-width: 780px;
@@ -1447,17 +1455,11 @@ main { overflow: hidden; }
   inset: 0;
   overflow: hidden;
   pointer-events: none;
-}
-.locationsMotion iframe {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100vw;
-  height: 56.25vw;
-  min-width: 177.78vh;
-  min-height: 100%;
-  border: 0;
-  transform: translate(-50%, -50%);
+  background:
+    radial-gradient(circle at 78% 28%, rgba(33,199,237,.34), transparent 24%),
+    radial-gradient(circle at 22% 72%, rgba(22,166,106,.22), transparent 28%),
+    linear-gradient(120deg, #020b25, #08245f);
+  animation: localMotionShift 18s ease-in-out infinite alternate-reverse;
 }
 .locationsContent { position: relative; z-index: 1; }
 .locationsSection .sectionHeading h2 { color: white; }
@@ -2123,6 +2125,12 @@ main { overflow: hidden; }
 }
 @keyframes globePinPulse {
   50% { transform: translate(-50%, -50%) translateY(-3px); }
+}
+@keyframes localMotionShift {
+  to { background-position: 8vw -4vw, -7vw 6vw, center; filter: saturate(1.2); }
+}
+@keyframes localMotionOrbit {
+  to { transform: rotate(360deg) scale(1.08); }
 }
 @keyframes chartDraw { from { stroke-dashoffset: 350; } to { stroke-dashoffset: 0; } }
 @keyframes filterCardsIn { from { opacity: .82; transform: translateY(10px); } to { opacity: 1; transform: none; } }

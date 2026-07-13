@@ -159,7 +159,7 @@ export function InsightsGrid() {
       {insights.map((post, index) => {
         const postPath = `/insights/#${post.slug}`;
         const postUrl = new URL(postPath, site.url).toString();
-        const shareText = encodeURIComponent(`${post.title} | ${site.name}`);
+        const shareText = encodeURIComponent(`${post.title} | ${site.name}\n${postUrl}`);
         const shareUrl = encodeURIComponent(postUrl);
 
         return (
@@ -192,9 +192,10 @@ export function InsightsGrid() {
             <div className="blogActions">
               <div className="shareActions" aria-label={`Share ${post.title}`}>
                 <a
-                  href={`https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}`}
+                  href={`https://www.linkedin.com/feed/?shareActive=true&text=${shareText}`}
                   target="_blank"
                   rel="noreferrer"
+                  aria-label={`Create a LinkedIn post for ${post.title}`}
                 >
                   Share on LinkedIn
                 </a>
@@ -202,6 +203,7 @@ export function InsightsGrid() {
                   href={`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}&quote=${shareText}`}
                   target="_blank"
                   rel="noreferrer"
+                  aria-label={`Create a Facebook post for ${post.title}`}
                 >
                   Share on Facebook
                 </a>
