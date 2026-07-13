@@ -53,6 +53,14 @@ export const pageSeo = {
     primaryKeyword: "ERP implementation insights",
     keywords: ["tax automation", "digital transformation", "MIS reporting services"],
   },
+  careers: {
+    path: "/careers/",
+    title: "Careers at Smart Brain Solutions | Join SBS",
+    description:
+      "Explore careers at Smart Brain Solutions across ERP, finance, tax, automation, and business transformation consulting.",
+    primaryKeyword: "Smart Brain Solutions careers",
+    keywords: ["ERP consulting jobs", "finance transformation careers", "tax advisory jobs"],
+  },
   contact: {
     path: "/contact/",
     title: "Contact SBS for ERP & Tax Consulting",

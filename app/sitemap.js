@@ -11,6 +11,7 @@ export default function sitemap() {
     "impact",
     "clients",
     "insights",
+    "careers",
     "contact",
   ];
 

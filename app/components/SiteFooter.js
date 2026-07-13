@@ -5,10 +5,6 @@ import { navItems, services, site } from "../data";
 export default function SiteFooter() {
   return (
     <footer className="siteFooter">
-      <div className="footerCta">
-        <p>Let&apos;s build smarter business systems together.</p>
-        <Link href="/contact/">Get Consultation</Link>
-      </div>
       <div className="footerGrid">
         <div className="footerBrand">
           <Image src="/images/logo.jpeg" alt="Smart Brain Solutions" width={56} height={56} />
@@ -37,7 +33,12 @@ export default function SiteFooter() {
         <div>
           <h3>Contact</h3>
           <p>{site.email}</p>
-          <p>{site.phone}</p>
+          <a href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noreferrer">
+            WhatsApp: {site.phone}
+          </a>
+          <a href={`https://wa.me/${site.whatsappSecondary}`} target="_blank" rel="noreferrer">
+            WhatsApp: {site.whatsappSecondaryLabel}
+          </a>
           <p>{site.location}</p>
           <div className="footerSocial">
             <a href={site.facebook} target="_blank" rel="noreferrer" aria-label="Facebook">FB</a>

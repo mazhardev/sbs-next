@@ -6,7 +6,9 @@ export const site = {
   email: "info@smartbrainsolutions.com",
   phone: "+92 331 7482664",
   whatsapp: "923317482664",
-  location: "Serving clients across ASPAC and international markets",
+  whatsappSecondary: "923017855743",
+  whatsappSecondaryLabel: "+92 301 78 55 743",
+  location: "Serving Across Global Markets",
   facebook: "https://www.facebook.com/profile.php?id=61590767773103",
   instagram: "https://www.instagram.com/smartbrainsolutions/",
   linkedin: "https://www.linkedin.com/company/134643924/",
@@ -20,6 +22,7 @@ export const navItems = [
   { label: "Impact", href: "/impact/" },
   { label: "Clients", href: "/clients/" },
   { label: "Insights", href: "/insights/" },
+  { label: "Careers", href: "/careers/" },
   { label: "Contact", href: "/contact/" },
 ];
 
