@@ -5,10 +5,11 @@ import { site } from "../data";
 import { buildMetadata, contactPageSchema } from "../seo";
 
 const contactCards = [
-  ["Email", site.email],
-  ["Phone / WhatsApp", site.phone],
-  ["Location", site.location],
-  ["Website", "smartbrainsolution.com"],
+  { label: "Email", value: site.email },
+  {
+    label: "Phone / WhatsApp",
+    values: [`+${site.whatsapp}`, `+${site.whatsappSecondary}`],
+  },
 ];
 
 const whatsappIconPath = "M12.1 2A9.8 9.8 0 0 0 3.7 17l-1.2 4.5 4.6-1.2A9.9 9.9 0 1 0 12.1 2Zm0 2a7.9 7.9 0 1 1-4 14.7l-.3-.2-2.5.7.7-2.4-.2-.4A7.9 7.9 0 0 1 12.1 4Zm-3.3 4.2c-.2 0-.5.1-.7.4-.2.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.8 2.9 4.4 3.9 2.2.9 2.6.7 3.1.7.5 0 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.2-.2-.5-.4l-1.8-.9c-.3-.1-.5-.2-.7.2-.2.3-.8 1.1-1 1.3-.2.2-.4.2-.7.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.3.3-.5.1-.2.1-.4 0-.6l-.8-1.9c-.2-.5-.4-.5-.6-.5h-.6Z";
@@ -55,10 +56,16 @@ export default function ContactPage() {
           <ContactPanel />
         </div>
         <aside className="contactAside">
-          {contactCards.map(([label, value]) => (
+          {contactCards.map(({ label, value, values }) => (
             <article className="contactCard reveal" key={label}>
               <span>{label}</span>
-              <strong>{value}</strong>
+              {values ? (
+                <strong className="contactPhoneNumbers">
+                  {values.map((phone) => <span key={phone}>{phone}</span>)}
+                </strong>
+              ) : (
+                <strong>{value}</strong>
+              )}
             </article>
           ))}
           <a className="whatsappCard reveal" href={`https://wa.me/${site.whatsapp}`}>

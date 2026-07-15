@@ -1959,6 +1959,8 @@ main { overflow: hidden; }
 .contactCard, .whatsappCard, .socialCard { display: grid; gap: 8px; padding: 22px; }
 .contactCard span, .whatsappCard span, .socialCard span { color: var(--blue); font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: .1em; }
 .contactCard strong, .whatsappCard strong { color: var(--navy); line-height: 1.4; }
+.contactPhoneNumbers { display: grid; gap: 4px; }
+.contactPhoneNumbers span { color: inherit; font-size: inherit; font-weight: inherit; letter-spacing: normal; text-transform: none; }
 .whatsappCard { background: linear-gradient(135deg, #eefbf5, white); border-color: rgba(22,166,106,.24); }
 .formSuccess {
   margin: 0;
@@ -1969,6 +1971,19 @@ main { overflow: hidden; }
   background: #effbf6;
   font-weight: 800;
 }
+.deliveryPrompt {
+  display: grid;
+  gap: 10px;
+  padding: 18px;
+  border: 1px solid rgba(8,104,237,.22);
+  border-radius: var(--radius);
+  background: #f5f9ff;
+}
+.deliveryPrompt strong { color: var(--navy); font-size: 18px; }
+.deliveryPrompt p { margin: 0; color: var(--muted); }
+.deliveryPromptActions { display: flex; flex-wrap: wrap; gap: 10px; }
+.deliveryPromptActions button { border: 0; cursor: pointer; }
+.deliveryCancel { padding: 12px 16px; color: var(--muted); background: transparent; font: inherit; font-weight: 800; }
 .socialButtons, .footerSocial {
   display: flex;
   flex-wrap: wrap;
