@@ -34,10 +34,10 @@ export default function SiteFooter() {
           <h3>Contact</h3>
           <p>{site.email}</p>
           <a href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noreferrer">
-            WhatsApp: {site.phone}
+            WhatsApp: +{site.whatsapp}
           </a>
           <a href={`https://wa.me/${site.whatsappSecondary}`} target="_blank" rel="noreferrer">
-            WhatsApp: {site.whatsappSecondaryLabel}
+            WhatsApp: +{site.whatsappSecondary}
           </a>
           <p>{site.location}</p>
           <div className="footerSocial">
