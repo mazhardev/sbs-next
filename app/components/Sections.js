@@ -2,9 +2,9 @@ import Link from "next/link";
 import { clients, industries, insights, leaders, metrics, outcomes, services, site } from "../data";
 import AnimatedMetricGrid from "./AnimatedMetricGrid";
 
-export function PageHero({ eyebrow, title, subtitle }) {
+export function PageHero({ eyebrow, title, subtitle, className = "" }) {
   return (
-    <section className="pageHero">
+    <section className={`pageHero ${className}`.trim()}>
       <div className="sectionShell">
         {eyebrow && <p className="eyebrow">{eyebrow}</p>}
         <h1>{title}</h1>

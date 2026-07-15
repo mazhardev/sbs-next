@@ -1327,13 +1327,29 @@ main { overflow: hidden; }
 }
 
 .insightsGrid { grid-template-columns: repeat(3, 1fr); }
+.insightsContent { width: min(1280px, calc(100% - 40px)); }
+.insightsContent .insightsGrid { gap: 28px; }
+.insightsContent .blogCard { padding: 24px; }
+.insightsContent .blogVisual { height: 210px; }
+.insightsContent .blogCard h3 { font-size: 24px; }
 .blogCard {
+  position: relative;
   overflow: hidden;
   padding: 18px;
-  transition: transform .26s ease, box-shadow .26s ease, border-color .26s ease;
+  transition: transform .36s cubic-bezier(.2,.8,.2,1), box-shadow .36s ease, border-color .36s ease;
   animation-delay: var(--card-delay, 0ms);
 }
-.blogCard:hover .blogVisual { transform: scale(1.025); }
+.blogCard::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,.58) 48%, transparent 66%);
+  transform: translateX(-120%);
+  transition: transform .7s ease;
+}
+.blogCard:hover::after { transform: translateX(120%); }
+.blogCard:hover .blogVisual { transform: scale(1.045); }
 .blogCard:hover .shareActions { opacity: 1; transform: translateY(0); }
 .blogVisual {
   position: relative;
@@ -1693,6 +1709,35 @@ main { overflow: hidden; }
 .pageHero h1 { max-width: 900px; color: white; font-size: clamp(42px, 6vw, 72px); line-height: 1; }
 .pageHero p { max-width: 780px; color: rgba(255,255,255,.76); font-size: 18px; }
 .pageHero .eyebrow { color: var(--cyan); }
+.insightsHero {
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 78% 36%, rgba(33,199,237,.34), transparent 25%),
+    radial-gradient(circle at 58% 105%, rgba(8,104,237,.34), transparent 38%),
+    linear-gradient(125deg, #01091f 0%, #031b4c 52%, #07518e 100%);
+}
+.insightsHero::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  width: 520px;
+  height: 520px;
+  right: 7%;
+  top: 50%;
+  border: 1px solid rgba(91,226,255,.22);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 50%, transparent 0 18%, rgba(33,199,237,.14) 18.5% 19%, transparent 19.5% 34%, rgba(255,255,255,.1) 34.5% 35%, transparent 35.5%),
+    linear-gradient(90deg, transparent 49.8%, rgba(91,226,255,.16) 50%, transparent 50.2%),
+    linear-gradient(transparent 49.8%, rgba(91,226,255,.16) 50%, transparent 50.2%);
+  box-shadow: 0 0 90px rgba(33,199,237,.16), inset 0 0 70px rgba(8,104,237,.12);
+  transform: translateY(-50%) rotate(-12deg);
+  animation: insightOrbit 18s linear infinite;
+}
+@keyframes insightOrbit {
+  from { transform: translateY(-50%) rotate(-12deg); }
+  to { transform: translateY(-50%) rotate(348deg); }
+}
 
 .missionStack { display: grid; gap: 18px; }
 .serviceDetailStack { display: grid; gap: 22px; }
