@@ -10,16 +10,19 @@ const beliefs = [
 const expertise = [
   {
     label: "Purpose",
+    visualPath: "M5 7h14v10H5z M8 10h3v4H8z M13 9h3v5h-3z",
     title: "Simplify Business Operations",
     text: "We help organizations replace fragmented processes with connected systems, clearer reporting, and stronger decision-making.",
   },
   {
     label: "ERP Focus",
+    visualPath: "M12 4v4m0 8v4M4 12h4m8 0h4M8.5 8.5l-3-3m10 3 3-3m-10 10-3 3m10-3 3 3M9 9h6v6H9z",
     title: "Integrated Digital Foundations",
     text: "Our work centers on ERP selection, implementation, integration, and optimization across finance, tax, operations, and management reporting.",
   },
   {
     label: "Advisory Expertise",
+    visualPath: "M5 18V9m5 9V5m5 13v-6m4 6V7M3 20h18",
     title: "ERP, Tax, Accounting & Business Advisory",
     text: "SBS combines system knowledge with tax, accounting, compliance, and process advisory experience to deliver practical transformation.",
   },
@@ -33,9 +36,9 @@ export default function AboutPage() {
   return (
     <>
       <PageHero
-        eyebrow="About SBS"
+        className="aboutHero"
         title="About Smart Brain Solutions"
-        subtitle="A technology and advisory firm helping businesses build smarter ERP, finance, tax, and compliance systems."
+        subtitle="A technology and advisory company helping businesses build smarter ERP, finance, tax, and compliance systems."
       />
       <section className="sectionShell splitSection">
         <SectionHeading
@@ -56,11 +59,14 @@ export default function AboutPage() {
           </article>
         </div>
       </section>
-      <section className="sectionShell">
+      <section className="sectionShell expertiseSection">
         <SectionHeading eyebrow="What We Do" title="A connected view of technology and advisory" />
         <div className="expertiseFlow">
           {expertise.map((item, index) => (
             <article className="expertiseCard reveal" style={{ "--card-delay": `${index * 90}ms` }} key={item.label}>
+              <div className="expertisePicture" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d={item.visualPath} /></svg>
+              </div>
               <span className="iconBadge">{item.label.slice(0, 3)}</span>
               <small>{item.label}</small>
               <h3>{item.title}</h3>

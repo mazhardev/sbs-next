@@ -803,18 +803,61 @@ main { overflow: hidden; }
 .serviceSummaryCard:hover .iconBadge { transform: translateY(-3px) rotate(-5deg) scale(1.08); }
 .serviceSummaryCard:hover h3 { color: var(--service-color); transform: translateX(4px); }
 
-.expertiseFlow { grid-template-columns: repeat(3, 1fr); }
-.expertiseCard {
+.expertiseSection {
   position: relative;
-  min-height: 280px;
+  isolation: isolate;
+  width: min(1240px, calc(100% - 40px));
   overflow: hidden;
-  padding: 28px;
+  padding: 64px 48px;
+  border-radius: 24px;
   background:
-    linear-gradient(180deg, rgba(255,255,255,.96), rgba(238,247,255,.86)),
-    linear-gradient(135deg, rgba(8,104,237,.08), rgba(33,199,237,.08));
-  transition: transform .26s ease, box-shadow .26s ease, border-color .26s ease;
+    radial-gradient(circle at 8% 18%, rgba(33,199,237,.18), transparent 25%),
+    radial-gradient(circle at 92% 82%, rgba(22,166,106,.12), transparent 27%),
+    linear-gradient(135deg, #eef7ff, #f9fcff 48%, #edf9f6);
+  box-shadow: 0 28px 80px rgba(4,22,64,.09);
+}
+.expertiseSection::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background-image: linear-gradient(rgba(8,104,237,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(8,104,237,.045) 1px, transparent 1px);
+  background-size: 48px 48px;
+  animation: expertiseGridDrift 14s linear infinite;
+}
+.expertiseFlow { position: relative; z-index: 1; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.expertiseCard {
+  --expertise-color: #0868ed;
+  --expertise-color-2: #21c7ed;
+  position: relative;
+  min-height: 330px;
+  overflow: hidden;
+  padding: 30px;
+  border-color: color-mix(in srgb, var(--expertise-color) 20%, white);
+  background:
+    radial-gradient(circle at 92% 8%, color-mix(in srgb, var(--expertise-color-2) 16%, transparent), transparent 34%),
+    linear-gradient(160deg, rgba(255,255,255,.98), color-mix(in srgb, var(--expertise-color) 7%, white));
+  transition: transform .38s cubic-bezier(.2,.8,.2,1), box-shadow .38s ease, border-color .38s ease;
   animation-delay: var(--card-delay, 0ms);
 }
+.expertiseCard:nth-child(2) { --expertise-color: #6254d9; --expertise-color-2: #28a9e0; }
+.expertiseCard:nth-child(3) { --expertise-color: #087f9d; --expertise-color-2: #16a66a; }
+.expertisePicture {
+  position: absolute;
+  right: -18px;
+  top: -20px;
+  width: 150px;
+  height: 150px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: color-mix(in srgb, var(--expertise-color) 48%, white);
+  background: color-mix(in srgb, var(--expertise-color-2) 10%, transparent);
+  transition: transform .55s cubic-bezier(.2,.8,.2,1), color .35s ease, background .35s ease;
+}
+.expertisePicture svg { width: 72px; height: 72px; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.expertiseCard:hover { transform: translateY(-9px); border-color: color-mix(in srgb, var(--expertise-color) 42%, white); box-shadow: 0 28px 65px color-mix(in srgb, var(--expertise-color) 18%, transparent); }
+.expertiseCard:hover .expertisePicture { transform: translate(-12px, 12px) rotate(7deg) scale(1.1); color: var(--expertise-color); background: color-mix(in srgb, var(--expertise-color-2) 18%, transparent); }
 .expertiseCard::after {
   content: "";
   position: absolute;
@@ -823,8 +866,11 @@ main { overflow: hidden; }
   bottom: 28px;
   height: 3px;
   border-radius: 99px;
-  background: linear-gradient(90deg, var(--blue), var(--cyan), var(--emerald));
+  background: linear-gradient(90deg, var(--expertise-color), var(--expertise-color-2));
+  transform-origin: left;
+  transition: transform .4s ease;
 }
+.expertiseCard:hover::after { transform: scaleX(.72); }
 .expertiseCard small {
   display: block;
   margin: 20px 0 10px;
@@ -836,6 +882,7 @@ main { overflow: hidden; }
 }
 .expertiseCard h3 { margin: 0 0 12px; color: var(--navy); font: 800 25px/1.15 Manrope; }
 .expertiseCard p { margin: 0; color: var(--muted); line-height: 1.7; }
+@keyframes expertiseGridDrift { to { background-position: 48px 48px; } }
 
 .careerIntro {
   display: grid;
@@ -1883,6 +1930,37 @@ main { overflow: hidden; }
     radial-gradient(circle at 88% 12%, rgba(33,199,237,.22), transparent 28%),
     linear-gradient(135deg, #020b25, #063575);
 }
+.aboutHero {
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 78% 28%, rgba(33,199,237,.28), transparent 24%),
+    radial-gradient(circle at 18% 86%, rgba(154,166,182,.18), transparent 30%),
+    linear-gradient(120deg, #01091f 0%, #061c42 42%, #43566d 65%, #07518e 82%, #020b25 100%);
+  background-size: 165% 165%;
+  animation: aboutGradientShift 13s ease-in-out infinite alternate;
+}
+.aboutHero::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: -55% -18%;
+  pointer-events: none;
+  background:
+    conic-gradient(from 105deg at 72% 48%, transparent 0 22%, rgba(213,221,230,.16) 27%, rgba(33,199,237,.18) 31%, transparent 38% 100%),
+    linear-gradient(112deg, transparent 30%, rgba(255,255,255,.05) 42%, rgba(199,210,222,.22) 49%, rgba(33,199,237,.1) 55%, transparent 66%);
+  filter: blur(.2px);
+  transform: translateX(-16%) rotate(-4deg);
+  animation: aboutLightSweep 10s cubic-bezier(.45,0,.55,1) infinite alternate;
+}
+.aboutHero .sectionShell { position: relative; z-index: 2; }
+@keyframes aboutGradientShift {
+  from { background-position: 0% 36%; }
+  to { background-position: 100% 64%; }
+}
+@keyframes aboutLightSweep {
+  from { transform: translateX(-20%) rotate(-4deg) scale(1); opacity: .55; }
+  to { transform: translateX(18%) rotate(3deg) scale(1.08); opacity: 1; }
+}
 .impactHero {
   overflow: hidden;
   background:
@@ -2677,6 +2755,8 @@ main { overflow: hidden; }
   .industryOrbitItem b { width: 80px; font-size: 9px; }
   .serviceCard h3 { min-height: auto; }
   .leaderCard { display: grid; }
+  .expertiseSection { width: min(100% - 32px, 1180px); padding: 42px 18px; border-radius: 18px; }
+  .expertiseCard { min-height: 310px; padding: 24px; }
   .leadershipSection { width: min(100% - 32px, 1180px); padding: 42px 18px; border-radius: 18px; }
   .leaderCard { min-height: auto; padding: 24px; }
   .visionStatement { padding: 18px; text-align: left; }
