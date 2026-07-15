@@ -80,7 +80,7 @@ export default function AboutPage() {
           ))}
         </div>
       </section>
-      <section className="sectionShell">
+      <section className="sectionShell leadershipSection">
         <SectionHeading eyebrow="Leadership" title="Leadership Team" />
         <LeadershipGrid />
         <p className="visionStatement">

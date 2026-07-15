@@ -1,5 +1,5 @@
 import { ClientsShowcase, FinalCta, PageHero, SectionHeading } from "../components/Sections";
-import { clients, industries } from "../data";
+import { clients } from "../data";
 import { buildMetadata } from "../seo";
 
 const values = [
@@ -15,8 +15,10 @@ export const metadata = {
 
 export default function ClientsPage() {
   return (
-    <>
+    <div className="clientsPage">
       <PageHero
+        className="clientsHero"
+        videoSrc="/videos/basatne-1080p.mp4"
         eyebrow="Clients"
         title="Our Clients"
         subtitle="We work with growing businesses, mid-sized enterprises, and global organizations seeking to modernize their operations and strengthen compliance through technology."
@@ -59,24 +61,16 @@ export default function ClientsPage() {
           ))}
         </div>
       </section>
-      <section className="sectionShell splitSection">
+      <section className="sectionShell clientTestimonialSection">
         <div className="testimonialCard reveal">
           <p>
-            &ldquo;From ERP implementation to tax automation, Smart Brain Solutions
-            has helped transform our processes into a seamless, efficient system.&rdquo;
+            &ldquo;Through Tax Advisory and Automation, Smart Brain Solutions has
+            helped transform our processes into a seamless, efficient system.&rdquo;
           </p>
           <span>Client Transformation Partner</span>
         </div>
-        <div>
-          <SectionHeading eyebrow="Industries" title="Industries We Support" />
-          <div className="industryGrid">
-            {industries.map((industry) => (
-              <article className="industryCard reveal" key={industry}>{industry}</article>
-            ))}
-          </div>
-        </div>
       </section>
       <FinalCta />
-    </>
+    </div>
   );
 }

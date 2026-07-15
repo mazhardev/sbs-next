@@ -13,6 +13,9 @@ export default function ServicesPage() {
     <>
       <JsonLd data={services.map(serviceSchema)} />
       <PageHero
+        className="servicesHero"
+        videoSrc="/videos/basatne-1080p.mp4"
+        visualLabels={["Accounting", "Tax Technology", "ERP Automation"]}
         eyebrow="Services"
         title="Services Built for Smarter Business Transformation"
         subtitle="From ERP implementation to tax technology and managed services, SBS helps businesses modernize operations with practical, scalable solutions."

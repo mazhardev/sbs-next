@@ -6,7 +6,7 @@ const impactSections = [
   {
     title: "Global & Multi-Industry Experience",
     items: [
-      "Delivered solutions across GCC, ASPAC, and international markets",
+      "Delivered solutions across global markets",
       "Supported 50+ clients across manufacturing, retail, pharmaceuticals, and services",
       "Managed multi-country compliance across 10+ jurisdictions",
     ],
@@ -47,6 +47,7 @@ export default function ImpactPage() {
   return (
     <>
       <PageHero
+        className="impactHero"
         eyebrow="Impact"
         title="Our Impact"
         subtitle="At Smart Brain Solutions, our impact is built on a powerful combination of technology expertise, business understanding, and execution-driven delivery."
@@ -60,8 +61,12 @@ export default function ImpactPage() {
         <ImpactCounters />
       </section>
       <section className="sectionShell impactListGrid">
-        {impactSections.map((section) => (
-          <article className="listCard reveal" key={section.title}>
+        {impactSections.map((section, index) => (
+          <article
+            className={`listCard impactExperienceCard impactExperienceCard${index + 1} reveal`}
+            style={{ "--card-delay": `${index * 90}ms` }}
+            key={section.title}
+          >
             <h2>{section.title}</h2>
             <ul>
               {section.items.map((item) => (

@@ -2,13 +2,23 @@ import Link from "next/link";
 import { clients, industries, insights, leaders, metrics, outcomes, services, site } from "../data";
 import AnimatedMetricGrid from "./AnimatedMetricGrid";
 
-export function PageHero({ eyebrow, title, subtitle, className = "" }) {
+export function PageHero({ eyebrow, title, subtitle, className = "", videoSrc, visualLabels = [] }) {
   return (
     <section className={`pageHero ${className}`.trim()}>
+      {videoSrc ? (
+        <video className="pageHeroVideo" autoPlay muted loop playsInline aria-hidden="true">
+          <source src={videoSrc} type="video/mp4" />
+        </video>
+      ) : null}
       <div className="sectionShell">
         {eyebrow && <p className="eyebrow">{eyebrow}</p>}
         <h1>{title}</h1>
         <p>{subtitle}</p>
+        {visualLabels.length ? (
+          <div className="pageHeroLabels" aria-hidden="true">
+            {visualLabels.map((label, index) => <span style={{ "--label-index": index }} key={label}>{label}</span>)}
+          </div>
+        ) : null}
       </div>
     </section>
   );
