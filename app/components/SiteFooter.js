@@ -39,6 +39,7 @@ export default function SiteFooter() {
           <a href={`https://wa.me/${site.whatsappSecondary}`} target="_blank" rel="noreferrer">
             WhatsApp: +{site.whatsappSecondary}
           </a>
+          <p>{site.address}</p>
           <p>{site.location}</p>
           <div className="footerSocial">
             <a href={site.facebook} target="_blank" rel="noreferrer" aria-label="Facebook">FB</a>
