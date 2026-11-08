@@ -1,26 +1,28 @@
 import Link from "next/link";
-import ImpactCounters from "./components/ImpactCounters";
-import { ClientsShowcase, FinalCta, InsightsGrid, LeadershipGrid, MetricGrid, SectionHeading, ServicesGrid } from "./components/Sections";
+import { ArrowIcon, ServiceIcon } from "./components/Icons";
 import JsonLd from "./components/JsonLd";
+import { ClientLogos, CtaButtons, FinalCta, LeadershipGrid, MetricGrid, ProcessSteps, SectionHeading, ServicesGrid } from "./components/Sections";
+import { outcomes, platforms, site } from "./data";
 import { organizationSchema, professionalServiceSchema, websiteSchema } from "./seo";
 
-const approach = [
-  "Technology + Business Integration",
-  "Global Experience with Practical Execution",
-  "Automation-Driven Solutions",
-  "Scalable, Future-Ready Systems",
+const intentLinks = [
+  { slug: "sap-implementation", label: "SAP implementation", note: "S/4HANA planning, rollout, and integration" },
+  { slug: "odoo-implementation", label: "Odoo implementation", note: "One connected system for growing teams" },
+  { slug: "erp-implementation", label: "Choosing or replacing an ERP", note: "Selection, design, and integration" },
+  { slug: "tax-compliance-advisory", label: "Tax advisory and compliance", note: "VAT, GST, and corporate tax across markets" },
 ];
 
-const locations = [
-  { country: "Saudi Arabia", code: "SA", region: "GCC", x: "39%", y: "38%" },
-  { country: "United Arab Emirates", code: "AE", region: "GCC", x: "52%", y: "45%" },
-  { country: "Bahrain", code: "BH", region: "GCC", x: "40%", y: "51%" },
-  { country: "Qatar", code: "QA", region: "GCC", x: "53%", y: "58%" },
-  { country: "Egypt", code: "EG", region: "GCC", x: "28%", y: "47%" },
-  { country: "Pakistan", code: "PK", region: "ASPAC", x: "62%", y: "34%" },
-  { country: "Singapore", code: "SG", region: "ASPAC", x: "69%", y: "56%" },
-  { country: "Australia", code: "AU", region: "ASPAC", x: "62%", y: "74%" },
-  { country: "New Zealand", code: "NZ", region: "ASPAC", x: "81%", y: "68%" },
+const approach = [
+  { title: "Technology + business integration", text: "Systems designed around finance, tax, and operating realities." },
+  { title: "Global experience, practical execution", text: "Regional understanding with structured project delivery." },
+  { title: "Automation-driven solutions", text: "Less manual work, stronger controls, and faster reporting." },
+  { title: "Scalable, future-ready systems", text: "Foundations that keep working as you add markets and teams." },
+];
+
+const jurisdictions = [
+  { region: "GCC", countries: ["Saudi Arabia", "United Arab Emirates", "Bahrain", "Qatar"] },
+  { region: "MENA", countries: ["Egypt"] },
+  { region: "ASPAC", countries: ["Pakistan", "Singapore", "Australia", "New Zealand"] },
 ];
 
 export default function Home() {
@@ -28,184 +30,110 @@ export default function Home() {
     <>
       <JsonLd data={[organizationSchema(), professionalServiceSchema(), websiteSchema()]} />
       <section className="homeHero">
-        <div className="heroVideo" aria-hidden="true">
-          <video autoPlay muted loop playsInline preload="auto">
-            <source src="/videos/basatne-1080p.mp4" type="video/mp4" />
-          </video>
-        </div>
-        <div className="heroCopy reveal">
-          <h1>Build Smarter, Scalable & Future-Ready Business Systems</h1>
-          <p>
-            Smart Brain Solutions helps businesses transform operations through
-            ERP implementation, digital automation, tax advisory, accounting
-            systems, and compliance advisory.
-          </p>
-          <div className="heroActions">
-            <Link className="primaryButton" href="/contact/">Get Consultation</Link>
-            <Link className="secondaryButton light" href="/services/">Explore Services</Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="platformShowcase">
-        <div className="sectionShell platformLayout">
-          <div className="platformCopy reveal">
-            <p className="eyebrow">Connected Enterprise Systems</p>
-            <h2>One intelligent view across finance, operations, and compliance.</h2>
+        <div className="heroLayout">
+          <div className="heroCopy">
+            <p className="eyebrow">ERP implementation and advisory</p>
+            <h1>ERP, Tax Technology &amp; Automation That Connect Your Whole Business</h1>
             <p>
-              Connect SAP, Odoo, Microsoft Dynamics, automation, and advisory
-              workflows in a scalable operating model built for better decisions.
+              Smart Brain Solutions implements SAP, Odoo, and Microsoft Dynamics,
+              then connects them to your tax, accounting, and reporting so every
+              team works from the same numbers.
             </p>
-            <div className="platformTags" aria-label="Supported enterprise platforms">
-              <span>SAP S/4HANA</span>
-              <span>Odoo</span>
-              <span>Dynamics 365</span>
-              <span>Automation</span>
-            </div>
+            <CtaButtons light />
+            <a className="heroChatLink" href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noreferrer">
+              Prefer to chat? Message us on WhatsApp
+            </a>
           </div>
-          <div className="heroVisual reveal" aria-label="Connected ERP operations dashboard preview">
-            <div className="networkField" aria-hidden="true">
-              <span /><span /><span /><span />
-            </div>
-            <div className="dashboardMock">
-              <div className="dashTop">
-                <span /><span /><span />
-                <b>SBS Operations Cloud</b>
-              </div>
-              <div className="dashGrid">
-                <div className="dashPanel wide">
-                  <b>Connected ERP Workflow</b>
-                  <div className="workflowTrack">
-                    <span>Lead</span><span>Approve</span><span>Invoice</span><span>Report</span>
-                  </div>
-                  <i />
-                </div>
-                <div className="dashPanel"><strong>98%</strong><span>Data accuracy</span></div>
-                <div className="dashPanel"><strong>10+</strong><span>Jurisdictions</span></div>
-                <div className="dashPanel chart"><i /><i /><i /></div>
-                <div className="dashPanel finance"><span>Advisory status</span><strong>Tax Ready</strong></div>
-              </div>
-            </div>
-            <div className="automationFlow" aria-hidden="true">
-              <span>ERP</span><i /><span>AI</span><i /><span>Tax</span>
-            </div>
-            <div className="node nodeOne">SAP + Odoo</div>
-            <div className="node nodeTwo">Automation</div>
-            <div className="node nodeThree">Global Delivery</div>
-          </div>
+          <aside className="intentCard">
+            <h2>What do you need help with?</h2>
+            {intentLinks.map((item) => (
+              <Link className="intentLink" href={`/services/${item.slug}/`} key={item.slug} data-cta={`hero-intent-${item.slug}`} prefetch={false}>
+                <ServiceIcon slug={item.slug} />
+                <span>
+                  <strong>{item.label}</strong>
+                  <small>{item.note}</small>
+                </span>
+                <ArrowIcon />
+              </Link>
+            ))}
+            <Link className="textLink" href="/services/" prefetch={false}>See all services</Link>
+          </aside>
+        </div>
+        <div className="heroMetrics">
+          <MetricGrid dark />
         </div>
       </section>
 
-      <section className="sectionShell statsLift">
-        <MetricGrid />
-      </section>
-
-      <ClientsShowcase compact />
-
-      <section className="splitSection sectionShell">
-        <div>
-          <SectionHeading
-            eyebrow="About SBS"
-            title="Redefining Business Operations for a Digital-First World"
-            text="At Smart Brain Solutions, we redefine how businesses operate in a digital-first world. We combine technology and transformation expertise to create intelligent, scalable, and future-ready solutions that drive real business impact."
-          />
-        </div>
-        <div className="glassPanel reveal">
-          <h3>Consulting built around execution</h3>
-          <p>
-            SBS connects ERP platforms, tax compliance, finance operations, and
-            automation into one practical transformation roadmap.
-          </p>
-        </div>
-      </section>
+      <ClientLogos />
 
       <section className="sectionShell">
         <SectionHeading
           eyebrow="Services"
-          title="Integrated Services for Modern Business Transformation"
+          title="Integrated services for modern business transformation"
           text="A complete consulting and implementation model for ERP, finance, compliance, automation, and managed operations."
         />
-        <ServicesGrid summaryOnly />
+        <ServicesGrid />
+      </section>
+
+      <section className="softBand">
+        <div className="sectionShell">
+          <SectionHeading eyebrow="How We Work" title="A clear path from first call to go-live" />
+          <ProcessSteps />
+          <div className="platformRow">
+            <span>Platforms we work with</span>
+            <div className="chipList">
+              {platforms.map((platform) => <span key={platform}>{platform}</span>)}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="darkBand">
+        <div className="sectionShell">
+          <SectionHeading
+            eyebrow="Impact"
+            title="High-impact transformation outcomes"
+            text="Measurable improvements across ERP, finance, tax, and automation programs."
+          />
+          <MetricGrid dark items={outcomes} />
+          <Link className="textLink light" href="/impact/" prefetch={false}>See our impact</Link>
+        </div>
       </section>
 
       <section className="sectionShell">
-        <SectionHeading eyebrow="Approach" title="Why Our Approach Works" />
+        <SectionHeading eyebrow="Why SBS" title="Why our approach works" />
         <div className="approachGrid">
           {approach.map((item, index) => (
-            <article className="approachCard reveal" key={item}>
-              <span className="approachNumber">{String(index + 1).padStart(2, "0")}</span>
-              <div className="approachGraphic" aria-hidden="true">
-                <span />
-                <i />
-                <b />
-              </div>
-              <h3>{item}</h3>
+            <article className="approachCard reveal" key={item.title}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="sectionShell impactBand">
+      <section className="softBand">
+        <div className="sectionShell">
+          <SectionHeading eyebrow="Leadership" title="Experienced transformation leadership" />
+          <LeadershipGrid />
+        </div>
+      </section>
+
+      <section className="sectionShell">
         <SectionHeading
-          eyebrow="Impact"
-          title="High-Impact Transformation Outcomes"
-          text="A clearer view of delivery scale, operational improvements, and measurable transformation results across ERP, finance, tax, and automation programs."
+          eyebrow="Global Reach"
+          title="Regional understanding, connected delivery"
+          text="SBS supports transformation programs across key GCC, MENA, and ASPAC markets."
         />
-        <ImpactCounters />
-      </section>
-
-      <section className="sectionShell">
-        <SectionHeading eyebrow="Leadership" title="Experienced Transformation Leadership" />
-        <LeadershipGrid />
-      </section>
-
-      <section className="sectionShell locationsSection">
-        <div className="locationsMotion" aria-hidden="true">
-          <video autoPlay muted loop playsInline preload="metadata">
-            <source src="/videos/basatne-1080p.mp4" type="video/mp4" />
-          </video>
+        <div className="regionGrid">
+          {jurisdictions.map((group) => (
+            <article className="regionCard reveal" key={group.region}>
+              <h3>{group.region}</h3>
+              <p>{group.countries.join(", ")}</p>
+            </article>
+          ))}
         </div>
-        <div className="locationsContent">
-          <SectionHeading
-            eyebrow="GCC / ASPAC Jurisdictions"
-            title="Global Reach, Local Expertise"
-            text="SBS supports transformation programs across key GCC and ASPAC markets with regional understanding, connected delivery, and practical execution."
-          />
-          <div className="jurisdictionLayout">
-            <div className="jurisdictionGlobe reveal" aria-label="GCC and ASPAC jurisdictions supported by SBS">
-              <div className="globeCore" aria-hidden="true">
-                <span /><i /><b />
-              </div>
-              {locations.map((location) => (
-                <span
-                  className={`globePin globePin-${location.region.toLowerCase()}`}
-                  style={{ "--pin-x": location.x, "--pin-y": location.y }}
-                  key={location.country}
-                >
-                  <i>{location.code}</i>
-                  <strong>{location.country}</strong>
-                </span>
-              ))}
-            </div>
-            <div className="jurisdictionList">
-              {locations.map((location, index) => (
-                <article
-                  className={`jurisdictionCard jurisdictionCard-${location.region.toLowerCase()} reveal`}
-                  style={{ "--card-delay": `${index * 55}ms` }}
-                  key={location.country}
-                >
-                  <span>{location.code}</span>
-                  <div><small>{location.region}</small><strong>{location.country}</strong></div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="sectionShell">
-        <SectionHeading eyebrow="Insights" title="Featured Insights" />
-        <InsightsGrid />
       </section>
 
       <FinalCta />

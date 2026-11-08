@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import ContactPanel from "../../components/ContactPanel";
+import { ArrowIcon, ServiceIcon, WhatsAppIcon } from "../../components/Icons";
 import JsonLd from "../../components/JsonLd";
-import { FinalCta, PageHero, SectionHeading } from "../../components/Sections";
-import { industries, services } from "../../data";
+import { ClientLogos, FinalCta, IndustryPills, MetricGrid, ProcessSteps, SectionHeading } from "../../components/Sections";
+import { cta, metrics, services, site } from "../../data";
 import { breadcrumbSchema, faqSchema, serviceMetadata, serviceSchema } from "../../seo";
 
 const serviceFaqs = {
@@ -10,6 +12,16 @@ const serviceFaqs = {
     { question: "What does SBS include in an ERP implementation project?", answer: "SBS supports ERP selection, process design, configuration, integrations, data migration, testing, training, go-live, and post-launch optimization." },
     { question: "Which ERP platforms does SBS work with?", answer: "SBS supports ERP and accounting ecosystems including SAP, Odoo, Microsoft Dynamics, QuickBooks, POS, HRMS, and connected finance or tax tools." },
     { question: "Can SBS integrate ERP with tax and finance workflows?", answer: "Yes. SBS designs ERP integrations for tax compliance, finance reporting, operations, dashboards, and automated controls." },
+  ],
+  "sap-implementation": [
+    { question: "What does an SAP implementation with SBS include?", answer: "SBS supports the fit assessment, roadmap, process design, configuration, data migration, integrations, testing, training, go-live, and post-launch support." },
+    { question: "Can SBS connect SAP to our tax and finance processes?", answer: "Yes. SBS designs SAP integrations for tax compliance, finance reporting, operations, and automated controls." },
+    { question: "How do we know if SAP is the right ERP for us?", answer: "SBS works across SAP, Odoo, and Microsoft Dynamics, so the assessment starts from your processes and growth plans rather than a single product." },
+  ],
+  "odoo-implementation": [
+    { question: "What does an Odoo implementation with SBS include?", answer: "SBS supports the fit assessment, roadmap, workflow setup, data migration, integrations, testing, training, go-live, and ongoing support." },
+    { question: "Can Odoo connect to our existing tools?", answer: "SBS plans integrations between Odoo and your finance, tax, and operations tools so teams work from the same data." },
+    { question: "How do we know if Odoo is the right ERP for us?", answer: "SBS works across Odoo, SAP, and Microsoft Dynamics, so the assessment starts from your processes and growth plans rather than a single product." },
   ],
   "digital-transformation-automation": [
     { question: "How does SBS approach digital transformation?", answer: "SBS begins with process discovery, identifies manual bottlenecks, designs practical automation, and implements scalable digital workflows." },
@@ -50,39 +62,58 @@ const serviceBenefits = [
   "Scalable systems that support multi-country growth",
 ];
 
-const deliveryProcess = [
-  "Discovery and current-state assessment",
-  "Future-state design and implementation roadmap",
-  "Configuration, integration, migration, and testing",
-  "Training, go-live support, and continuous optimization",
-];
-
 const serviceFit = {
   "erp-implementation": {
+    headline: "ERP Implementation Services That Connect Finance, Tax, and Operations",
+    pains: ["Finance, sales, and inventory sit in separate tools", "Reports depend on days of spreadsheet work", "An earlier system rollout stalled or was never adopted"],
     title: "Built for finance, tax, and operations teams",
     text: "SBS helps businesses move from disconnected tools and manual reporting to integrated ERP systems with clearer controls, better visibility, and stronger adoption.",
   },
+  "sap-implementation": {
+    headline: "SAP Implementation Services for Finance, Tax, and Operations Teams",
+    pains: ["You are planning a move to SAP and need a clear roadmap", "SAP is live but disconnected from tax and reporting", "Your teams still work around the system in spreadsheets"],
+    title: "Built around how your business runs",
+    text: "SBS combines SAP delivery with finance, tax, and process experience, so the system reflects your controls and reporting needs as well as the technical design.",
+  },
+  "odoo-implementation": {
+    headline: "Odoo Implementation Services for Growing Businesses",
+    pains: ["You have outgrown spreadsheets and basic accounting tools", "Sales, inventory, and finance do not share the same data", "You want one system without enterprise-scale complexity"],
+    title: "Built for teams ready to consolidate",
+    text: "SBS configures Odoo around your workflows and connects it to your finance and tax processes, so growing teams get one reliable view of the business.",
+  },
   "digital-transformation-automation": {
+    headline: "Digital Transformation Consulting That Replaces Manual Work",
+    pains: ["Approvals and reporting still run on email and spreadsheets", "Manual steps create delays and avoidable errors", "Leaders lack a real-time view of operations"],
     title: "Built for teams ready to reduce manual work",
     text: "SBS helps identify high-friction workflows and convert them into practical automated processes that improve speed, accountability, and reporting.",
   },
   "tax-compliance-advisory": {
+    headline: "Tax Compliance Advisory Across GCC, ASPAC, and Global Markets",
+    pains: ["Rules differ across every country you operate in", "VAT, GST, and corporate tax filings feel like a risk each period", "Documentation is not ready when an audit arrives"],
     title: "Built for regional and multi-country compliance",
     text: "SBS helps tax and finance teams strengthen documentation, reporting controls, and compliance processes across ASPAC and international markets.",
   },
   "tax-technology": {
+    headline: "Tax Technology Solutions for Automated, Digital Compliance",
+    pains: ["E-invoicing requirements are arriving faster than your systems", "Tax data is re-keyed between your ERP and filing tools", "Tax reporting takes too long and invites errors"],
     title: "Built for digital compliance readiness",
     text: "SBS helps connect ERP, e-invoicing, tax engines, and automated reporting so compliance teams can reduce errors and respond faster to regulatory change.",
   },
   "accounting-financial-solutions": {
+    headline: "Accounting Automation and Financial Reporting Without the Rework",
+    pains: ["Month-end depends on manual reconciliations", "Management reports arrive late or do not match", "Bookkeeping differs across teams or entities"],
     title: "Built for cleaner finance operations",
     text: "SBS helps standardize accounting systems, reporting calendars, MIS dashboards, reconciliations, and audit-ready documentation.",
   },
   "business-process-optimization": {
+    headline: "Business Process Optimization That Removes Waste and Adds Control",
+    pains: ["Work is duplicated across teams and systems", "Processes depend on a few people instead of clear SOPs", "Costs keep rising without better visibility"],
     title: "Built for scalable operating models",
     text: "SBS helps redesign processes, document SOPs, improve governance, and remove duplicate manual steps that slow teams down.",
   },
   "managed-services-outsourcing": {
+    headline: "Finance and Accounting Outsourcing You Can Rely On",
+    pains: ["Your finance team is stretched by routine work", "Compliance deadlines compete with growth priorities", "Hiring in-house for every function is not practical"],
     title: "Built for reliable ongoing support",
     text: "SBS helps businesses run finance, accounting, tax compliance, and back-office processes through structured managed services and global delivery support.",
   },
@@ -98,6 +129,13 @@ export async function generateMetadata({ params }) {
   return service ? serviceMetadata(service) : {};
 }
 
+function relatedServices(service) {
+  const others = services.filter((item) => item.slug !== service.slug);
+  const sameCategory = others.filter((item) => item.category === service.category);
+  const rest = others.filter((item) => item.category !== service.category);
+  return [...sameCategory, ...rest].slice(0, 3);
+}
+
 export default async function ServiceDetailPage({ params }) {
   const { slug } = await params;
   const service = services.find((item) => item.slug === slug);
@@ -106,6 +144,7 @@ export default async function ServiceDetailPage({ params }) {
     notFound();
   }
 
+  const fit = serviceFit[service.slug];
   const faqs = serviceFaqs[service.slug] || [];
   const schema = [
     serviceSchema(service),
@@ -120,89 +159,99 @@ export default async function ServiceDetailPage({ params }) {
   return (
     <>
       <JsonLd data={schema} />
-      <PageHero
-        eyebrow={service.primaryKeyword}
-        title={service.title}
-        subtitle={`${service.description} SBS helps organizations across ASPAC and international markets build smarter, scalable business systems.`}
-      />
-      <section className="sectionShell splitSection">
-        <SectionHeading
-          eyebrow="Service Overview"
-          title={`Implementation-ready ${service.title}`}
-          text={`${service.details} Our work combines business process understanding, technology delivery, finance discipline, and compliance awareness so the solution works beyond launch.`}
-        />
-        <div className="glassPanel reveal">
-          <h2>{serviceFit[service.slug].title}</h2>
-          <p>{serviceFit[service.slug].text}</p>
-          <h3>Outcome focus</h3>
-          <p>{service.outcome}</p>
+      <section className="serviceHero">
+        <div className="serviceHeroLayout">
+          <div className="serviceHeroCopy">
+            <p className="eyebrow">{service.category}</p>
+            <h1>{fit.headline}</h1>
+            <p>{service.description} SBS helps organizations across GCC, ASPAC, and international markets build smarter, scalable business systems.</p>
+            <ul className="checkList light">
+              {service.includes.slice(0, 3).map((item) => <li key={item}>{item}</li>)}
+            </ul>
+            <div className="ctaActions">
+              <a className="primaryButton heroFormLink" href="#consultation" data-cta="service-hero-consultation">{cta.consultation.label}</a>
+              <a className="secondaryButton light" href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noreferrer">
+                <WhatsAppIcon /> Chat on WhatsApp
+              </a>
+            </div>
+            <MetricGrid dark items={metrics.slice(0, 3)} />
+          </div>
+          <div className="formCard" id="consultation">
+            <h2>Talk to SBS about {service.category === "ERP Implementation" ? service.title.split(" Implementation")[0] : "your project"}</h2>
+            <p>Share a few details and send them to us by WhatsApp or email.</p>
+            <ContactPanel defaultService={service.title} />
+          </div>
         </div>
       </section>
-      <section className="sectionShell serviceDetailStack">
-        <article className="serviceDetail reveal">
-          <div>
-            <span className="eyebrow">What SBS Delivers</span>
-            <h2>Key deliverables</h2>
-            <p>Each engagement is structured around measurable business outcomes, reliable governance, and adoption by the teams who use the system daily.</p>
-          </div>
-          <ul>
-            {service.includes.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        </article>
-        <article className="serviceDetail reveal">
-          <div>
-            <span className="eyebrow">Business Value</span>
-            <h2>Benefits for decision-makers</h2>
-            <p>SBS focuses on practical improvements for business owners, CFOs, COOs, finance teams, tax teams, and operations leaders.</p>
-          </div>
-          <ul>
-            {serviceBenefits.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        </article>
-        <article className="serviceDetail reveal">
-          <div>
-            <span className="eyebrow">Delivery Model</span>
-            <h2>Process from strategy to support</h2>
-            <p>The SBS delivery model keeps implementation structured, transparent, and aligned with business priorities.</p>
-          </div>
-          <ul>
-            {deliveryProcess.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        </article>
-      </section>
+
+      <ClientLogos />
+
       <section className="sectionShell">
-        <SectionHeading eyebrow="Industries" title="Industries and teams supported" />
-        <div className="industryGrid">
-          {industries.map((industry) => (
-            <article className="industryCard reveal" key={industry}>{industry}</article>
-          ))}
+        <SectionHeading eyebrow="Sound Familiar?" title="Where teams usually come to us" />
+        <div className="painGrid">
+          {fit.pains.map((pain) => <p className="painCard reveal" key={pain}>{pain}</p>)}
         </div>
       </section>
+
+      <section className="softBand">
+        <div className="sectionShell splitSection">
+          <SectionHeading eyebrow="Service Overview" title={fit.title} text={`${service.details} ${fit.text}`} />
+          <div className="glassPanel reveal">
+            <h3>What is included</h3>
+            <ul className="checkList">
+              {service.includes.map((item) => <li key={item}>{item}</li>)}
+            </ul>
+            <p className="outcomeLine"><strong>Outcome:</strong> {service.outcome}</p>
+          </div>
+        </div>
+      </section>
+
       <section className="sectionShell">
-        <SectionHeading eyebrow="FAQs" title={`${service.title} FAQs`} />
-        <div className="serviceDetailStack">
+        <SectionHeading eyebrow="Delivery Model" title="From strategy to support" text="The SBS delivery model keeps implementation structured, transparent, and aligned with business priorities." />
+        <ProcessSteps />
+      </section>
+
+      <section className="softBand">
+        <div className="sectionShell splitSection alignStart">
+          <div>
+            <SectionHeading eyebrow="Business Value" title="Benefits for decision-makers" />
+            <ul className="checkList">
+              {serviceBenefits.map((item) => <li key={item}>{item}</li>)}
+            </ul>
+          </div>
+          <div>
+            <SectionHeading eyebrow="Industries" title="Industries we support" />
+            <IndustryPills />
+          </div>
+        </div>
+      </section>
+
+      <section className="sectionShell narrowShell">
+        <SectionHeading eyebrow="FAQs" title="Common questions" />
+        <div className="faqList">
           {faqs.map((faq) => (
-            <article className="listCard reveal" key={faq.question}>
-              <h2>{faq.question}</h2>
+            <details className="faqItem" key={faq.question}>
+              <summary>{faq.question}</summary>
               <p>{faq.answer}</p>
-            </article>
+            </details>
           ))}
         </div>
       </section>
-      <section className="sectionShell">
-        <div className="glassPanel reveal">
-          <h2>Recommended next step</h2>
-          <p>Discuss your current systems, compliance requirements, automation gaps, and reporting needs with SBS.</p>
-          <Link className="primaryButton" href="/contact/">Get Consultation</Link>
+
+      <section className="sectionShell relatedSection">
+        <SectionHeading eyebrow="Related Services" title="Often delivered together" />
+        <div className="relatedGrid">
+          {relatedServices(service).map((item) => (
+            <Link className="relatedLink" href={`/services/${item.slug}/`} key={item.slug} prefetch={false}>
+              <ServiceIcon slug={item.slug} />
+              <span>{item.title}</span>
+              <ArrowIcon />
+            </Link>
+          ))}
         </div>
       </section>
-      <FinalCta />
+
+      <FinalCta service={service.slug} />
     </>
   );
 }

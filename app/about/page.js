@@ -1,4 +1,4 @@
-import { FinalCta, LeadershipGrid, PageHero, SectionHeading } from "../components/Sections";
+import { ClientLogos, FinalCta, LeadershipGrid, PageHero, SectionHeading } from "../components/Sections";
 import { buildMetadata } from "../seo";
 
 const beliefs = [
@@ -36,10 +36,10 @@ export default function AboutPage() {
   return (
     <>
       <PageHero
-        className="aboutHero"
         title="About Smart Brain Solutions"
         subtitle="A technology and advisory company helping businesses build smarter ERP, finance, tax, and compliance systems."
       />
+      <ClientLogos />
       <section className="sectionShell splitSection">
         <SectionHeading
           eyebrow="Company Story"
@@ -47,53 +47,54 @@ export default function AboutPage() {
           text="SBS helps businesses modernize operations through ERP, automation, tax technology, accounting systems, and business process advisory. Our approach is practical, integrated, and built around measurable operational impact."
         />
         <div className="missionStack">
-          <article className="glassPanel valuesBlock reveal">
-            <span className="iconBadge">M</span>
+          <article className="glassPanel reveal">
             <h3>Mission</h3>
             <p>To simplify complex operations through smart systems, automation, financial process optimization, and compliance-focused transformation.</p>
           </article>
-          <article className="glassPanel valuesBlock reveal">
-            <span className="iconBadge">V</span>
+          <article className="glassPanel reveal">
             <h3>Vision</h3>
             <p>To be a trusted partner for organizations seeking scalable, future-ready business systems.</p>
           </article>
         </div>
       </section>
-      <section className="sectionShell expertiseSection">
-        <SectionHeading eyebrow="What We Do" title="A connected view of technology and advisory" />
-        <div className="expertiseFlow">
-          {expertise.map((item, index) => (
-            <article className="expertiseCard reveal" style={{ "--card-delay": `${index * 90}ms` }} key={item.label}>
-              <div className="expertisePicture" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d={item.visualPath} /></svg>
-              </div>
-              <span className="iconBadge">{item.label.slice(0, 3)}</span>
-              <small>{item.label}</small>
-              <h3>{item.title}</h3>
-              <p>{item.text}</p>
-            </article>
-          ))}
+      <section className="softBand">
+        <div className="sectionShell">
+          <SectionHeading eyebrow="What We Do" title="A connected view of technology and advisory" />
+          <div className="expertiseFlow">
+            {expertise.map((item) => (
+              <article className="expertiseCard reveal" key={item.label}>
+                <span className="iconBadge" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d={item.visualPath} /></svg>
+                </span>
+                <small>{item.label}</small>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
       <section className="sectionShell">
-        <SectionHeading eyebrow="Beliefs" title="The Principles Behind Our Work" />
-        <div className="approachGrid">
+        <SectionHeading eyebrow="Beliefs" title="The principles behind our work" />
+        <div className="approachGrid threeUp">
           {beliefs.map((belief, index) => (
-            <article className="approachCard valuesBlock reveal" key={belief}>
+            <article className="approachCard reveal" key={belief}>
               <span>{String(index + 1).padStart(2, "0")}</span>
               <h3>{belief}</h3>
             </article>
           ))}
         </div>
       </section>
-      <section className="sectionShell leadershipSection">
-        <SectionHeading eyebrow="Leadership" title="Leadership Team" />
-        <LeadershipGrid />
-        <p className="visionStatement">
-          Together, the leadership team at SBS is committed to building intelligent,
-          integrated, and future-ready business systems, enabling organizations to
-          scale efficiently and succeed in a rapidly evolving digital landscape.
-        </p>
+      <section className="softBand">
+        <div className="sectionShell">
+          <SectionHeading eyebrow="Leadership" title="Leadership team" />
+          <LeadershipGrid />
+          <p className="visionStatement">
+            Together, the leadership team at SBS is committed to building intelligent,
+            integrated, and future-ready business systems, enabling organizations to
+            scale efficiently and succeed in a rapidly evolving digital landscape.
+          </p>
+        </div>
       </section>
       <FinalCta />
     </>

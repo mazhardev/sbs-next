@@ -1,7 +1,14 @@
+import { Inter, Manrope } from "next/font/google";
 import "./globals.css";
+import Analytics from "./components/Analytics";
+import MobileCtaBar from "./components/MobileCtaBar";
 import SiteFooter from "./components/SiteFooter";
 import SiteHeader from "./components/SiteHeader";
+import { asset } from "./data";
 import { baseUrl } from "./seo";
+
+const inter = Inter({ subsets: ["latin"], display: "swap", variable: "--font-inter" });
+const manrope = Manrope({ subsets: ["latin"], display: "swap", variable: "--font-manrope" });
 
 const siteUrl = `${baseUrl}/`;
 const siteDescription =
@@ -9,10 +16,7 @@ const siteDescription =
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
-  title: {
-    default: "ERP, Tax Technology & Automation | Smart Brain Solutions",
-    template: "%s | Smart Brain Solutions",
-  },
+  title: "ERP, Tax Technology & Automation | Smart Brain Solutions",
   description: siteDescription,
   applicationName: "Smart Brain Solutions",
   authors: [{ name: "Smart Brain Solutions", url: siteUrl }],
@@ -74,19 +78,19 @@ export const metadata = {
   icons: {
     icon: [
       {
-        url: "/favicon-96x96.png",
+        url: asset("/favicon-96x96.png"),
         type: "image/png",
         sizes: "96x96",
       },
     ],
-    shortcut: "/favicon-96x96.png",
+    shortcut: asset("/favicon-96x96.png"),
     apple: {
-      url: "/apple-touch-icon.png",
+      url: asset("/apple-touch-icon.png"),
       type: "image/png",
       sizes: "180x180",
     },
   },
-  manifest: "/manifest.webmanifest",
+  manifest: asset("/manifest.webmanifest"),
   other: {
     "theme-color": "#041640",
     "color-scheme": "light",
@@ -95,11 +99,13 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en-US">
+    <html lang="en-US" className={`${inter.variable} ${manrope.variable}`}>
       <body>
         <SiteHeader />
         <main>{children}</main>
         <SiteFooter />
+        <MobileCtaBar />
+        <Analytics />
       </body>
     </html>
   );

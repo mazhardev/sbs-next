@@ -12,7 +12,7 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -23,8 +23,13 @@ jobs:
         with:
           node-version: 20
           cache: npm
+      - id: pages
+        uses: actions/configure-pages@v5
       - run: npm ci
       - run: npm run build
+        env:
+          # "/sbs-next" on github.io, empty if a custom domain is added later.
+          NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./out

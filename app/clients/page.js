@@ -1,5 +1,5 @@
-import { ClientsShowcase, FinalCta, PageHero, SectionHeading } from "../components/Sections";
-import { clients } from "../data";
+import { FinalCta, IndustryPills, PageHero, SectionHeading } from "../components/Sections";
+import { asset, clients } from "../data";
 import { buildMetadata } from "../seo";
 
 const values = [
@@ -15,15 +15,12 @@ export const metadata = {
 
 export default function ClientsPage() {
   return (
-    <div className="clientsPage">
+    <>
       <PageHero
-        className="clientsHero"
-        videoSrc="/videos/basatne-1080p.mp4"
         eyebrow="Clients"
         title="Our Clients"
         subtitle="We work with growing businesses, mid-sized enterprises, and global organizations seeking to modernize their operations and strengthen compliance through technology."
       />
-      <ClientsShowcase />
       <section className="sectionShell">
         <SectionHeading
           eyebrow="Client Network"
@@ -31,27 +28,25 @@ export default function ClientsPage() {
           text="A practical mix of regional operators, trading groups, manufacturers, technology teams, and growth-focused businesses."
         />
         <div className="clientDirectory">
-          {clients.map((client, index) => (
-            <a
-              className="clientDirectoryCard reveal"
-              href={client.href}
-              target={client.href.startsWith("http") ? "_blank" : undefined}
-              rel={client.href.startsWith("http") ? "noreferrer" : undefined}
-              style={{ "--card-delay": `${index * 70}ms` }}
-              key={client.name}
-            >
-              <span>
-                <img src={client.logo} alt="" width="48" height="48" loading="lazy" />
-              </span>
+          {clients.map((client) => (
+            <a className="clientDirectoryCard reveal" href={client.href} target="_blank" rel="noreferrer" key={client.name}>
+              <img src={asset(client.logo)} alt="" width="48" height="48" loading="lazy" decoding="async" />
               <div>
                 <h3>{client.name}</h3>
+                <p>{client.industry}</p>
               </div>
             </a>
           ))}
         </div>
       </section>
+      <section className="softBand">
+        <div className="sectionShell">
+          <SectionHeading eyebrow="Industries" title="Sectors we support" />
+          <IndustryPills />
+        </div>
+      </section>
       <section className="sectionShell">
-        <SectionHeading eyebrow="Value" title="What Our Clients Value" />
+        <SectionHeading eyebrow="Value" title="What our clients value" />
         <div className="approachGrid">
           {values.map((value, index) => (
             <article className="approachCard reveal" key={value}>
@@ -71,6 +66,6 @@ export default function ClientsPage() {
         </div>
       </section>
       <FinalCta />
-    </div>
+    </>
   );
 }

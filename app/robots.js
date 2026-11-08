@@ -1,3 +1,5 @@
+import { baseUrl } from "./seo";
+
 export const dynamic = "force-static";
 
 export default function robots() {
@@ -9,7 +11,7 @@ export default function robots() {
         disallow: ["/api/", "/admin/", "/private/"],
       },
     ],
-    sitemap: "https://smartbrainsolution.com/sitemap.xml",
-    host: "https://smartbrainsolution.com/",
+    sitemap: `${baseUrl}/sitemap.xml`,
+    host: `${baseUrl}/`,
   };
 }

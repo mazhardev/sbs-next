@@ -1,3 +1,5 @@
+import { asset } from "./data";
+
 export const dynamic = "force-static";
 
 export default function manifest() {
@@ -6,8 +8,8 @@ export default function manifest() {
     short_name: "Smart Brain",
     description:
       "Smart Brain Solutions helps businesses transform operations through ERP, automation, tax technology, accounting systems, and compliance advisory.",
-    start_url: "/",
-    scope: "/",
+    start_url: asset("/"),
+    scope: asset("/"),
     display: "standalone",
     background_color: "#f7faff",
     theme_color: "#041640",
@@ -15,13 +17,13 @@ export default function manifest() {
     lang: "en-US",
     icons: [
       {
-        src: "/favicon-96x96.png",
+        src: asset("/favicon-96x96.png"),
         sizes: "96x96",
         type: "image/png",
         purpose: "any",
       },
       {
-        src: "/images/logo.jpeg",
+        src: asset("/images/logo.jpeg"),
         sizes: "1254x1254",
         type: "image/jpeg",
         purpose: "any maskable",

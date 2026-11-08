@@ -4,36 +4,69 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { navItems, services } from "../data";
+import { asset, consultationHref, cta, navItems, services } from "../data";
 
 export default function SiteHeader() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 16);
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const [servicesOpen, setServicesOpen] = useState(false);
 
   useEffect(() => {
     setIsOpen(false);
+    setServicesOpen(false);
   }, [pathname]);
 
   return (
-    <header className={`siteHeader ${scrolled || isOpen ? "isScrolled" : ""}`}>
-      <Link className="brand" href="/" aria-label="Smart Brain Solutions home">
+    <header className="siteHeader">
+      <Link className="brand" href="/" aria-label="Smart Brain Solutions home" prefetch={false}>
         <span className="brandLogo">
-          <Image
-            src="/images/logo.jpeg"
-            alt="Smart Brain Solutions"
-            width={64}
-            height={64}
-            priority
-          />
+          <Image src={asset("/images/logo-144.webp")} alt="" width={72} height={72} priority />
         </span>
+        <span className="brandName">Smart Brain Solutions</span>
+      </Link>
+
+      <nav className={`siteNav ${isOpen ? "isOpen" : ""}`} aria-label="Main navigation">
+        {navItems.map((item) => {
+          const isActive = pathname === item.href || `${pathname}/` === item.href;
+
+          if (item.href === "/services/") {
+            return (
+              <div className="navDropdown" key={item.href}>
+                <div className="navDropdownRow">
+                  <Link className={pathname.startsWith("/services") ? "active" : ""} href={item.href} prefetch={false}>
+                    {item.label}
+                  </Link>
+                  <button
+                    className="dropdownToggle"
+                    type="button"
+                    aria-label="Show services"
+                    aria-expanded={servicesOpen}
+                    onClick={() => setServicesOpen((value) => !value)}
+                  >
+                    <span className="dropdownChevron" aria-hidden="true" />
+                  </button>
+                </div>
+                <div className={`servicesDropdown ${servicesOpen ? "isExpanded" : ""}`}>
+                  {services.map((service) => (
+                    <Link href={`/services/${service.slug}/`} key={service.slug} prefetch={false}>
+                      {service.title}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            );
+          }
+
+          return (
+            <Link key={item.href} href={item.href} className={isActive ? "active" : ""} prefetch={false}>
+              {item.label}
+            </Link>
+          );
+        })}
+      </nav>
+
+      <Link className="primaryButton headerCta" href={consultationHref(pathname)} data-cta="header-consultation" prefetch={false}>
+        {cta.consultation.label}
       </Link>
 
       <button
@@ -47,33 +80,6 @@ export default function SiteHeader() {
         <span />
         <span />
       </button>
-
-      <nav className={`siteNav ${isOpen ? "isOpen" : ""}`} aria-label="Main navigation">
-        {navItems.map((item) => {
-          const isActive = pathname === item.href || `${pathname}/` === item.href;
-
-          if (item.href === "/services/") {
-            return (
-              <div className="navDropdown" key={item.href}>
-                <Link className={isActive || pathname.startsWith("/services/") ? "active" : ""} href={item.href}>
-                  {item.label}<span className="dropdownChevron" aria-hidden="true" />
-                </Link>
-                <div className="servicesDropdown" aria-label="Services submenu">
-                  {services.map((service) => (
-                    <Link href={`/services/${service.slug}/`} key={service.slug}>{service.title}</Link>
-                  ))}
-                </div>
-              </div>
-            );
-          }
-
-          return (
-            <Link key={item.href} href={item.href} className={isActive ? "active" : ""}>
-              {item.label}
-            </Link>
-          );
-        })}
-      </nav>
     </header>
   );
 }

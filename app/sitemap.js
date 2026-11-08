@@ -1,4 +1,5 @@
 import { services } from "./data";
+import { baseUrl } from "./seo";
 
 export const dynamic = "force-static";
 
@@ -14,10 +15,11 @@ export default function sitemap() {
     "careers",
     "contact",
   ];
+  const lastModified = new Date();
 
   return routes.map((route) => ({
-      url: `https://smartbrainsolution.com/${route ? `${route}/` : ""}`,
-      lastModified: new Date("2026-06-21"),
+      url: `${baseUrl}/${route ? `${route}/` : ""}`,
+      lastModified,
       changeFrequency: route.startsWith("services") ? "monthly" : "weekly",
       priority: route === "" ? 1 : route.startsWith("services") ? 0.9 : 0.8,
     }));

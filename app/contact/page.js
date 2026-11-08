@@ -1,18 +1,15 @@
 import ContactPanel from "../components/ContactPanel";
-import { FinalCta, PageHero, SectionHeading } from "../components/Sections";
+import { WhatsAppIcon } from "../components/Icons";
+import { PageHero } from "../components/Sections";
 import JsonLd from "../components/JsonLd";
 import { site } from "../data";
 import { buildMetadata, contactPageSchema } from "../seo";
 
-const contactCards = [
-  { label: "Email", value: site.email },
-  {
-    label: "Phone / WhatsApp",
-    values: [`+${site.whatsapp}`, `+${site.whatsappSecondary}`],
-  },
+const nextSteps = [
+  "We review your request and the systems involved.",
+  "We arrange a discovery call with the right people.",
+  "You receive a recommended approach and next steps.",
 ];
-
-const whatsappIconPath = "M12.1 2A9.8 9.8 0 0 0 3.7 17l-1.2 4.5 4.6-1.2A9.9 9.9 0 1 0 12.1 2Zm0 2a7.9 7.9 0 1 1-4 14.7l-.3-.2-2.5.7.7-2.4-.2-.4A7.9 7.9 0 0 1 12.1 4Zm-3.3 4.2c-.2 0-.5.1-.7.4-.2.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.8 2.9 4.4 3.9 2.2.9 2.6.7 3.1.7.5 0 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.2-.2-.5-.4l-1.8-.9c-.3-.1-.5-.2-.7.2-.2.3-.8 1.1-1 1.3-.2.2-.4.2-.7.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.3.3-.5.1-.2.1-.4 0-.6l-.8-1.9c-.2-.5-.4-.5-.6-.5h-.6Z";
 
 const socialLinks = [
   {
@@ -30,11 +27,6 @@ const socialLinks = [
     href: site.linkedin,
     path: "M5.3 8.8H1.5V22h3.8V8.8ZM3.4 2A2.2 2.2 0 1 0 3.3 6.4 2.2 2.2 0 0 0 3.4 2Zm18.7 12.4c0-4-2.1-5.9-5-5.9a4.3 4.3 0 0 0-3.9 2.1h-.1V8.8H9.5V22h3.8v-6.5c0-1.7.3-3.4 2.5-3.4s2.2 2 2.2 3.5V22h3.8v-7.6Z",
   },
-  {
-    label: "WhatsApp",
-    href: `https://wa.me/${site.whatsapp}`,
-    path: whatsappIconPath,
-  },
 ];
 
 export const metadata = {
@@ -47,33 +39,40 @@ export default function ContactPage() {
       <JsonLd data={contactPageSchema()} />
       <PageHero
         eyebrow="Contact"
-        title="Ready to Transform Your Business?"
-        subtitle="Connect with Smart Brain Solutions today and take the first step toward a smarter future."
+        title="Book a Consultation or Request a Proposal"
+        subtitle="Tell us about your systems and goals, and take the first step toward a smarter operating model."
+        actions={false}
       />
       <section className="sectionShell contactLayout">
-        <div>
-          <SectionHeading eyebrow="Inquiry" title="Tell Us What You Want to Build" />
+        <div className="formCard" id="consultation">
+          <h2>Tell us what you want to build</h2>
+          <p>Share a few details and send them to us by WhatsApp or email.</p>
           <ContactPanel />
         </div>
         <aside className="contactAside">
-          {contactCards.map(({ label, value, values }) => (
-            <article className="contactCard reveal" key={label}>
-              <span>{label}</span>
-              {values ? (
-                <strong className="contactPhoneNumbers">
-                  {values.map((phone) => <span key={phone}>{phone}</span>)}
-                </strong>
-              ) : (
-                <strong>{value}</strong>
-              )}
-            </article>
-          ))}
-          <a className="whatsappCard reveal" href={`https://wa.me/${site.whatsapp}`}>
-            <span>WhatsApp CTA</span>
-            <strong>Start a direct conversation with SBS</strong>
+          <a className="whatsappCard" href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noreferrer">
+            <WhatsAppIcon />
+            <span>
+              <strong>Chat on WhatsApp</strong>
+              <small>Start a direct conversation with SBS</small>
+            </span>
           </a>
-          <div className="socialCard reveal">
-            <span>Social Channels</span>
+          <article className="contactCard">
+            <h3>Talk to us directly</h3>
+            <a href={`tel:+${site.whatsapp}`}>{site.phone}</a>
+            <a href={`tel:+${site.whatsappSecondary}`}>{site.whatsappSecondaryLabel}</a>
+            <a href={`mailto:${site.email}`}>{site.email}</a>
+          </article>
+          <article className="contactCard">
+            <h3>What happens next</h3>
+            <ol className="nextSteps">
+              {nextSteps.map((step) => <li key={step}>{step}</li>)}
+            </ol>
+          </article>
+          <article className="contactCard">
+            <h3>Where we are</h3>
+            <p>{site.address}</p>
+            <p>Pakistan and Malaysia presence with international remote delivery.</p>
             <div className="socialButtons">
               {socialLinks.map((item) => (
                 <a key={item.label} href={item.href} aria-label={item.label} target="_blank" rel="noreferrer">
@@ -83,49 +82,9 @@ export default function ContactPage() {
                 </a>
               ))}
             </div>
-          </div>
+          </article>
         </aside>
       </section>
-      <section className="sectionShell mapBand reveal">
-        <div>
-          <p className="eyebrow">Global Delivery Model</p>
-          <h2>Pakistan / Malaysia presence with international delivery capability</h2>
-          <p>
-            SBS supports regional and global businesses through remote delivery,
-            structured project governance, and practical implementation support
-            across ERP, tax, finance, and operations.
-          </p>
-        </div>
-        <div className="mapVisual" aria-label="SBS delivery locations across Pakistan, Malaysia, and global markets">
-          <svg className="worldMap" viewBox="0 0 620 300" role="img" aria-hidden="true">
-            <path d="M47 103c20-34 64-50 105-36 21 7 37 3 56-7 32-17 72-11 99 13 18 16 17 39-2 53-17 12-38 11-58 14-24 4-31 19-24 41 5 16-6 32-22 35-29 6-56-7-77-28-18-18-37-23-62-21-36 3-54-32-37-64Z" />
-            <path d="M307 86c36-24 88-31 131-12 20 9 40 11 61 8 31-4 59 13 69 39 12 32-11 65-48 70-21 2-39 10-55 23-29 24-74 25-104 2-18-14-28-33-23-55 4-19-4-32-23-40-18-8-23-25-8-35Z" />
-            <path d="M392 219c28-14 61-9 82 13 16 17 9 42-16 49-23 6-51 0-72-13-22-13-18-37 6-49Z" />
-          </svg>
-          <svg className="deliveryRoutes" viewBox="0 0 620 300" aria-hidden="true">
-            <path d="M357 151 C390 131 423 128 454 147 S511 185 555 163" />
-            <path d="M357 151 C296 122 229 118 161 145" />
-          </svg>
-          <div className="mapPin pakistanPin">
-            <strong>Pakistan</strong>
-            <span>Delivery Hub</span>
-          </div>
-          <div className="mapPin malaysiaPin">
-            <strong>Malaysia</strong>
-            <span>Regional Presence</span>
-          </div>
-          <div className="mapPin globalPin">
-            <strong>Global</strong>
-            <span>Remote Capability</span>
-          </div>
-        </div>
-      </section>
-      <FinalCta />
-      <a className="floatingWhatsApp" href={`https://wa.me/${site.whatsapp}`} aria-label="Open WhatsApp chat" target="_blank" rel="noreferrer">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d={whatsappIconPath} />
-        </svg>
-      </a>
     </>
   );
 }

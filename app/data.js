@@ -1,3 +1,8 @@
+// next/link adds the base path by itself. Plain images, icons, and manifest URLs need this helper.
+export function asset(path) {
+  return `${process.env.NEXT_PUBLIC_BASE_PATH || ""}${path}`;
+}
+
 export const site = {
   name: "Smart Brain Solutions",
   shortName: "SBS",
@@ -16,15 +21,50 @@ export const site = {
   linkedinLabel: "Smart Brain Solutions",
 };
 
+// Advertising and analytics IDs. Leave a value empty to keep that tag switched off.
+// With every value empty, no third-party script loads and no consent banner shows.
+// Use gtmId alone if the agency manages tags in Tag Manager, or the direct IDs, not both for the same tag.
+export const tracking = {
+  gtmId: "", // GTM-XXXXXXX
+  ga4Id: "", // G-XXXXXXXXXX
+  googleAdsId: "", // AW-XXXXXXXXXX
+  googleAdsLeadLabel: "", // Conversion label from the Google Ads lead conversion action
+  metaPixelId: "", // Numeric Meta pixel ID
+  requireConsent: true, // Tags load only after a visitor accepts the banner
+};
+
+export const cta = {
+  consultation: { label: "Book a Consultation", href: "/contact/?intent=consultation" },
+  proposal: { label: "Request a Proposal", href: "/contact/?intent=proposal" },
+};
+
+// Service pages carry their own lead form, so their consultation buttons stay on the page.
+export function consultationHref(pathname = "") {
+  return /^\/services\/[^/]+\/?$/.test(pathname) ? "#consultation" : cta.consultation.href;
+}
+
 export const navItems = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/about/" },
   { label: "Services", href: "/services/" },
   { label: "Impact", href: "/impact/" },
   { label: "Clients", href: "/clients/" },
+  { label: "About", href: "/about/" },
   { label: "Insights", href: "/insights/" },
-  { label: "Careers", href: "/careers/" },
   { label: "Contact", href: "/contact/" },
+];
+
+export const footerLinks = [
+  { label: "Home", href: "/" },
+  ...navItems,
+  { label: "Careers", href: "/careers/" },
+];
+
+export const platforms = ["SAP S/4HANA", "Odoo", "Microsoft Dynamics 365", "QuickBooks", "POS", "HRMS"];
+
+export const deliveryProcess = [
+  { title: "Discover", text: "Assess your current systems, processes, and compliance requirements." },
+  { title: "Design", text: "Agree the future-state design and a clear implementation roadmap." },
+  { title: "Build", text: "Configure, integrate, migrate your data, and test before launch." },
+  { title: "Launch", text: "Train your teams, support go-live, and keep optimizing afterward." },
 ];
 
 export const services = [
@@ -32,7 +72,6 @@ export const services = [
     title: "ERP Implementation & Integration",
     slug: "erp-implementation",
     category: "ERP Implementation",
-    icon: "ERP",
     primaryKeyword: "ERP implementation services",
     secondaryKeywords: ["ERP integration company", "ERP consulting services", "SAP implementation services", "Odoo implementation services", "Microsoft Dynamics implementation"],
     description: "End-to-end ERP solutions tailored to finance, tax, operations, and reporting.",
@@ -47,10 +86,41 @@ export const services = [
     ],
   },
   {
+    title: "SAP Implementation & Integration",
+    slug: "sap-implementation",
+    category: "ERP Implementation",
+    primaryKeyword: "SAP implementation services",
+    secondaryKeywords: ["SAP S/4HANA implementation", "SAP consulting services", "SAP integration services", "SAP finance and tax integration"],
+    description: "SAP S/4HANA planning, implementation, and integration for finance, tax, and operations.",
+    outcome: "One SAP system your teams can rely on.",
+    details: "Plan, configure, and launch SAP around the way your business actually runs.",
+    includes: [
+      "SAP fit assessment and implementation roadmap",
+      "Process design, configuration, and testing",
+      "Data migration and integration with finance, tax, and operations systems",
+      "User training, go-live, and post-launch support",
+    ],
+  },
+  {
+    title: "Odoo Implementation & Integration",
+    slug: "odoo-implementation",
+    category: "ERP Implementation",
+    primaryKeyword: "Odoo implementation services",
+    secondaryKeywords: ["Odoo ERP implementation", "Odoo consulting services", "Odoo integration services", "Odoo for accounting and operations"],
+    description: "Odoo planning, setup, and integration for growing finance and operations teams.",
+    outcome: "A connected Odoo system that grows with you.",
+    details: "Replace disconnected tools with one Odoo system configured for your workflows.",
+    includes: [
+      "Odoo fit assessment and implementation roadmap",
+      "Finance, operations, and reporting workflow setup",
+      "Data migration and integration with your existing tools",
+      "User training, go-live, and ongoing support",
+    ],
+  },
+  {
     title: "Digital Transformation & Automation",
     slug: "digital-transformation-automation",
     category: "Digital Transformation",
-    icon: "AUTO",
     primaryKeyword: "digital transformation consulting",
     secondaryKeywords: ["digital transformation company", "business automation services", "workflow automation solutions", "process automation company"],
     description: "Convert manual workflows into intelligent automated systems.",
@@ -67,7 +137,6 @@ export const services = [
     title: "Tax & Compliance Advisory",
     slug: "tax-compliance-advisory",
     category: "Tax & Compliance Advisory",
-    icon: "TAX",
     primaryKeyword: "tax compliance advisory",
     secondaryKeywords: ["VAT compliance services", "GST compliance services", "corporate tax advisory", "GCC tax compliance", "ASPAC tax compliance"],
     description: "Multi-jurisdiction tax and compliance support for growing businesses.",
@@ -84,7 +153,6 @@ export const services = [
     title: "Tax Technology & Digital Compliance",
     slug: "tax-technology",
     category: "Tax Technology",
-    icon: "TECH",
     primaryKeyword: "tax technology solutions",
     secondaryKeywords: ["digital tax compliance", "e-invoicing implementation", "automated tax reporting", "ERP tax integration", "tax engine implementation"],
     description: "Tax engines, e-invoicing, ERP-tax integration, and automated reporting.",
@@ -101,7 +169,6 @@ export const services = [
     title: "Accounting & Financial Services",
     slug: "accounting-financial-solutions",
     category: "Accounting & Financial services",
-    icon: "FIN",
     primaryKeyword: "accounting automation",
     secondaryKeywords: ["accounting system setup", "financial reporting solutions", "MIS reporting services", "finance process optimization"],
     description: "Structured accounting systems, MIS reporting, and audit-ready documentation.",
@@ -118,7 +185,6 @@ export const services = [
     title: "Business Process Optimization & Advisory",
     slug: "business-process-optimization",
     category: "Digital Transformation",
-    icon: "OPS",
     primaryKeyword: "business process optimization",
     secondaryKeywords: ["process redesign consulting", "SOP development services", "operational efficiency consulting", "business process improvement"],
     description: "Improve operational performance through redesigned processes and SOPs.",
@@ -135,7 +201,6 @@ export const services = [
     title: "Managed Services & Outsourcing",
     slug: "managed-services-outsourcing",
     category: "Managed Services / BPO",
-    icon: "BPO",
     primaryKeyword: "finance outsourcing services",
     secondaryKeywords: ["accounting outsourcing", "tax compliance outsourcing", "back office outsourcing", "managed accounting services"],
     description: "Finance, tax, back-office, and system support services.",
@@ -151,10 +216,10 @@ export const services = [
 ];
 
 export const metrics = [
-  { value: "50+", label: "Clients Supported" },
-  { value: "40+", label: "ERP & Accounting Implementations" },
-  { value: "10+", label: "Jurisdictions Covered" },
-  { value: "100+", label: "Hours Saved Annually Through Optimization" },
+  { value: "50+", label: "Clients supported" },
+  { value: "40+", label: "ERP & accounting implementations" },
+  { value: "10+", label: "Jurisdictions covered" },
+  { value: "20+", label: "Professionals led" },
 ];
 
 export const outcomes = [
@@ -162,15 +227,6 @@ export const outcomes = [
   { value: "40%", label: "Improvement in data accuracy and reporting efficiency" },
   { value: "100+", label: "Hours saved annually" },
   { value: "Real-time", label: "Decision-making visibility" },
-];
-
-export const impactCounters = [
-  { value: 50, suffix: "+", label: "Clients / Industries", icon: "CI", tone: "blue", progress: 88 },
-  { value: 40, suffix: "+", label: "ERP & Accounting Implementations", icon: "ERP", tone: "cyan", progress: 82 },
-  { value: 20, suffix: "+", label: "Professionals Led", icon: "TL", tone: "steel", progress: 74 },
-  { value: 10, suffix: "+", label: "Jurisdictions Covered", icon: "GJ", tone: "blue", progress: 68 },
-  { value: 50, suffix: "%", label: "Manual Process Reduction", icon: "MR", tone: "cyan", progress: 78 },
-  { value: 40, suffix: "%", label: "Accuracy Improvement", icon: "AI", tone: "steel", progress: 72 },
 ];
 
 export const leaders = [

@@ -1,24 +1,30 @@
 import Link from "next/link";
-import { clients, industries, insights, leaders, metrics, outcomes, services, site } from "../data";
-import AnimatedMetricGrid from "./AnimatedMetricGrid";
+import { asset, clients, cta, deliveryProcess, industries, insights, leaders, metrics, services, site } from "../data";
+import { ArrowIcon, ServiceIcon } from "./Icons";
 
-export function PageHero({ eyebrow, title, subtitle, className = "", videoSrc, visualLabels = [] }) {
+export function CtaButtons({ service, light = false, label = "hero" }) {
+  const suffix = service ? `&service=${service}` : "";
+
+  return (
+    <div className="ctaActions">
+      <Link className="primaryButton" href={`${cta.consultation.href}${suffix}`} data-cta={`${label}-consultation`} prefetch={false}>
+        {cta.consultation.label}
+      </Link>
+      <Link className={`secondaryButton ${light ? "light" : ""}`.trim()} href={`${cta.proposal.href}${suffix}`} data-cta={`${label}-proposal`} prefetch={false}>
+        {cta.proposal.label}
+      </Link>
+    </div>
+  );
+}
+
+export function PageHero({ eyebrow, title, subtitle, className = "", actions = true }) {
   return (
     <section className={`pageHero ${className}`.trim()}>
-      {videoSrc ? (
-        <video className="pageHeroVideo" autoPlay muted loop playsInline aria-hidden="true">
-          <source src={videoSrc} type="video/mp4" />
-        </video>
-      ) : null}
       <div className="sectionShell">
         {eyebrow && <p className="eyebrow">{eyebrow}</p>}
         <h1>{title}</h1>
         <p>{subtitle}</p>
-        {visualLabels.length ? (
-          <div className="pageHeroLabels" aria-hidden="true">
-            {visualLabels.map((label, index) => <span style={{ "--label-index": index }} key={label}>{label}</span>)}
-          </div>
-        ) : null}
+        {actions ? <CtaButtons light /> : null}
       </div>
     </section>
   );
@@ -34,124 +40,89 @@ export function SectionHeading({ eyebrow, title, text }) {
   );
 }
 
-export function ServiceCard({ service, index = 0, summaryOnly = false }) {
+export function ServiceCard({ service }) {
   return (
-    <article
-      className={summaryOnly ? "serviceCard serviceSummaryCard reveal" : "serviceCard reveal"}
-      style={{ "--card-delay": `${index * 70}ms` }}
-    >
-      <span className="iconBadge">{service.icon}</span>
-      <h3>{service.title}</h3>
-      {!summaryOnly && (
-        <>
-          <p>{service.description}</p>
-          <strong>{service.outcome}</strong>
-          <Link href={`/services/${service.slug}/`}>Learn More</Link>
-        </>
-      )}
+    <article className="serviceCard reveal">
+      <ServiceIcon slug={service.slug} />
+      <h3>
+        <Link href={`/services/${service.slug}/`} prefetch={false}>{service.title}</Link>
+      </h3>
+      <p>{service.description}</p>
+      <strong>{service.outcome}</strong>
+      <span className="cardArrow">Learn more <ArrowIcon /></span>
     </article>
   );
 }
 
-export function ServicesGrid({ limit, summaryOnly = false }) {
-  const shown = limit ? services.slice(0, limit) : services;
+export function ServicesGrid({ exclude }) {
+  const shown = exclude ? services.filter((service) => service.slug !== exclude) : services;
+
   return (
-    <div className={summaryOnly ? "servicesGrid serviceSummaryGrid" : "servicesGrid"}>
-      {shown.map((service, index) => (
-        <ServiceCard
-          key={service.title}
-          service={service}
-          index={index}
-          summaryOnly={summaryOnly}
-        />
+    <div className="servicesGrid">
+      {shown.map((service) => <ServiceCard key={service.slug} service={service} />)}
+    </div>
+  );
+}
+
+export function MetricGrid({ items = metrics, dark = false }) {
+  return (
+    <div className={dark ? "metricGrid dark" : "metricGrid"}>
+      {items.map((metric) => (
+        <div className="metricCard" key={metric.label}>
+          <strong>{metric.value}</strong>
+          <span>{metric.label}</span>
+        </div>
       ))}
     </div>
   );
 }
 
-export function MetricGrid({ compact = false }) {
-  return <AnimatedMetricGrid compact={compact} />;
-}
-
-export function OutcomeGrid() {
+export function ClientLogos({ title = "Trusted by teams across the region" }) {
   return (
-    <div className="outcomeGrid">
-      {outcomes.map((outcome) => (
-        <article className="outcomeCard reveal" key={outcome.label}>
-          <strong>{outcome.value}</strong>
-          <p>{outcome.label}</p>
-        </article>
-      ))}
-    </div>
-  );
-}
-
-export function ClientsShowcase({ compact = false }) {
-  const sliderClients = [...clients, ...clients];
-
-  return (
-    <section className={compact ? "sectionShell clientsSection compact" : "sectionShell clientsSection"}>
-      <div className="clientsHeader">
-        <SectionHeading
-          eyebrow="Clients / Industries"
-          title="Trusted by teams transforming operations"
-          text="SBS supports ambitious businesses across metals, retail, food, technology, finance, logistics, and real estate with practical transformation programs."
-        />
-      </div>
-
-      <div className="clientOrbitWrap reveal">
-        <div className="clientOrbit" aria-label="Industries supported by SBS">
-          {industries.slice(0, 6).map((industry, index) => (
-            <span className={`orbitLogo orbitLogo${index + 1}`} key={industry}>
-              {industry}
-            </span>
-          ))}
-          <strong>SBS</strong>
-        </div>
-      </div>
-
-      <div className="clientSlider" aria-label="Client logo carousel">
-        <div className="clientTrack">
-          {sliderClients.map((client, index) => (
-            <a
-              className="clientLogo reveal"
-              href={client.href}
-              target={client.href.startsWith("http") ? "_blank" : undefined}
-              rel={client.href.startsWith("http") ? "noreferrer" : undefined}
-              style={{ "--card-delay": `${(index % clients.length) * 70}ms` }}
-              key={`${client.name}-${index}`}
-            >
-              <span>
-                <img src={client.logo} alt="" width="48" height="48" loading="lazy" />
-              </span>
-              <strong>{client.name}</strong>
-            </a>
+    <section className="logoBand" aria-label="Selected SBS clients">
+      <div className="logoBandShell">
+        <p>{title}</p>
+        <div className="logoStrip">
+          {clients.map((client) => (
+            <div className="logoItem" key={client.name}>
+              <img src={asset(client.logo)} alt="" width="40" height="40" loading="lazy" decoding="async" />
+              <span>{client.name}</span>
+            </div>
           ))}
         </div>
-      </div>
-
-      <div className="industryPillGrid">
-        {industries.map((industry, index) => (
-          <article
-            className="industryPill reveal"
-            style={{ "--card-delay": `${index * 55}ms` }}
-            key={industry}
-          >
-            <span>{industry.split(" ").map((part) => part[0]).join("").replace(/[^A-Z]/g, "").slice(0, 2)}</span>
-            <strong>{industry}</strong>
-          </article>
-        ))}
       </div>
     </section>
+  );
+}
+
+export function IndustryPills() {
+  return (
+    <div className="industryPillGrid">
+      {industries.map((industry) => <span className="industryPill" key={industry}>{industry}</span>)}
+    </div>
+  );
+}
+
+export function ProcessSteps() {
+  return (
+    <ol className="processGrid">
+      {deliveryProcess.map((step, index) => (
+        <li className="processStep reveal" key={step.title}>
+          <span>{String(index + 1).padStart(2, "0")}</span>
+          <h3>{step.title}</h3>
+          <p>{step.text}</p>
+        </li>
+      ))}
+    </ol>
   );
 }
 
 export function LeadershipGrid() {
   return (
     <div className="leadershipGrid">
-      {leaders.map((leader, index) => (
-        <article className={`leaderCard reveal slide-${index % 2 === 0 ? "left" : "right"}`} key={leader.name}>
-          <div className="avatar">{leader.name.split(" ").map((part) => part[0]).join("").slice(0, 2)}</div>
+      {leaders.map((leader) => (
+        <article className="leaderCard reveal" key={leader.name}>
+          <div className="avatar" aria-hidden="true">{leader.name.split(" ").map((part) => part[0]).join("").slice(0, 2)}</div>
           <div>
             <h3>{leader.name}</h3>
             <span>{leader.role}</span>
@@ -166,58 +137,42 @@ export function LeadershipGrid() {
 export function InsightsGrid() {
   return (
     <div className="insightsGrid">
-      {insights.map((post, index) => {
+      {insights.map((post) => {
         const postPath = `/insights/#${post.slug}`;
         const postUrl = new URL(postPath, site.url).toString();
         const shareText = encodeURIComponent(`${post.title} | ${site.name}\n${postUrl}`);
         const shareUrl = encodeURIComponent(postUrl);
 
         return (
-          <article
-            className="blogCard reveal"
-            id={post.slug}
-            style={{ "--card-delay": `${index * 80}ms` }}
-            key={post.title}
-          >
-            <div className={`blogVisual insightVisual${index + 1} ${post.visual}`} aria-label={`${post.title} featured visual`}>
-              <span className="insightOrb" />
-              <span className="insightGlyph">{post.category.split(" ")[0]}</span>
-              <div className="visualBars" aria-hidden="true">
-                <i />
-                <i />
-                <i />
-                <i />
-              </div>
-            </div>
+          <article className="blogCard reveal" id={post.slug} key={post.title}>
             <div className="blogMeta">
               <span>{post.category}</span>
+              <span className="blogStatus">{post.date}</span>
             </div>
+            <h3>{post.title}</h3>
+            <p>{post.description}</p>
             <div className="categoryTags" aria-label={`${post.title} categories`}>
               {post.tags.map((tag) => (
                 <span key={tag}>{tag}</span>
               ))}
             </div>
-            <h3>{post.title}</h3>
-            <p>{post.description}</p>
-            <div className="blogActions">
-              <div className="shareActions" aria-label={`Share ${post.title}`}>
-                <a
-                  href={`https://www.linkedin.com/feed/?shareActive=true&text=${shareText}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={`Create a LinkedIn post for ${post.title}`}
-                >
-                  Share on LinkedIn
-                </a>
-                <a
-                  href={`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}&quote=${shareText}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={`Create a Facebook post for ${post.title}`}
-                >
-                  Share on Facebook
-                </a>
-              </div>
+            <div className="shareActions" aria-label={`Share ${post.title}`}>
+              <a
+                href={`https://www.linkedin.com/feed/?shareActive=true&text=${shareText}`}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={`Share ${post.title} on LinkedIn`}
+              >
+                Share on LinkedIn
+              </a>
+              <a
+                href={`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}&quote=${shareText}`}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={`Share ${post.title} on Facebook`}
+              >
+                Share on Facebook
+              </a>
             </div>
           </article>
         );
@@ -231,35 +186,26 @@ export function SocialFollowSection() {
     <section className="sectionShell followSection reveal">
       <div>
         <p className="eyebrow">Follow Us</p>
-        <h2>Keep the conversation moving across Insights and social channels</h2>
-        <p>
-          Share publications from the website to LinkedIn or Facebook, and use
-          the official SBS pages to bring social updates back to the knowledge hub.
-        </p>
+        <h2>Get new insights as they are published</h2>
+        <p>Follow Smart Brain Solutions for updates on ERP, tax technology, and business transformation.</p>
       </div>
       <div className="followActions" aria-label="Official Smart Brain Solutions social pages">
-        <a href={site.linkedin} target="_blank" rel="noreferrer">
-          LinkedIn
-        </a>
-        <a href={site.facebook} target="_blank" rel="noreferrer">
-          Facebook
-        </a>
+        <a href={site.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
+        <a href={site.facebook} target="_blank" rel="noreferrer">Facebook</a>
       </div>
     </section>
   );
 }
 
-export function FinalCta() {
+export function FinalCta({ service }) {
   return (
-    <section className="finalCta sectionShell reveal">
-      <div>
-        <p className="eyebrow">Next Step</p>
-        <h2>Ready to transform your business operations?</h2>
-        <p>Let&apos;s turn your ideas into intelligent, scalable solutions.</p>
-      </div>
-      <div className="ctaActions">
-        <Link className="primaryButton" href="/contact/">Get Consultation</Link>
-        <a className="secondaryButton" href={`https://wa.me/${site.whatsapp}`}>WhatsApp Us</a>
+    <section className="finalCta">
+      <div className="finalCtaInner">
+        <div>
+          <h2>Ready to transform your business operations?</h2>
+          <p>Tell us about your systems and goals. We will help you plan the next step.</p>
+        </div>
+        <CtaButtons light service={service} label="final" />
       </div>
     </section>
   );

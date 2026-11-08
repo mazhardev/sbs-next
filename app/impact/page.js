@@ -1,5 +1,5 @@
-import ImpactCounters from "../components/ImpactCounters";
-import { FinalCta, PageHero, SectionHeading } from "../components/Sections";
+import { FinalCta, MetricGrid, PageHero, SectionHeading } from "../components/Sections";
+import { metrics, outcomes } from "../data";
 import { buildMetadata } from "../seo";
 
 const impactSections = [
@@ -47,34 +47,34 @@ export default function ImpactPage() {
   return (
     <>
       <PageHero
-        className="impactHero"
         eyebrow="Impact"
         title="Our Impact"
         subtitle="At Smart Brain Solutions, our impact is built on a powerful combination of technology expertise, business understanding, and execution-driven delivery."
       />
-      <section className="sectionShell impactBand">
+      <section className="sectionShell">
         <SectionHeading
           eyebrow="Outcomes"
-          title="High-Impact Transformation Outcomes"
+          title="High-impact transformation outcomes"
           text="A clearer view of delivery scale, operational improvements, and measurable transformation results across ERP, finance, tax, and automation programs."
         />
-        <ImpactCounters />
+        <MetricGrid items={outcomes} />
+        <div className="metricGap">
+          <MetricGrid items={metrics} />
+        </div>
       </section>
-      <section className="sectionShell impactListGrid">
-        {impactSections.map((section, index) => (
-          <article
-            className={`listCard impactExperienceCard impactExperienceCard${index + 1} reveal`}
-            style={{ "--card-delay": `${index * 90}ms` }}
-            key={section.title}
-          >
-            <h2>{section.title}</h2>
-            <ul>
-              {section.items.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </article>
-        ))}
+      <section className="softBand">
+        <div className="sectionShell impactListGrid">
+          {impactSections.map((section) => (
+            <article className="listCard reveal" key={section.title}>
+              <h2>{section.title}</h2>
+              <ul className="checkList">
+                {section.items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
       </section>
       <FinalCta />
     </>

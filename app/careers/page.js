@@ -4,22 +4,18 @@ import { buildMetadata } from "../seo";
 
 const careerAreas = [
   {
-    icon: "ERP",
     title: "ERP & Systems Consulting",
     text: "Help businesses select, implement, integrate, and improve the systems that run their operations.",
   },
   {
-    icon: "FIN",
     title: "Finance Transformation",
     text: "Build clearer reporting, stronger controls, and more efficient accounting and finance processes.",
   },
   {
-    icon: "TAX",
     title: "Tax Advisory & Compliance",
     text: "Support practical tax technology, compliance, and multi-jurisdiction advisory engagements.",
   },
   {
-    icon: "AUTO",
     title: "Automation & Digital Delivery",
     text: "Turn repetitive workflows into connected, scalable digital solutions with measurable impact.",
   },
@@ -56,6 +52,7 @@ export default function CareersPage() {
         eyebrow="Careers"
         title="Build smarter systems with us"
         subtitle="Join a multidisciplinary team helping businesses improve how they operate through ERP, finance, tax, automation, and practical advisory."
+        actions={false}
       />
 
       <section className="sectionShell careerIntro">
@@ -86,13 +83,8 @@ export default function CareersPage() {
             text="Bring your expertise, develop new capabilities, and work on practical transformation programs across our core disciplines."
           />
           <div className="careerAreaGrid">
-            {careerAreas.map((area, index) => (
-              <article
-                className="careerAreaCard reveal"
-                style={{ "--card-delay": `${index * 80}ms` }}
-                key={area.title}
-              >
-                <span>{area.icon}</span>
+            {careerAreas.map((area) => (
+              <article className="careerAreaCard reveal" key={area.title}>
                 <h3>{area.title}</h3>
                 <p>{area.text}</p>
               </article>
@@ -107,8 +99,8 @@ export default function CareersPage() {
           title="A place for ownership, curiosity, and growth"
         />
         <div className="careerPrinciples">
-          {waysOfWorking.map((item, index) => (
-            <article className="careerPrinciple reveal" style={{ "--card-delay": `${index * 90}ms` }} key={item.number}>
+          {waysOfWorking.map((item) => (
+            <article className="careerPrinciple reveal" key={item.number}>
               <span>{item.number}</span>
               <h3>{item.title}</h3>
               <p>{item.text}</p>

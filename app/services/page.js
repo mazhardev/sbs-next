@@ -13,9 +13,6 @@ export default function ServicesPage() {
     <>
       <JsonLd data={services.map(serviceSchema)} />
       <PageHero
-        className="servicesHero"
-        videoSrc="/videos/basatne-1080p.mp4"
-        visualLabels={["Accounting", "Tax Technology", "ERP Automation"]}
         eyebrow="Services"
         title="Services Built for Smarter Business Transformation"
         subtitle="From ERP implementation to tax technology and managed services, SBS helps businesses modernize operations with practical, scalable solutions."
@@ -23,8 +20,8 @@ export default function ServicesPage() {
       <section className="sectionShell">
         <SectionHeading
           eyebrow="Capabilities"
-          title="End-to-End Consulting, Implementation, and Managed Support"
-          text="Serving clients across ASPAC and international markets with practical services that connect technology, finance, tax, and operational execution."
+          title="End-to-end consulting, implementation, and managed support"
+          text="Serving clients across GCC, ASPAC, and international markets with practical services that connect technology, finance, tax, and operational execution."
         />
         <ServicesExplorer services={services} />
       </section>

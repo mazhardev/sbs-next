@@ -114,7 +114,7 @@ export function serviceMetadata(service) {
   return buildMetadata({
     path: `/services/${service.slug}/`,
     title: `${service.title} | SBS`,
-    description: `${service.description} Smart Brain Solutions delivers ${service.primaryKeyword.toLowerCase()} for clients across ASPAC and international markets.`,
+    description: `${service.description} Book a consultation with Smart Brain Solutions, serving GCC, ASPAC, and international markets.`,
     primaryKeyword: service.primaryKeyword,
     keywords: service.secondaryKeywords,
   });
@@ -130,8 +130,9 @@ export function organizationSchema() {
     email: site.email,
     telephone: site.phone,
     slogan: site.tagline,
-    areaServed: ["ASPAC", "International"],
-    sameAs: ["https://www.linkedin.com/company/smart-brain-solutions"],
+    address: site.address,
+    areaServed: ["GCC", "ASPAC", "International"],
+    sameAs: [site.linkedin, site.facebook, site.instagram],
     knowsAbout: services.map((service) => service.title),
   };
 }
@@ -144,8 +145,9 @@ export function professionalServiceSchema() {
     url: baseUrl,
     email: site.email,
     telephone: site.phone,
+    address: site.address,
     priceRange: "$$",
-    areaServed: ["ASPAC", "International"],
+    areaServed: ["GCC", "ASPAC", "International"],
     serviceType: services.map((service) => service.title),
   };
 }
@@ -156,11 +158,6 @@ export function websiteSchema() {
     "@type": "WebSite",
     name: site.name,
     url: baseUrl,
-    potentialAction: {
-      "@type": "SearchAction",
-      target: `${baseUrl}/insights/?q={search_term_string}`,
-      "query-input": "required name=search_term_string",
-    },
   };
 }
 
